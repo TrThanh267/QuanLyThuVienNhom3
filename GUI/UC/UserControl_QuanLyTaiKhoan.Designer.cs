@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -41,6 +42,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -58,8 +61,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Panel_ThongTinSach = new Guna.UI2.WinForms.Guna2GradientPanel();
             label_ThongTinSach = new Label();
             Panel_NhapThongTinChamCong = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -67,6 +68,8 @@
             Button_Xoa = new Guna.UI2.WinForms.Guna2Button();
             Button_Them = new Guna.UI2.WinForms.Guna2Button();
             GroupBox_NhapThongTinTaiKhoan = new Guna.UI2.WinForms.Guna2GroupBox();
+            radioButton_Online = new RadioButton();
+            TextBox_MatKhau = new Guna.UI2.WinForms.Guna2TextBox();
             ComboBox_VaiTro = new Guna.UI2.WinForms.Guna2ComboBox();
             radioButton_Offline = new RadioButton();
             TextBox_TenTaiKhoan = new Guna.UI2.WinForms.Guna2TextBox();
@@ -79,13 +82,19 @@
             ComBox_LocTaiKhoanTheoVaiTro = new Guna.UI2.WinForms.Guna2ComboBox();
             Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
             TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
-            DataGridView_DachSachNhanVien = new Guna.UI2.WinForms.Guna2DataGridView();
-            TextBox_MatKhau = new Guna.UI2.WinForms.Guna2TextBox();
-            radioButton_Online = new RadioButton();
+            DataGridView_DachSachTaiKhoan = new Guna.UI2.WinForms.Guna2DataGridView();
+            qLTaiKhoanDTOBindingSource = new BindingSource(components);
+            sTTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            MaTK = new DataGridViewTextBoxColumn();
+            TenTK = new DataGridViewTextBoxColumn();
+            MaTKhau = new DataGridViewTextBoxColumn();
+            TrangThai = new DataGridViewTextBoxColumn();
+            VaiTro = new DataGridViewTextBoxColumn();
             Panel_ThongTinSach.SuspendLayout();
             Panel_NhapThongTinChamCong.SuspendLayout();
             GroupBox_NhapThongTinTaiKhoan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridView_DachSachNhanVien).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridView_DachSachTaiKhoan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)qLTaiKhoanDTOBindingSource).BeginInit();
             SuspendLayout();
             // 
             // Panel_ThongTinSach
@@ -130,7 +139,7 @@
             Panel_NhapThongTinChamCong.Controls.Add(ComBox_LocTaiKhoanTheoVaiTro);
             Panel_NhapThongTinChamCong.Controls.Add(Button_TimKiem);
             Panel_NhapThongTinChamCong.Controls.Add(TextBox_TimKiem);
-            Panel_NhapThongTinChamCong.Controls.Add(DataGridView_DachSachNhanVien);
+            Panel_NhapThongTinChamCong.Controls.Add(DataGridView_DachSachTaiKhoan);
             Panel_NhapThongTinChamCong.CustomizableEdges = customizableEdges27;
             Panel_NhapThongTinChamCong.FillColor2 = Color.Gray;
             Panel_NhapThongTinChamCong.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
@@ -163,6 +172,7 @@
             Button_CapNhap.Size = new Size(155, 41);
             Button_CapNhap.TabIndex = 16;
             Button_CapNhap.Text = "Cập nhập";
+            Button_CapNhap.Click += Button_CapNhap_Click;
             // 
             // Button_Xoa
             // 
@@ -187,6 +197,7 @@
             Button_Xoa.Size = new Size(155, 41);
             Button_Xoa.TabIndex = 15;
             Button_Xoa.Text = "Xóa";
+            Button_Xoa.Click += Button_Xoa_Click;
             // 
             // Button_Them
             // 
@@ -211,6 +222,7 @@
             Button_Them.Size = new Size(155, 41);
             Button_Them.TabIndex = 14;
             Button_Them.Text = "Thêm";
+            Button_Them.Click += Button_Them_Click;
             // 
             // GroupBox_NhapThongTinTaiKhoan
             // 
@@ -241,6 +253,38 @@
             GroupBox_NhapThongTinTaiKhoan.TextAlign = HorizontalAlignment.Center;
             GroupBox_NhapThongTinTaiKhoan.Visible = false;
             // 
+            // radioButton_Online
+            // 
+            radioButton_Online.AutoSize = true;
+            radioButton_Online.ForeColor = Color.Black;
+            radioButton_Online.Location = new Point(112, 177);
+            radioButton_Online.Name = "radioButton_Online";
+            radioButton_Online.Size = new Size(73, 24);
+            radioButton_Online.TabIndex = 18;
+            radioButton_Online.TabStop = true;
+            radioButton_Online.Text = "Online";
+            radioButton_Online.UseVisualStyleBackColor = true;
+            // 
+            // TextBox_MatKhau
+            // 
+            TextBox_MatKhau.CustomizableEdges = customizableEdges9;
+            TextBox_MatKhau.DefaultText = "";
+            TextBox_MatKhau.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            TextBox_MatKhau.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            TextBox_MatKhau.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_MatKhau.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_MatKhau.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            TextBox_MatKhau.Font = new Font("Segoe UI", 9F);
+            TextBox_MatKhau.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            TextBox_MatKhau.Location = new Point(112, 111);
+            TextBox_MatKhau.Margin = new Padding(3, 4, 3, 4);
+            TextBox_MatKhau.Name = "TextBox_MatKhau";
+            TextBox_MatKhau.PlaceholderText = "";
+            TextBox_MatKhau.SelectedText = "";
+            TextBox_MatKhau.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            TextBox_MatKhau.Size = new Size(257, 37);
+            TextBox_MatKhau.TabIndex = 17;
+            // 
             // ComboBox_VaiTro
             // 
             ComboBox_VaiTro.BackColor = Color.Transparent;
@@ -257,6 +301,7 @@
             ComboBox_VaiTro.ShadowDecoration.CustomizableEdges = customizableEdges12;
             ComboBox_VaiTro.Size = new Size(257, 36);
             ComboBox_VaiTro.TabIndex = 16;
+            ComboBox_VaiTro.SelectedIndexChanged += ComboBox_VaiTro_SelectedIndexChanged;
             // 
             // radioButton_Offline
             // 
@@ -313,6 +358,7 @@
             Button_Huy.Size = new Size(155, 41);
             Button_Huy.TabIndex = 9;
             Button_Huy.Text = "Hủy";
+            Button_Huy.Click += Button_Huy_Click;
             // 
             // Button_Luu
             // 
@@ -337,6 +383,7 @@
             Button_Luu.Size = new Size(155, 41);
             Button_Luu.TabIndex = 9;
             Button_Luu.Text = "Lưu";
+            Button_Luu.Click += Button_Luu_Click;
             // 
             // label_DiaChi
             // 
@@ -398,6 +445,7 @@
             ComBox_LocTaiKhoanTheoVaiTro.ShadowDecoration.CustomizableEdges = customizableEdges22;
             ComBox_LocTaiKhoanTheoVaiTro.Size = new Size(175, 36);
             ComBox_LocTaiKhoanTheoVaiTro.TabIndex = 12;
+            ComBox_LocTaiKhoanTheoVaiTro.SelectedIndexChanged += ComBox_LocTaiKhoanTheoVaiTro_SelectedIndexChanged;
             // 
             // Button_TimKiem
             // 
@@ -418,6 +466,7 @@
             Button_TimKiem.Size = new Size(103, 36);
             Button_TimKiem.TabIndex = 11;
             Button_TimKiem.Text = "Tìm kiếm";
+            Button_TimKiem.Click += Button_TimKiem_Click;
             // 
             // TextBox_TimKiem
             // 
@@ -442,90 +491,122 @@
             TextBox_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges26;
             TextBox_TimKiem.Size = new Size(181, 36);
             TextBox_TimKiem.TabIndex = 10;
+            TextBox_TimKiem.DoubleClick += TextBox_TimKiem_DoubleClick;
             // 
-            // DataGridView_DachSachNhanVien
+            // DataGridView_DachSachTaiKhoan
             // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            DataGridView_DachSachNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            DataGridView_DachSachNhanVien.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(185, 226, 218);
+            DataGridView_DachSachTaiKhoan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            DataGridView_DachSachTaiKhoan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            DataGridView_DachSachTaiKhoan.AutoGenerateColumns = false;
+            DataGridView_DachSachTaiKhoan.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            DataGridView_DachSachTaiKhoan.BackgroundColor = Color.FromArgb(0, 192, 192);
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(22, 160, 133);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DataGridView_DachSachNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataGridView_DachSachNhanVien.ColumnHeadersHeight = 4;
-            DataGridView_DachSachNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DataGridView_DachSachTaiKhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            DataGridView_DachSachTaiKhoan.ColumnHeadersHeight = 50;
+            DataGridView_DachSachTaiKhoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DataGridView_DachSachTaiKhoan.Columns.AddRange(new DataGridViewColumn[] { sTTDataGridViewTextBoxColumn, MaTK, TenTK, MaTKhau, TrangThai, VaiTro });
+            DataGridView_DachSachTaiKhoan.DataSource = qLTaiKhoanDTOBindingSource;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(208, 235, 230);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(99, 191, 173);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            DataGridView_DachSachNhanVien.DefaultCellStyle = dataGridViewCellStyle3;
-            DataGridView_DachSachNhanVien.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridView_DachSachNhanVien.Location = new Point(22, 69);
-            DataGridView_DachSachNhanVien.Name = "DataGridView_DachSachNhanVien";
-            DataGridView_DachSachNhanVien.RowHeadersVisible = false;
-            DataGridView_DachSachNhanVien.RowHeadersWidth = 51;
-            DataGridView_DachSachNhanVien.Size = new Size(1008, 718);
-            DataGridView_DachSachNhanVien.TabIndex = 9;
-            DataGridView_DachSachNhanVien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            DataGridView_DachSachNhanVien.ThemeStyle.AlternatingRowsStyle.Font = null;
-            DataGridView_DachSachNhanVien.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            DataGridView_DachSachNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            DataGridView_DachSachNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            DataGridView_DachSachNhanVien.ThemeStyle.BackColor = Color.White;
-            DataGridView_DachSachNhanVien.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridView_DachSachNhanVien.ThemeStyle.HeaderStyle.Height = 4;
-            DataGridView_DachSachNhanVien.ThemeStyle.ReadOnly = false;
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.BackColor = Color.White;
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.Height = 29;
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DataGridView_DachSachTaiKhoan.DefaultCellStyle = dataGridViewCellStyle3;
+            DataGridView_DachSachTaiKhoan.GridColor = Color.FromArgb(182, 224, 216);
+            DataGridView_DachSachTaiKhoan.Location = new Point(22, 69);
+            DataGridView_DachSachTaiKhoan.MultiSelect = false;
+            DataGridView_DachSachTaiKhoan.Name = "DataGridView_DachSachTaiKhoan";
+            DataGridView_DachSachTaiKhoan.ReadOnly = true;
+            DataGridView_DachSachTaiKhoan.RowHeadersVisible = false;
+            DataGridView_DachSachTaiKhoan.RowHeadersWidth = 51;
+            DataGridView_DachSachTaiKhoan.Size = new Size(1008, 718);
+            DataGridView_DachSachTaiKhoan.TabIndex = 9;
+            DataGridView_DachSachTaiKhoan.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(185, 226, 218);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.AlternatingRowsStyle.Font = null;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.BackColor = Color.FromArgb(0, 192, 192);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.GridColor = Color.FromArgb(182, 224, 216);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(22, 160, 133);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.HeaderStyle.Height = 50;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.ReadOnly = true;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.BackColor = Color.FromArgb(208, 235, 230);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.ForeColor = Color.Black;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.Height = 29;
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(99, 191, 173);
+            DataGridView_DachSachTaiKhoan.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
+            DataGridView_DachSachTaiKhoan.CellClick += DataGridView_DachSachTaiKhoan_CellClick;
+            DataGridView_DachSachTaiKhoan.CellContentClick += DataGridView_DachSachTaiKhoan_CellContentClick;
             // 
-            // TextBox_MatKhau
+            // qLTaiKhoanDTOBindingSource
             // 
-            TextBox_MatKhau.CustomizableEdges = customizableEdges9;
-            TextBox_MatKhau.DefaultText = "";
-            TextBox_MatKhau.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            TextBox_MatKhau.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            TextBox_MatKhau.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_MatKhau.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_MatKhau.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_MatKhau.Font = new Font("Segoe UI", 9F);
-            TextBox_MatKhau.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_MatKhau.Location = new Point(112, 111);
-            TextBox_MatKhau.Margin = new Padding(3, 4, 3, 4);
-            TextBox_MatKhau.Name = "TextBox_MatKhau";
-            TextBox_MatKhau.PlaceholderText = "";
-            TextBox_MatKhau.SelectedText = "";
-            TextBox_MatKhau.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            TextBox_MatKhau.Size = new Size(257, 37);
-            TextBox_MatKhau.TabIndex = 17;
+            qLTaiKhoanDTOBindingSource.DataSource = typeof(DTO.QLTaiKhoan_DTO);
             // 
-            // radioButton_Online
+            // sTTDataGridViewTextBoxColumn
             // 
-            radioButton_Online.AutoSize = true;
-            radioButton_Online.ForeColor = Color.Black;
-            radioButton_Online.Location = new Point(112, 177);
-            radioButton_Online.Name = "radioButton_Online";
-            radioButton_Online.Size = new Size(73, 24);
-            radioButton_Online.TabIndex = 18;
-            radioButton_Online.TabStop = true;
-            radioButton_Online.Text = "Online";
-            radioButton_Online.UseVisualStyleBackColor = true;
+            sTTDataGridViewTextBoxColumn.DataPropertyName = "STT";
+            sTTDataGridViewTextBoxColumn.HeaderText = "STT";
+            sTTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sTTDataGridViewTextBoxColumn.Name = "sTTDataGridViewTextBoxColumn";
+            sTTDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // MaTK
+            // 
+            MaTK.DataPropertyName = "MaTK";
+            MaTK.HeaderText = "Mã tài khoản";
+            MaTK.MinimumWidth = 6;
+            MaTK.Name = "MaTK";
+            MaTK.ReadOnly = true;
+            // 
+            // TenTK
+            // 
+            TenTK.DataPropertyName = "TenTK";
+            TenTK.HeaderText = "Tên tài khoản";
+            TenTK.MinimumWidth = 6;
+            TenTK.Name = "TenTK";
+            TenTK.ReadOnly = true;
+            // 
+            // MaTKhau
+            // 
+            MaTKhau.DataPropertyName = "MaTKhau";
+            MaTKhau.HeaderText = "Mật khẩu";
+            MaTKhau.MinimumWidth = 6;
+            MaTKhau.Name = "MaTKhau";
+            MaTKhau.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            TrangThai.DataPropertyName = "TrangThai";
+            TrangThai.HeaderText = "Trạng thái";
+            TrangThai.MinimumWidth = 6;
+            TrangThai.Name = "TrangThai";
+            TrangThai.ReadOnly = true;
+            // 
+            // VaiTro
+            // 
+            VaiTro.DataPropertyName = "VaiTro";
+            VaiTro.HeaderText = "Vai trò";
+            VaiTro.MinimumWidth = 6;
+            VaiTro.Name = "VaiTro";
+            VaiTro.ReadOnly = true;
             // 
             // UserControl_QuanLyTaiKhoan
             // 
@@ -541,7 +622,8 @@
             Panel_NhapThongTinChamCong.ResumeLayout(false);
             GroupBox_NhapThongTinTaiKhoan.ResumeLayout(false);
             GroupBox_NhapThongTinTaiKhoan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridView_DachSachNhanVien).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridView_DachSachTaiKhoan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)qLTaiKhoanDTOBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -574,11 +656,19 @@
         private Guna.UI2.WinForms.Guna2ComboBox ComBox_LocTaiKhoanTheoVaiTro;
         private Guna.UI2.WinForms.Guna2Button Button_TimKiem;
         private Guna.UI2.WinForms.Guna2TextBox TextBox_TimKiem;
-        private Guna.UI2.WinForms.Guna2DataGridView DataGridView_DachSachNhanVien;
+        private Guna.UI2.WinForms.Guna2DataGridView DataGridView_DachSachTaiKhoan;
         private Guna.UI2.WinForms.Guna2Button Button_CapNhap;
         private Guna.UI2.WinForms.Guna2Button Button_Xoa;
         private Guna.UI2.WinForms.Guna2Button Button_Them;
         private RadioButton radioButton_Online;
         private Guna.UI2.WinForms.Guna2TextBox TextBox_MatKhau;
+        private BindingSource qLTaiKhoanDTOBindingSource;
+        private DataGridViewTextBoxColumn sTTDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn maTKDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn TenTK;
+        private DataGridViewTextBoxColumn MaTKhau;
+        private DataGridViewTextBoxColumn TrangThai;
+        private DataGridViewTextBoxColumn VaiTro;
+        private DataGridViewTextBoxColumn MaTK;
     }
 }

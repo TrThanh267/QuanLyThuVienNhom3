@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyThuVienNhom3.GUI.UC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,7 @@ namespace QuanLyThuVienNhom3.GUI
         {
             userControl_QuanLySach1.Visible = false;
             userControl_QuanLyNhanVien1.BringToFront();
+            userControl_QuanLyNhanVien1.LoadData();
             userControl_QuanLyNhanVien1.Visible = true;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
@@ -43,6 +45,7 @@ namespace QuanLyThuVienNhom3.GUI
         {
             userControl_QuanLyDocGia1.Visible = true;
             userControl_QuanLyDocGia1.BringToFront();
+            userControl_QuanLyDocGia1.LoadDaTa();
             userControl_QuanLySach1.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
@@ -55,6 +58,7 @@ namespace QuanLyThuVienNhom3.GUI
             userControl_QuanLyPhieuMuon1.Visible = true;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyPhieuMuon1.BringToFront();
+            userControl_QuanLyPhieuMuon1.LoadData();
             userControl_QuanLySach1.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
@@ -67,6 +71,7 @@ namespace QuanLyThuVienNhom3.GUI
             userControl_QuanLyPhieuMuon1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.BringToFront();
+            userControl_QuanLyChamCong1.LoadData();
             userControl_QuanLySach1.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = true;
@@ -76,7 +81,8 @@ namespace QuanLyThuVienNhom3.GUI
         private void Button_QuanLyTaiKhoan_Click(object sender, EventArgs e)
         {
             userControl_QuanLySach1.Visible = false;
-            userControl_QuanLySach1.BringToFront();
+            userControl_QuanLyTaiKhoan1.BringToFront();
+            userControl_QuanLyTaiKhoan1.Loaddata();
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
@@ -87,6 +93,7 @@ namespace QuanLyThuVienNhom3.GUI
         private void Button_ThongKe_Click(object sender, EventArgs e)
         {
             userControl_QuanLySach1.Visible = false;
+            userControl_ThongKe1.LoadData();
             userControl_ThongKe1.BringToFront();
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;

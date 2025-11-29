@@ -61,13 +61,13 @@
             label_XinChaoNguoiDung = new Label();
             guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
             Panel_UseControl = new Guna.UI2.WinForms.Guna2Panel();
+            userControl_ThongKe1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_ThongKe();
             userControl_QuanLyTaiKhoan1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyTaiKhoan();
             userControl_QuanLyChamCong1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyChamCong();
             userControl_QuanLyPhieuMuon1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyPhieuMuon();
             userControl_QuanLyDocGia1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyDocGia();
             userControl_QuanLyNhanVien1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyNhanVien();
             userControl_QuanLySach1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLySach();
-            userControl_ThongKe1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_ThongKe();
             ((System.ComponentModel.ISupportInitialize)PicturcBox_Logo).BeginInit();
             panel_Button.SuspendLayout();
             Panel_UseControl.SuspendLayout();
@@ -379,7 +379,6 @@
             label_TenNguoiDung.Size = new Size(51, 20);
             label_TenNguoiDung.TabIndex = 2;
             label_TenNguoiDung.Text = "label1";
-            label_TenNguoiDung.Visible = false;
             // 
             // label_XinChaoNguoiDung
             // 
@@ -412,6 +411,15 @@
             Panel_UseControl.ShadowDecoration.CustomizableEdges = customizableEdges18;
             Panel_UseControl.Size = new Size(1090, 848);
             Panel_UseControl.TabIndex = 4;
+            // 
+            // userControl_ThongKe1
+            // 
+            userControl_ThongKe1.BackColor = Color.FromArgb(0, 64, 64);
+            userControl_ThongKe1.Location = new Point(3, 3);
+            userControl_ThongKe1.Name = "userControl_ThongKe1";
+            userControl_ThongKe1.Size = new Size(1362, 1200);
+            userControl_ThongKe1.TabIndex = 6;
+            userControl_ThongKe1.Visible = false;
             // 
             // userControl_QuanLyTaiKhoan1
             // 
@@ -467,15 +475,6 @@
             userControl_QuanLySach1.Size = new Size(1362, 1060);
             userControl_QuanLySach1.TabIndex = 0;
             userControl_QuanLySach1.Visible = false;
-            // 
-            // userControl_ThongKe1
-            // 
-            userControl_ThongKe1.BackColor = Color.FromArgb(0, 64, 64);
-            userControl_ThongKe1.Location = new Point(3, 3);
-            userControl_ThongKe1.Name = "userControl_ThongKe1";
-            userControl_ThongKe1.Size = new Size(1362, 1200);
-            userControl_ThongKe1.TabIndex = 6;
-            userControl_ThongKe1.Visible = false;
             // 
             // FormTrangChu
             // 

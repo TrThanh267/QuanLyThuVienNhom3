@@ -30,14 +30,19 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Panel_ThongTinSach = new Guna.UI2.WinForms.Guna2GradientPanel();
             label_ThongTinSach = new Label();
             Panel_ThongKe = new Guna.UI2.WinForms.Guna2GradientPanel();
-            ComboBox_LocTheoThang = new Guna.UI2.WinForms.Guna2ComboBox();
+            label3 = new Label();
+            label2 = new Label();
+            DateTimePicker_DenNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            DateTimePicker_Loc = new Guna.UI2.WinForms.Guna2DateTimePicker();
             label1 = new Label();
             formsPlot_ThongKeLanMuonMoiThang = new ScottPlot.WinForms.FormsPlot();
             Panel_ThongTinSach.SuspendLayout();
@@ -79,34 +84,78 @@
             Panel_ThongKe.BorderColor = Color.Red;
             Panel_ThongKe.BorderRadius = 5;
             Panel_ThongKe.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            Panel_ThongKe.Controls.Add(ComboBox_LocTheoThang);
+            Panel_ThongKe.Controls.Add(label3);
+            Panel_ThongKe.Controls.Add(label2);
+            Panel_ThongKe.Controls.Add(DateTimePicker_DenNgay);
+            Panel_ThongKe.Controls.Add(DateTimePicker_Loc);
             Panel_ThongKe.Controls.Add(label1);
             Panel_ThongKe.Controls.Add(formsPlot_ThongKeLanMuonMoiThang);
-            Panel_ThongKe.CustomizableEdges = customizableEdges5;
+            Panel_ThongKe.CustomizableEdges = customizableEdges7;
             Panel_ThongKe.FillColor2 = Color.Gray;
             Panel_ThongKe.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             Panel_ThongKe.Location = new Point(23, 81);
             Panel_ThongKe.Name = "Panel_ThongKe";
-            Panel_ThongKe.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            Panel_ThongKe.ShadowDecoration.CustomizableEdges = customizableEdges8;
             Panel_ThongKe.Size = new Size(1045, 862);
             Panel_ThongKe.TabIndex = 6;
             // 
-            // ComboBox_LocTheoThang
+            // label3
             // 
-            ComboBox_LocTheoThang.BackColor = Color.Transparent;
-            ComboBox_LocTheoThang.CustomizableEdges = customizableEdges3;
-            ComboBox_LocTheoThang.DrawMode = DrawMode.OwnerDrawFixed;
-            ComboBox_LocTheoThang.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboBox_LocTheoThang.FocusedColor = Color.FromArgb(94, 148, 255);
-            ComboBox_LocTheoThang.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ComboBox_LocTheoThang.Font = new Font("Segoe UI", 10F);
-            ComboBox_LocTheoThang.ForeColor = Color.FromArgb(68, 88, 112);
-            ComboBox_LocTheoThang.ItemHeight = 30;
-            ComboBox_LocTheoThang.Location = new Point(117, 703);
-            ComboBox_LocTheoThang.Name = "ComboBox_LocTheoThang";
-            ComboBox_LocTheoThang.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            ComboBox_LocTheoThang.Size = new Size(175, 36);
-            ComboBox_LocTheoThang.TabIndex = 2;
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label3.Location = new Point(614, 807);
+            label3.Name = "label3";
+            label3.Size = new Size(140, 28);
+            label3.TabIndex = 7;
+            label3.Text = "Ngày kết thúc";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label2.Location = new Point(25, 807);
+            label2.Name = "label2";
+            label2.Size = new Size(134, 28);
+            label2.TabIndex = 6;
+            label2.Text = "Ngày bắt đầu";
+            // 
+            // DateTimePicker_DenNgay
+            // 
+            DateTimePicker_DenNgay.BackColor = Color.Transparent;
+            DateTimePicker_DenNgay.BorderRadius = 10;
+            DateTimePicker_DenNgay.Checked = true;
+            DateTimePicker_DenNgay.CustomizableEdges = customizableEdges3;
+            DateTimePicker_DenNgay.Enabled = false;
+            DateTimePicker_DenNgay.Font = new Font("Segoe UI", 9F);
+            DateTimePicker_DenNgay.Format = DateTimePickerFormat.Long;
+            DateTimePicker_DenNgay.Location = new Point(754, 800);
+            DateTimePicker_DenNgay.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            DateTimePicker_DenNgay.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            DateTimePicker_DenNgay.Name = "DateTimePicker_DenNgay";
+            DateTimePicker_DenNgay.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            DateTimePicker_DenNgay.Size = new Size(250, 45);
+            DateTimePicker_DenNgay.TabIndex = 5;
+            DateTimePicker_DenNgay.Value = new DateTime(2025, 11, 26, 8, 28, 37, 783);
+            // 
+            // DateTimePicker_Loc
+            // 
+            DateTimePicker_Loc.BackColor = Color.Transparent;
+            DateTimePicker_Loc.BorderRadius = 10;
+            DateTimePicker_Loc.Checked = true;
+            DateTimePicker_Loc.CustomizableEdges = customizableEdges5;
+            DateTimePicker_Loc.Font = new Font("Segoe UI", 9F);
+            DateTimePicker_Loc.Format = DateTimePickerFormat.Long;
+            DateTimePicker_Loc.Location = new Point(165, 800);
+            DateTimePicker_Loc.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            DateTimePicker_Loc.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            DateTimePicker_Loc.Name = "DateTimePicker_Loc";
+            DateTimePicker_Loc.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            DateTimePicker_Loc.Size = new Size(250, 45);
+            DateTimePicker_Loc.TabIndex = 4;
+            DateTimePicker_Loc.Value = new DateTime(2025, 11, 26, 8, 28, 37, 783);
+            DateTimePicker_Loc.ValueChanged += DateTimePicker_Loc_ValueChanged;
             // 
             // label1
             // 
@@ -114,7 +163,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(244, 71);
+            label1.Location = new Point(274, 44);
             label1.Name = "label1";
             label1.Size = new Size(544, 33);
             label1.TabIndex = 1;
@@ -123,13 +172,14 @@
             // formsPlot_ThongKeLanMuonMoiThang
             // 
             formsPlot_ThongKeLanMuonMoiThang.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            formsPlot_ThongKeLanMuonMoiThang.AutoSize = true;
             formsPlot_ThongKeLanMuonMoiThang.BackColor = Color.Transparent;
             formsPlot_ThongKeLanMuonMoiThang.DisplayScale = 1.25F;
             formsPlot_ThongKeLanMuonMoiThang.Enabled = false;
             formsPlot_ThongKeLanMuonMoiThang.ForeColor = Color.White;
-            formsPlot_ThongKeLanMuonMoiThang.Location = new Point(108, 186);
+            formsPlot_ThongKeLanMuonMoiThang.Location = new Point(0, 107);
             formsPlot_ThongKeLanMuonMoiThang.Name = "formsPlot_ThongKeLanMuonMoiThang";
-            formsPlot_ThongKeLanMuonMoiThang.Size = new Size(799, 448);
+            formsPlot_ThongKeLanMuonMoiThang.Size = new Size(1042, 669);
             formsPlot_ThongKeLanMuonMoiThang.TabIndex = 0;
             // 
             // UserControl_ThongKe
@@ -155,6 +205,9 @@
         private Guna.UI2.WinForms.Guna2GradientPanel Panel_ThongKe;
         private ScottPlot.WinForms.FormsPlot formsPlot_ThongKeLanMuonMoiThang;
         private Label label1;
-        private Guna.UI2.WinForms.Guna2ComboBox ComboBox_LocTheoThang;
+        private Guna.UI2.WinForms.Guna2DateTimePicker DateTimePicker_DenNgay;
+        private Guna.UI2.WinForms.Guna2DateTimePicker DateTimePicker_Loc;
+        private Label label2;
+        private Label label3;
     }
 }

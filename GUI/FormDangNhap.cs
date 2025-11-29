@@ -6,5 +6,12 @@ namespace QuanLyThuVienNhom3
         {
             InitializeComponent();
         }
+        public void Dang()
+        {
+            FormDangNhap frmMain = new FormDangNhap();
+            this.Hide();
+            frmMain.ShowDialog();
+            this.Show();
+        }
     }
 }

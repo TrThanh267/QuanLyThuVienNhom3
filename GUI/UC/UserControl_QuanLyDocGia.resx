@@ -358,7 +358,7 @@
   <data name="Button_QuetQRThongTinDocGia.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFz/SURBVHhe7d13
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFz/SURBVHhe7d13
         fBTnnT9wEjvtklx6u+Qul/K7lMvlcvGdwY6TYFEMxpSdZd0LtkGA9hlRTK9L71Wi92aaTe9qdAymCGOq
         iI1jJyaOG64x1s7395oVAvN8R9Jsm3lm5vN5vd7/WGK1Wu8+3492Z56pVw9BEKVDubmfoVbiX6hN3m+o
         rd6UwtG7KSxyKRTtTSExisJiBoXEk6SJ9aSJItLEfgqLw6SJCtKiL1JYvHkdTVwmTZDkssX3vZC4jarb
@@ -2229,4 +2229,10 @@
         5gq721a+pick//n/gurjL1qC5bcAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="quanLyDocGiaDTOBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>170, 17</value>
+  </metadata>
+  <metadata name="timer_QuetQR.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
