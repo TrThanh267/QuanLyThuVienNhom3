@@ -30,7 +30,8 @@ namespace QuanLyThuVienNhom3.DAL
                                                     SoLuongMuon = ctpm.SoLuongMuon,
                                                     TinhTrangSach = ctpm.TinhTrangSach,
                                                     NhanVien = pm.MaNhanVienNavigation.TenNhanVien,
-                                                    DocGia = pm.MaDocGiaNavigation.TenDocGia
+                                                    DocGia = pm.MaDocGiaNavigation.TenDocGia,
+                                                    NgayTraSach = ctpm.NgayTraSach.GetValueOrDefault()
                                                 }))
                                                 .ToList();
             var listKetQuaCoSTT = listKetQua
@@ -65,5 +66,6 @@ namespace QuanLyThuVienNhom3.DAL
 
             return ketQua;
         }
+
     }
 }

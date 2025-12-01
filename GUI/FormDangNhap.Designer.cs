@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDangNhap));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Button_DangNhap = new Guna.UI2.WinForms.Guna2Button();
             Text_Login = new Guna.UI2.WinForms.Guna2HtmlLabel();
             label_TaiKhoan = new Label();
@@ -42,6 +42,7 @@
             pictureBox1 = new PictureBox();
             TextBox_TaiKhoan = new Guna.UI2.WinForms.Guna2TextBox();
             TextBox_MatKhau = new Guna.UI2.WinForms.Guna2TextBox();
+            CheckBox_HienMatKhau = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             Button_DangNhap.BorderColor = Color.Teal;
             Button_DangNhap.BorderRadius = 10;
             Button_DangNhap.BorderThickness = 2;
-            Button_DangNhap.CustomizableEdges = customizableEdges7;
+            Button_DangNhap.CustomizableEdges = customizableEdges1;
             Button_DangNhap.DisabledState.BorderColor = Color.DarkGray;
             Button_DangNhap.DisabledState.CustomBorderColor = Color.DarkGray;
             Button_DangNhap.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -66,11 +67,12 @@
             Button_DangNhap.HoverState.ForeColor = Color.Gray;
             Button_DangNhap.Location = new Point(575, 470);
             Button_DangNhap.Name = "Button_DangNhap";
-            Button_DangNhap.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            Button_DangNhap.ShadowDecoration.CustomizableEdges = customizableEdges2;
             Button_DangNhap.Size = new Size(285, 69);
             Button_DangNhap.TabIndex = 0;
             Button_DangNhap.Text = "Đăng nhập";
             Button_DangNhap.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.UpperCase;
+            Button_DangNhap.Click += Button_DangNhap_Click;
             // 
             // Text_Login
             // 
@@ -114,9 +116,9 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Enabled = false;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(439, 31);
+            pictureBox1.Location = new Point(366, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(147, 140);
+            pictureBox1.Size = new Size(247, 215);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -129,7 +131,7 @@
             TextBox_TaiKhoan.BorderColor = Color.Gray;
             TextBox_TaiKhoan.BorderRadius = 10;
             TextBox_TaiKhoan.BorderThickness = 2;
-            TextBox_TaiKhoan.CustomizableEdges = customizableEdges9;
+            TextBox_TaiKhoan.CustomizableEdges = customizableEdges3;
             TextBox_TaiKhoan.DefaultText = "";
             TextBox_TaiKhoan.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             TextBox_TaiKhoan.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -146,7 +148,7 @@
             TextBox_TaiKhoan.Name = "TextBox_TaiKhoan";
             TextBox_TaiKhoan.PlaceholderText = "";
             TextBox_TaiKhoan.SelectedText = "";
-            TextBox_TaiKhoan.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            TextBox_TaiKhoan.ShadowDecoration.CustomizableEdges = customizableEdges4;
             TextBox_TaiKhoan.Size = new Size(349, 43);
             TextBox_TaiKhoan.TabIndex = 5;
             // 
@@ -158,7 +160,7 @@
             TextBox_MatKhau.BorderColor = Color.Gray;
             TextBox_MatKhau.BorderRadius = 10;
             TextBox_MatKhau.BorderThickness = 2;
-            TextBox_MatKhau.CustomizableEdges = customizableEdges11;
+            TextBox_MatKhau.CustomizableEdges = customizableEdges5;
             TextBox_MatKhau.DefaultText = "";
             TextBox_MatKhau.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             TextBox_MatKhau.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -175,9 +177,31 @@
             TextBox_MatKhau.Name = "TextBox_MatKhau";
             TextBox_MatKhau.PlaceholderText = "";
             TextBox_MatKhau.SelectedText = "";
-            TextBox_MatKhau.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            TextBox_MatKhau.ShadowDecoration.CustomizableEdges = customizableEdges6;
             TextBox_MatKhau.Size = new Size(349, 43);
             TextBox_MatKhau.TabIndex = 6;
+            TextBox_MatKhau.UseSystemPasswordChar = true;
+            TextBox_MatKhau.KeyDown += TextBox_MatKhau_KeyDown;
+            // 
+            // CheckBox_HienMatKhau
+            // 
+            CheckBox_HienMatKhau.Anchor = AnchorStyles.None;
+            CheckBox_HienMatKhau.AutoSize = true;
+            CheckBox_HienMatKhau.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            CheckBox_HienMatKhau.CheckedState.BorderRadius = 0;
+            CheckBox_HienMatKhau.CheckedState.BorderThickness = 0;
+            CheckBox_HienMatKhau.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            CheckBox_HienMatKhau.ForeColor = Color.White;
+            CheckBox_HienMatKhau.Location = new Point(770, 395);
+            CheckBox_HienMatKhau.Name = "CheckBox_HienMatKhau";
+            CheckBox_HienMatKhau.Size = new Size(127, 24);
+            CheckBox_HienMatKhau.TabIndex = 8;
+            CheckBox_HienMatKhau.Text = "Hiện mật khẩu";
+            CheckBox_HienMatKhau.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            CheckBox_HienMatKhau.UncheckedState.BorderRadius = 0;
+            CheckBox_HienMatKhau.UncheckedState.BorderThickness = 0;
+            CheckBox_HienMatKhau.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            CheckBox_HienMatKhau.CheckedChanged += CheckBox_HienMatKhau_CheckedChanged;
             // 
             // FormDangNhap
             // 
@@ -186,6 +210,7 @@
             AutoSize = true;
             BackColor = Color.Black;
             ClientSize = new Size(1432, 551);
+            Controls.Add(CheckBox_HienMatKhau);
             Controls.Add(TextBox_MatKhau);
             Controls.Add(TextBox_TaiKhoan);
             Controls.Add(pictureBox1);
@@ -209,5 +234,6 @@
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2TextBox TextBox_TaiKhoan;
         private Guna.UI2.WinForms.Guna2TextBox TextBox_MatKhau;
+        private Guna.UI2.WinForms.Guna2CheckBox CheckBox_HienMatKhau;
     }
 }

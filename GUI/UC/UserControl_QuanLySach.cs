@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nhom3ThuVienBanNhap.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,22 @@ namespace QuanLyThuVienNhom3.GUI.UC
         public UserControl_QuanLySach()
         {
             InitializeComponent();
+            CheckPhanQuyen();
         }
 
+        public void CheckPhanQuyen()
+        {
+            if (UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+            {
+                Button_Them.Enabled = false;
+                Button_Xoa.Enabled = false;
+                TextBox_TenSach.Enabled = false;
+                guna2TextBox1.Enabled = false;
+                guna2TextBox2.Enabled = false;
+                ComboBox_LoaiSach.Enabled = false;
+                ComboBox_NhaXuatBan.Enabled = false;
+            }
+        }
         private void Button_ThemSach_Click(object sender, EventArgs e)
         {
             GroupBox_NhapThongTinSach.Visible = true;

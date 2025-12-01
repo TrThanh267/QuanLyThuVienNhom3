@@ -1,4 +1,5 @@
-﻿using QuanLyThuVienNhom3.GUI.UC;
+﻿using Nhom3ThuVienBanNhap.DTO;
+using QuanLyThuVienNhom3.GUI.UC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace QuanLyThuVienNhom3.GUI
         public FormTrangChu()
         {
             InitializeComponent();
+            label_TenNguoiDung.Text =  UserSession.TaiKhoanHienTai.TenTaiKhoan;
+            label_TenNguoiDung.Visible = true;
         }
         private void Button_QuanLySach_Click(object sender, EventArgs e)
         {
@@ -31,14 +34,22 @@ namespace QuanLyThuVienNhom3.GUI
 
         private void Button_QuanLyNhanVien_Click(object sender, EventArgs e)
         {
-            userControl_QuanLySach1.Visible = false;
-            userControl_QuanLyNhanVien1.BringToFront();
-            userControl_QuanLyNhanVien1.LoadData();
-            userControl_QuanLyNhanVien1.Visible = true;
-            userControl_QuanLyDocGia1.Visible = false;
-            userControl_QuanLyChamCong1.Visible = false;
-            userControl_QuanLyTaiKhoan1.Visible = false;
-            userControl_ThongKe1.Visible = false;
+            if (UserSession.TaiKhoanHienTai.MaVaiTro == 1) 
+            {
+                userControl_QuanLySach1.Visible = false;
+                userControl_QuanLyNhanVien1.BringToFront();
+                userControl_QuanLyNhanVien1.LoadData();
+                userControl_QuanLyNhanVien1.Visible = true;
+                userControl_QuanLyDocGia1.Visible = false;
+                userControl_QuanLyChamCong1.Visible = false;
+                userControl_QuanLyTaiKhoan1.Visible = false;
+                userControl_ThongKe1.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền truy cập chức năng này!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void Button_QuanLyDocGia_Click(object sender, EventArgs e)
@@ -80,14 +91,22 @@ namespace QuanLyThuVienNhom3.GUI
 
         private void Button_QuanLyTaiKhoan_Click(object sender, EventArgs e)
         {
-            userControl_QuanLySach1.Visible = false;
-            userControl_QuanLyTaiKhoan1.BringToFront();
-            userControl_QuanLyTaiKhoan1.Loaddata();
-            userControl_QuanLyNhanVien1.Visible = false;
-            userControl_QuanLyDocGia1.Visible = false;
-            userControl_QuanLyChamCong1.Visible = false;
-            userControl_QuanLyTaiKhoan1.Visible = true;
-            userControl_ThongKe1.Visible = false;
+            if (UserSession.TaiKhoanHienTai.MaVaiTro == 1)
+            {
+                userControl_QuanLySach1.Visible = false;
+                userControl_QuanLyTaiKhoan1.BringToFront();
+                userControl_QuanLyTaiKhoan1.Loaddata();
+                userControl_QuanLyNhanVien1.Visible = false;
+                userControl_QuanLyDocGia1.Visible = false;
+                userControl_QuanLyChamCong1.Visible = false;
+                userControl_QuanLyTaiKhoan1.Visible = true;
+                userControl_ThongKe1.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền truy cập chức năng này!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private void Button_ThongKe_Click(object sender, EventArgs e)

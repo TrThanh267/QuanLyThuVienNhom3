@@ -30,25 +30,25 @@ namespace QuanLyThuVienNhom3.BLL
                 // Tăng ngày lên 1
                 currentDay = currentDay.AddDays(1);
             }
-
-            // 3. HỢP NHẤT DỮ LIỆU THÔ VÀ DANH SÁCH NGÀY ĐẦY ĐỦ
             List<ThongKe_DTO> ketQuaCuoiCung = tatCaCacNgay
                 .GroupJoin(
-                    duLieuThoTuCSDL, // Dữ liệu thô từ CSDL
-                    tatCaCacNgayItem => tatCaCacNgayItem, // Key: Ngày trong danh sách đầy đủ
-                    duLieuThoItem => duLieuThoItem.NgayMuon, // Key: Ngày trong dữ liệu thô
-                    (ngay, duLieu) => new ThongKe_DTO // Tạo đối tượng DTO cuối cùng
+                    duLieuThoTuCSDL,
+                    tatCaCacNgayItem => tatCaCacNgayItem,
+                    duLieuThoItem => duLieuThoItem.NgayMuon,
+                    (ngay, duLieu) => new ThongKe_DTO 
                     {
                         NgayMuon = ngay,
-                        // Lấy TongSoLuotMuon nếu có, nếu không có (DefaultIfEmpty) thì gán 0
                         TongSoLuotMuon = duLieu.DefaultIfEmpty(new ThongKe_DTO { TongSoLuotMuon = 0 }).First().TongSoLuotMuon
                     }
                 )
-                // Đảm bảo dữ liệu được sắp xếp theo ngày
                 .OrderBy(d => d.NgayMuon)
                 .ToList();
 
             return ketQuaCuoiCung;
+        }
+        public int SoluotMuonLonNhat()
+        {
+            return _DAL.DemSoMuonCaoNhat();
         }
     }
 }

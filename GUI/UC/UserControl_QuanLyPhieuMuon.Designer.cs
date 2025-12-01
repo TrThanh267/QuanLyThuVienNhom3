@@ -195,6 +195,7 @@
             TextBox_TimKiemPhieuTra = new Guna.UI2.WinForms.Guna2TextBox();
             Button_TimKiemPhieuTra = new Guna.UI2.WinForms.Guna2Button();
             DataGridView_PhieuTra = new Guna.UI2.WinForms.Guna2DataGridView();
+            quanLyPhieuTraDTOBindingSource = new BindingSource(components);
             sTTDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             maPhieuMuonDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             thoiGianMuonDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -206,7 +207,7 @@
             tinhTrangSachDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nhanVienDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             docGiaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            quanLyPhieuTraDTOBindingSource = new BindingSource(components);
+            NgayTraSach = new DataGridViewTextBoxColumn();
             Panel_ThongTin.SuspendLayout();
             Panel_NhapThongTin.SuspendLayout();
             TabControl_PhieuMuon.SuspendLayout();
@@ -701,6 +702,7 @@
             DataGridView_PhieuMuon.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DataGridView_PhieuMuon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_PhieuMuon.AutoGenerateColumns = false;
+            DataGridView_PhieuMuon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridView_PhieuMuon.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DataGridView_PhieuMuon.BackgroundColor = Color.FromArgb(0, 192, 192);
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -764,6 +766,7 @@
             sTTDataGridViewTextBoxColumn.MinimumWidth = 6;
             sTTDataGridViewTextBoxColumn.Name = "sTTDataGridViewTextBoxColumn";
             sTTDataGridViewTextBoxColumn.ReadOnly = true;
+            sTTDataGridViewTextBoxColumn.Width = 70;
             // 
             // maPhieuMuonPM
             // 
@@ -772,6 +775,7 @@
             maPhieuMuonPM.MinimumWidth = 6;
             maPhieuMuonPM.Name = "maPhieuMuonPM";
             maPhieuMuonPM.ReadOnly = true;
+            maPhieuMuonPM.Width = 150;
             // 
             // thoiGianMuonPM
             // 
@@ -780,6 +784,7 @@
             thoiGianMuonPM.MinimumWidth = 6;
             thoiGianMuonPM.Name = "thoiGianMuonPM";
             thoiGianMuonPM.ReadOnly = true;
+            thoiGianMuonPM.Width = 152;
             // 
             // thoihanTraPM
             // 
@@ -788,6 +793,7 @@
             thoihanTraPM.MinimumWidth = 6;
             thoihanTraPM.Name = "thoihanTraPM";
             thoihanTraPM.ReadOnly = true;
+            thoihanTraPM.Width = 130;
             // 
             // soLuongPM
             // 
@@ -796,6 +802,7 @@
             soLuongPM.MinimumWidth = 6;
             soLuongPM.Name = "soLuongPM";
             soLuongPM.ReadOnly = true;
+            soLuongPM.Width = 109;
             // 
             // trangThaiPM
             // 
@@ -804,6 +811,7 @@
             trangThaiPM.MinimumWidth = 6;
             trangThaiPM.Name = "trangThaiPM";
             trangThaiPM.ReadOnly = true;
+            trangThaiPM.Width = 115;
             // 
             // nhanVienPM
             // 
@@ -812,6 +820,7 @@
             nhanVienPM.MinimumWidth = 6;
             nhanVienPM.Name = "nhanVienPM";
             nhanVienPM.ReadOnly = true;
+            nhanVienPM.Width = 114;
             // 
             // docGiaPM
             // 
@@ -820,6 +829,7 @@
             docGiaPM.MinimumWidth = 6;
             docGiaPM.Name = "docGiaPM";
             docGiaPM.ReadOnly = true;
+            docGiaPM.Width = 99;
             // 
             // quanLyPhieuMuonDTOBindingSource
             // 
@@ -1527,7 +1537,7 @@
             Button_XuatFilePhieuTRa.HoverState.BorderColor = Color.Purple;
             Button_XuatFilePhieuTRa.HoverState.FillColor = Color.Teal;
             Button_XuatFilePhieuTRa.Image = (Image)resources.GetObject("Button_XuatFilePhieuTRa.Image");
-            Button_XuatFilePhieuTRa.Location = new Point(6, 810);
+            Button_XuatFilePhieuTRa.Location = new Point(6, 799);
             Button_XuatFilePhieuTRa.Name = "Button_XuatFilePhieuTRa";
             Button_XuatFilePhieuTRa.ShadowDecoration.CustomizableEdges = customizableEdges68;
             Button_XuatFilePhieuTRa.Size = new Size(155, 41);
@@ -1620,6 +1630,7 @@
             DataGridView_PhieuTra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             DataGridView_PhieuTra.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_PhieuTra.AutoGenerateColumns = false;
+            DataGridView_PhieuTra.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridView_PhieuTra.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DataGridView_PhieuTra.BackgroundColor = Color.FromArgb(0, 192, 192);
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1632,7 +1643,7 @@
             DataGridView_PhieuTra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             DataGridView_PhieuTra.ColumnHeadersHeight = 50;
             DataGridView_PhieuTra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridView_PhieuTra.Columns.AddRange(new DataGridViewColumn[] { sTTDataGridViewTextBoxColumn2, maPhieuMuonDataGridViewTextBoxColumn, thoiGianMuonDataGridViewTextBoxColumn, thoihanTraDataGridViewTextBoxColumn, soLuongDataGridViewTextBoxColumn, trangThaiDataGridViewTextBoxColumn, sachDataGridViewTextBoxColumn, soLuongMuonDataGridViewTextBoxColumn, tinhTrangSachDataGridViewTextBoxColumn, nhanVienDataGridViewTextBoxColumn, docGiaDataGridViewTextBoxColumn });
+            DataGridView_PhieuTra.Columns.AddRange(new DataGridViewColumn[] { sTTDataGridViewTextBoxColumn2, maPhieuMuonDataGridViewTextBoxColumn, thoiGianMuonDataGridViewTextBoxColumn, thoihanTraDataGridViewTextBoxColumn, soLuongDataGridViewTextBoxColumn, trangThaiDataGridViewTextBoxColumn, sachDataGridViewTextBoxColumn, soLuongMuonDataGridViewTextBoxColumn, tinhTrangSachDataGridViewTextBoxColumn, nhanVienDataGridViewTextBoxColumn, docGiaDataGridViewTextBoxColumn, NgayTraSach });
             DataGridView_PhieuTra.DataSource = quanLyPhieuTraDTOBindingSource;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = Color.FromArgb(208, 235, 230);
@@ -1675,6 +1686,10 @@
             DataGridView_PhieuTra.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(99, 191, 173);
             DataGridView_PhieuTra.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             // 
+            // quanLyPhieuTraDTOBindingSource
+            // 
+            quanLyPhieuTraDTOBindingSource.DataSource = typeof(DTO.QuanLyPhieuTra_DTO);
+            // 
             // sTTDataGridViewTextBoxColumn2
             // 
             sTTDataGridViewTextBoxColumn2.DataPropertyName = "STT";
@@ -1682,6 +1697,7 @@
             sTTDataGridViewTextBoxColumn2.MinimumWidth = 6;
             sTTDataGridViewTextBoxColumn2.Name = "sTTDataGridViewTextBoxColumn2";
             sTTDataGridViewTextBoxColumn2.ReadOnly = true;
+            sTTDataGridViewTextBoxColumn2.Width = 70;
             // 
             // maPhieuMuonDataGridViewTextBoxColumn
             // 
@@ -1690,6 +1706,7 @@
             maPhieuMuonDataGridViewTextBoxColumn.MinimumWidth = 6;
             maPhieuMuonDataGridViewTextBoxColumn.Name = "maPhieuMuonDataGridViewTextBoxColumn";
             maPhieuMuonDataGridViewTextBoxColumn.ReadOnly = true;
+            maPhieuMuonDataGridViewTextBoxColumn.Width = 150;
             // 
             // thoiGianMuonDataGridViewTextBoxColumn
             // 
@@ -1698,6 +1715,7 @@
             thoiGianMuonDataGridViewTextBoxColumn.MinimumWidth = 6;
             thoiGianMuonDataGridViewTextBoxColumn.Name = "thoiGianMuonDataGridViewTextBoxColumn";
             thoiGianMuonDataGridViewTextBoxColumn.ReadOnly = true;
+            thoiGianMuonDataGridViewTextBoxColumn.Width = 152;
             // 
             // thoihanTraDataGridViewTextBoxColumn
             // 
@@ -1706,6 +1724,7 @@
             thoihanTraDataGridViewTextBoxColumn.MinimumWidth = 6;
             thoihanTraDataGridViewTextBoxColumn.Name = "thoihanTraDataGridViewTextBoxColumn";
             thoihanTraDataGridViewTextBoxColumn.ReadOnly = true;
+            thoihanTraDataGridViewTextBoxColumn.Width = 130;
             // 
             // soLuongDataGridViewTextBoxColumn
             // 
@@ -1714,6 +1733,7 @@
             soLuongDataGridViewTextBoxColumn.MinimumWidth = 6;
             soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
             soLuongDataGridViewTextBoxColumn.ReadOnly = true;
+            soLuongDataGridViewTextBoxColumn.Width = 109;
             // 
             // trangThaiDataGridViewTextBoxColumn
             // 
@@ -1722,6 +1742,7 @@
             trangThaiDataGridViewTextBoxColumn.MinimumWidth = 6;
             trangThaiDataGridViewTextBoxColumn.Name = "trangThaiDataGridViewTextBoxColumn";
             trangThaiDataGridViewTextBoxColumn.ReadOnly = true;
+            trangThaiDataGridViewTextBoxColumn.Width = 115;
             // 
             // sachDataGridViewTextBoxColumn
             // 
@@ -1730,6 +1751,7 @@
             sachDataGridViewTextBoxColumn.MinimumWidth = 6;
             sachDataGridViewTextBoxColumn.Name = "sachDataGridViewTextBoxColumn";
             sachDataGridViewTextBoxColumn.ReadOnly = true;
+            sachDataGridViewTextBoxColumn.Width = 77;
             // 
             // soLuongMuonDataGridViewTextBoxColumn
             // 
@@ -1738,6 +1760,7 @@
             soLuongMuonDataGridViewTextBoxColumn.MinimumWidth = 6;
             soLuongMuonDataGridViewTextBoxColumn.Name = "soLuongMuonDataGridViewTextBoxColumn";
             soLuongMuonDataGridViewTextBoxColumn.ReadOnly = true;
+            soLuongMuonDataGridViewTextBoxColumn.Width = 152;
             // 
             // tinhTrangSachDataGridViewTextBoxColumn
             // 
@@ -1746,6 +1769,7 @@
             tinhTrangSachDataGridViewTextBoxColumn.MinimumWidth = 6;
             tinhTrangSachDataGridViewTextBoxColumn.Name = "tinhTrangSachDataGridViewTextBoxColumn";
             tinhTrangSachDataGridViewTextBoxColumn.ReadOnly = true;
+            tinhTrangSachDataGridViewTextBoxColumn.Width = 150;
             // 
             // nhanVienDataGridViewTextBoxColumn
             // 
@@ -1754,6 +1778,7 @@
             nhanVienDataGridViewTextBoxColumn.MinimumWidth = 6;
             nhanVienDataGridViewTextBoxColumn.Name = "nhanVienDataGridViewTextBoxColumn";
             nhanVienDataGridViewTextBoxColumn.ReadOnly = true;
+            nhanVienDataGridViewTextBoxColumn.Width = 114;
             // 
             // docGiaDataGridViewTextBoxColumn
             // 
@@ -1762,10 +1787,16 @@
             docGiaDataGridViewTextBoxColumn.MinimumWidth = 6;
             docGiaDataGridViewTextBoxColumn.Name = "docGiaDataGridViewTextBoxColumn";
             docGiaDataGridViewTextBoxColumn.ReadOnly = true;
+            docGiaDataGridViewTextBoxColumn.Width = 99;
             // 
-            // quanLyPhieuTraDTOBindingSource
+            // NgayTraSach
             // 
-            quanLyPhieuTraDTOBindingSource.DataSource = typeof(DTO.QuanLyPhieuTra_DTO);
+            NgayTraSach.DataPropertyName = "NgayTraSach";
+            NgayTraSach.HeaderText = "Ngày Trả ";
+            NgayTraSach.MinimumWidth = 6;
+            NgayTraSach.Name = "NgayTraSach";
+            NgayTraSach.ReadOnly = true;
+            NgayTraSach.Width = 109;
             // 
             // UserControl_QuanLyPhieuMuon
             // 
@@ -1885,6 +1916,7 @@
         private DataGridViewTextBoxColumn maPhieuMuonPMCT;
         private DataGridViewCheckBoxColumn daGhiNhanTraPMCT;
         private BindingSource quanLyPhieuMuonChiTietDTOBindingSource;
+        private BindingSource quanLyPhieuTraDTOBindingSource;
         private DataGridViewTextBoxColumn sTTDataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn maPhieuMuonDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn thoiGianMuonDataGridViewTextBoxColumn;
@@ -1896,6 +1928,6 @@
         private DataGridViewTextBoxColumn tinhTrangSachDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nhanVienDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn docGiaDataGridViewTextBoxColumn;
-        private BindingSource quanLyPhieuTraDTOBindingSource;
+        private DataGridViewTextBoxColumn NgayTraSach;
     }
 }

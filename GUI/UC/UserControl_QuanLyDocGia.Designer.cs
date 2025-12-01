@@ -146,11 +146,6 @@
             Button_Xoa = new Guna.UI2.WinForms.Guna2Button();
             Button_Them = new Guna.UI2.WinForms.Guna2Button();
             DataGridView_DachSachDocGia = new Guna.UI2.WinForms.Guna2DataGridView();
-            ComBox_LocNhanVienTheoChuCai = new Guna.UI2.WinForms.Guna2ComboBox();
-            Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
-            TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
-            timer_QuetQR = new System.Windows.Forms.Timer(components);
-            quanLyDocGiaDTOBindingSource = new BindingSource(components);
             sTTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ID = new DataGridViewTextBoxColumn();
             Ten = new DataGridViewTextBoxColumn();
@@ -160,6 +155,11 @@
             Sdt = new DataGridViewTextBoxColumn();
             email = new DataGridViewTextBoxColumn();
             TrangT = new DataGridViewTextBoxColumn();
+            quanLyDocGiaDTOBindingSource = new BindingSource(components);
+            ComBox_LocNhanVienTheoChuCai = new Guna.UI2.WinForms.Guna2ComboBox();
+            Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
+            TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
+            timer_QuetQR = new System.Windows.Forms.Timer(components);
             Panel_ThongTinDocGia.SuspendLayout();
             Panel_NhapThongTinDocGia.SuspendLayout();
             GroupBox_ThongTinChiTietDocGia.SuspendLayout();
@@ -1131,77 +1131,6 @@
             DataGridView_DachSachDocGia.CellClick += DataGridView_DachSachDocGia_CellClick;
             DataGridView_DachSachDocGia.CellContentClick += DataGridView_DachSachDocGia_CellContentClick;
             // 
-            // ComBox_LocNhanVienTheoChuCai
-            // 
-            ComBox_LocNhanVienTheoChuCai.BackColor = Color.Transparent;
-            ComBox_LocNhanVienTheoChuCai.CustomizableEdges = customizableEdges53;
-            ComBox_LocNhanVienTheoChuCai.DrawMode = DrawMode.OwnerDrawFixed;
-            ComBox_LocNhanVienTheoChuCai.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComBox_LocNhanVienTheoChuCai.FocusedColor = Color.FromArgb(94, 148, 255);
-            ComBox_LocNhanVienTheoChuCai.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ComBox_LocNhanVienTheoChuCai.Font = new Font("Segoe UI", 10F);
-            ComBox_LocNhanVienTheoChuCai.ForeColor = Color.FromArgb(68, 88, 112);
-            ComBox_LocNhanVienTheoChuCai.ItemHeight = 30;
-            ComBox_LocNhanVienTheoChuCai.Location = new Point(22, 17);
-            ComBox_LocNhanVienTheoChuCai.Name = "ComBox_LocNhanVienTheoChuCai";
-            ComBox_LocNhanVienTheoChuCai.ShadowDecoration.CustomizableEdges = customizableEdges54;
-            ComBox_LocNhanVienTheoChuCai.Size = new Size(175, 36);
-            ComBox_LocNhanVienTheoChuCai.TabIndex = 6;
-            ComBox_LocNhanVienTheoChuCai.SelectedIndexChanged += ComBox_LocNhanVienTheoChuCai_SelectedIndexChanged;
-            // 
-            // Button_TimKiem
-            // 
-            Button_TimKiem.BorderRadius = 5;
-            Button_TimKiem.CustomizableEdges = customizableEdges55;
-            Button_TimKiem.DisabledState.BorderColor = Color.DarkGray;
-            Button_TimKiem.DisabledState.CustomBorderColor = Color.DarkGray;
-            Button_TimKiem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            Button_TimKiem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            Button_TimKiem.FillColor = Color.FromArgb(0, 192, 192);
-            Button_TimKiem.Font = new Font("Segoe UI", 9F);
-            Button_TimKiem.ForeColor = Color.FromArgb(64, 64, 64);
-            Button_TimKiem.HoverState.BorderColor = Color.FromArgb(64, 64, 64);
-            Button_TimKiem.HoverState.FillColor = Color.FromArgb(0, 64, 64);
-            Button_TimKiem.Location = new Point(740, 17);
-            Button_TimKiem.Name = "Button_TimKiem";
-            Button_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges56;
-            Button_TimKiem.Size = new Size(103, 36);
-            Button_TimKiem.TabIndex = 2;
-            Button_TimKiem.Text = "Tìm kiếm";
-            Button_TimKiem.Click += Button_TimKiem_Click;
-            // 
-            // TextBox_TimKiem
-            // 
-            TextBox_TimKiem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            TextBox_TimKiem.BorderRadius = 5;
-            TextBox_TimKiem.CustomizableEdges = customizableEdges57;
-            TextBox_TimKiem.DefaultText = "";
-            TextBox_TimKiem.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            TextBox_TimKiem.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            TextBox_TimKiem.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_TimKiem.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_TimKiem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_TimKiem.Font = new Font("Segoe UI", 9F);
-            TextBox_TimKiem.HoverState.BorderColor = Color.Teal;
-            TextBox_TimKiem.HoverState.FillColor = Color.FromArgb(224, 224, 224);
-            TextBox_TimKiem.HoverState.ForeColor = Color.Black;
-            TextBox_TimKiem.Location = new Point(849, 17);
-            TextBox_TimKiem.Margin = new Padding(3, 4, 3, 4);
-            TextBox_TimKiem.Name = "TextBox_TimKiem";
-            TextBox_TimKiem.PlaceholderText = "Tìm kiếm";
-            TextBox_TimKiem.SelectedText = "";
-            TextBox_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges58;
-            TextBox_TimKiem.Size = new Size(181, 36);
-            TextBox_TimKiem.TabIndex = 1;
-            // 
-            // timer_QuetQR
-            // 
-            timer_QuetQR.Tick += timer_QuetQR_Tick;
-            // 
-            // quanLyDocGiaDTOBindingSource
-            // 
-            quanLyDocGiaDTOBindingSource.DataSource = typeof(DTO.QuanLyDocGia_DTO);
-            // 
             // sTTDataGridViewTextBoxColumn
             // 
             sTTDataGridViewTextBoxColumn.DataPropertyName = "STT";
@@ -1273,6 +1202,77 @@
             TrangT.MinimumWidth = 6;
             TrangT.Name = "TrangT";
             TrangT.ReadOnly = true;
+            // 
+            // quanLyDocGiaDTOBindingSource
+            // 
+            quanLyDocGiaDTOBindingSource.DataSource = typeof(DTO.QuanLyDocGia_DTO);
+            // 
+            // ComBox_LocNhanVienTheoChuCai
+            // 
+            ComBox_LocNhanVienTheoChuCai.BackColor = Color.Transparent;
+            ComBox_LocNhanVienTheoChuCai.CustomizableEdges = customizableEdges53;
+            ComBox_LocNhanVienTheoChuCai.DrawMode = DrawMode.OwnerDrawFixed;
+            ComBox_LocNhanVienTheoChuCai.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComBox_LocNhanVienTheoChuCai.FocusedColor = Color.FromArgb(94, 148, 255);
+            ComBox_LocNhanVienTheoChuCai.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            ComBox_LocNhanVienTheoChuCai.Font = new Font("Segoe UI", 10F);
+            ComBox_LocNhanVienTheoChuCai.ForeColor = Color.FromArgb(68, 88, 112);
+            ComBox_LocNhanVienTheoChuCai.ItemHeight = 30;
+            ComBox_LocNhanVienTheoChuCai.Location = new Point(22, 17);
+            ComBox_LocNhanVienTheoChuCai.Name = "ComBox_LocNhanVienTheoChuCai";
+            ComBox_LocNhanVienTheoChuCai.ShadowDecoration.CustomizableEdges = customizableEdges54;
+            ComBox_LocNhanVienTheoChuCai.Size = new Size(175, 36);
+            ComBox_LocNhanVienTheoChuCai.TabIndex = 6;
+            ComBox_LocNhanVienTheoChuCai.SelectedIndexChanged += ComBox_LocNhanVienTheoChuCai_SelectedIndexChanged;
+            // 
+            // Button_TimKiem
+            // 
+            Button_TimKiem.BorderRadius = 5;
+            Button_TimKiem.CustomizableEdges = customizableEdges55;
+            Button_TimKiem.DisabledState.BorderColor = Color.DarkGray;
+            Button_TimKiem.DisabledState.CustomBorderColor = Color.DarkGray;
+            Button_TimKiem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            Button_TimKiem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            Button_TimKiem.FillColor = Color.FromArgb(0, 192, 192);
+            Button_TimKiem.Font = new Font("Segoe UI", 9F);
+            Button_TimKiem.ForeColor = Color.FromArgb(64, 64, 64);
+            Button_TimKiem.HoverState.BorderColor = Color.FromArgb(64, 64, 64);
+            Button_TimKiem.HoverState.FillColor = Color.FromArgb(0, 64, 64);
+            Button_TimKiem.Location = new Point(740, 17);
+            Button_TimKiem.Name = "Button_TimKiem";
+            Button_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges56;
+            Button_TimKiem.Size = new Size(103, 36);
+            Button_TimKiem.TabIndex = 2;
+            Button_TimKiem.Text = "Tìm kiếm";
+            Button_TimKiem.Click += Button_TimKiem_Click;
+            // 
+            // TextBox_TimKiem
+            // 
+            TextBox_TimKiem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TextBox_TimKiem.BorderRadius = 5;
+            TextBox_TimKiem.CustomizableEdges = customizableEdges57;
+            TextBox_TimKiem.DefaultText = "";
+            TextBox_TimKiem.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            TextBox_TimKiem.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            TextBox_TimKiem.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_TimKiem.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_TimKiem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            TextBox_TimKiem.Font = new Font("Segoe UI", 9F);
+            TextBox_TimKiem.HoverState.BorderColor = Color.Teal;
+            TextBox_TimKiem.HoverState.FillColor = Color.FromArgb(224, 224, 224);
+            TextBox_TimKiem.HoverState.ForeColor = Color.Black;
+            TextBox_TimKiem.Location = new Point(849, 17);
+            TextBox_TimKiem.Margin = new Padding(3, 4, 3, 4);
+            TextBox_TimKiem.Name = "TextBox_TimKiem";
+            TextBox_TimKiem.PlaceholderText = "Tìm kiếm";
+            TextBox_TimKiem.SelectedText = "";
+            TextBox_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges58;
+            TextBox_TimKiem.Size = new Size(181, 36);
+            TextBox_TimKiem.TabIndex = 1;
+            // 
+            // timer_QuetQR
+            // 
+            timer_QuetQR.Tick += timer_QuetQR_Tick;
             // 
             // UserControl_QuanLyDocGia
             // 

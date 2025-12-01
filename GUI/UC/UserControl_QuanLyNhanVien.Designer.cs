@@ -98,14 +98,6 @@
             Label_SoLuong = new Label();
             Label_TenNhanVien = new Label();
             DataGridView_DachSachNhanVien = new Guna.UI2.WinForms.Guna2DataGridView();
-            quanLyNhanVienDTOBindingSource = new BindingSource(components);
-            ComBox_LocNhanVienTheoChuCai = new Guna.UI2.WinForms.Guna2ComboBox();
-            Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
-            TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
-            Button_XuatFile = new Guna.UI2.WinForms.Guna2Button();
-            Button_CapNhap = new Guna.UI2.WinForms.Guna2Button();
-            Button_XoaNhanVien = new Guna.UI2.WinForms.Guna2Button();
-            Button_ThemNhanVien = new Guna.UI2.WinForms.Guna2Button();
             STT = new DataGridViewTextBoxColumn();
             ID = new DataGridViewTextBoxColumn();
             Name = new DataGridViewTextBoxColumn();
@@ -116,6 +108,14 @@
             address = new DataGridViewTextBoxColumn();
             statu = new DataGridViewTextBoxColumn();
             Account = new DataGridViewTextBoxColumn();
+            quanLyNhanVienDTOBindingSource = new BindingSource(components);
+            ComBox_LocNhanVienTheoChuCai = new Guna.UI2.WinForms.Guna2ComboBox();
+            Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
+            TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
+            Button_XuatFile = new Guna.UI2.WinForms.Guna2Button();
+            Button_CapNhap = new Guna.UI2.WinForms.Guna2Button();
+            Button_XoaNhanVien = new Guna.UI2.WinForms.Guna2Button();
+            Button_ThemNhanVien = new Guna.UI2.WinForms.Guna2Button();
             Panel_ThongTinNhanVien.SuspendLayout();
             Panel_NhapThongTinNhanVien.SuspendLayout();
             GroupBox_NhapThongTinNhanVien.SuspendLayout();
@@ -550,6 +550,7 @@
             DataGridView_DachSachNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DataGridView_DachSachNhanVien.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_DachSachNhanVien.AutoGenerateColumns = false;
+            DataGridView_DachSachNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridView_DachSachNhanVien.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DataGridView_DachSachNhanVien.BackgroundColor = Color.FromArgb(0, 192, 192);
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -605,6 +606,96 @@
             DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(99, 191, 173);
             DataGridView_DachSachNhanVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             DataGridView_DachSachNhanVien.CellClick += DataGridView_DachSachNhanVien_CellClick;
+            // 
+            // STT
+            // 
+            STT.DataPropertyName = "STT";
+            STT.HeaderText = "STT";
+            STT.MinimumWidth = 6;
+            STT.Name = "STT";
+            STT.ReadOnly = true;
+            STT.Width = 80;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "MaNhanVien";
+            ID.HeaderText = "Mã Nhân Viên";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 149;
+            // 
+            // Name
+            // 
+            Name.DataPropertyName = "TenNhanVien";
+            Name.HeaderText = "Tên Nhân Viên";
+            Name.MinimumWidth = 6;
+            Name.Name = "Name";
+            Name.ReadOnly = true;
+            Name.Width = 151;
+            // 
+            // Date
+            // 
+            Date.DataPropertyName = "NgaySinh";
+            Date.HeaderText = "Ngày Sinh";
+            Date.MinimumWidth = 6;
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            Date.Width = 123;
+            // 
+            // sex
+            // 
+            sex.DataPropertyName = "GioiTinh";
+            sex.HeaderText = "Giới Tính";
+            sex.MinimumWidth = 6;
+            sex.Name = "sex";
+            sex.ReadOnly = true;
+            sex.Width = 115;
+            // 
+            // PhoneNumber
+            // 
+            PhoneNumber.DataPropertyName = "SoDienThoai";
+            PhoneNumber.HeaderText = "Số Điện Thoại";
+            PhoneNumber.MinimumWidth = 6;
+            PhoneNumber.Name = "PhoneNumber";
+            PhoneNumber.ReadOnly = true;
+            PhoneNumber.Width = 149;
+            // 
+            // mail
+            // 
+            mail.DataPropertyName = "Email";
+            mail.HeaderText = "Email";
+            mail.MinimumWidth = 6;
+            mail.Name = "mail";
+            mail.ReadOnly = true;
+            mail.Width = 93;
+            // 
+            // address
+            // 
+            address.DataPropertyName = "DiaChi";
+            address.HeaderText = "Địa Chỉ";
+            address.MinimumWidth = 6;
+            address.Name = "address";
+            address.ReadOnly = true;
+            address.Width = 104;
+            // 
+            // statu
+            // 
+            statu.DataPropertyName = "TrangThai";
+            statu.HeaderText = "Trạng Thái";
+            statu.MinimumWidth = 6;
+            statu.Name = "statu";
+            statu.ReadOnly = true;
+            statu.Width = 125;
+            // 
+            // Account
+            // 
+            Account.DataPropertyName = "TaiKhoan";
+            Account.HeaderText = "Tài Khoản";
+            Account.MinimumWidth = 6;
+            Account.Name = "Account";
+            Account.ReadOnly = true;
+            Account.Width = 120;
             // 
             // quanLyNhanVienDTOBindingSource
             // 
@@ -772,86 +863,6 @@
             Button_ThemNhanVien.TabIndex = 3;
             Button_ThemNhanVien.Text = "Thêm nhân viên";
             Button_ThemNhanVien.Click += Button_ThemNhanVien_Click;
-            // 
-            // STT
-            // 
-            STT.DataPropertyName = "STT";
-            STT.HeaderText = "STT";
-            STT.MinimumWidth = 6;
-            STT.Name = "STT";
-            STT.ReadOnly = true;
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "MaNhanVien";
-            ID.HeaderText = "Mã Nhân Viên";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.ReadOnly = true;
-            // 
-            // Name
-            // 
-            Name.DataPropertyName = "TenNhanVien";
-            Name.HeaderText = "Tên Nhân Viên";
-            Name.MinimumWidth = 6;
-            Name.Name = "Name";
-            Name.ReadOnly = true;
-            // 
-            // Date
-            // 
-            Date.DataPropertyName = "NgaySinh";
-            Date.HeaderText = "Ngày Sinh";
-            Date.MinimumWidth = 6;
-            Date.Name = "Date";
-            Date.ReadOnly = true;
-            // 
-            // sex
-            // 
-            sex.DataPropertyName = "GioiTinh";
-            sex.HeaderText = "Giới Tính";
-            sex.MinimumWidth = 6;
-            sex.Name = "sex";
-            sex.ReadOnly = true;
-            // 
-            // PhoneNumber
-            // 
-            PhoneNumber.DataPropertyName = "SoDienThoai";
-            PhoneNumber.HeaderText = "Số Điện Thoại";
-            PhoneNumber.MinimumWidth = 6;
-            PhoneNumber.Name = "PhoneNumber";
-            PhoneNumber.ReadOnly = true;
-            // 
-            // mail
-            // 
-            mail.DataPropertyName = "Email";
-            mail.HeaderText = "Email";
-            mail.MinimumWidth = 6;
-            mail.Name = "mail";
-            mail.ReadOnly = true;
-            // 
-            // address
-            // 
-            address.DataPropertyName = "DiaChi";
-            address.HeaderText = "Địa Chỉ";
-            address.MinimumWidth = 6;
-            address.Name = "address";
-            address.ReadOnly = true;
-            // 
-            // statu
-            // 
-            statu.DataPropertyName = "TrangThai";
-            statu.HeaderText = "Trạng Thái";
-            statu.MinimumWidth = 6;
-            statu.Name = "statu";
-            statu.ReadOnly = true;
-            // 
-            // Account
-            // 
-            Account.DataPropertyName = "TaiKhoan";
-            Account.HeaderText = "Tài Khoản";
-            Account.MinimumWidth = 6;
-            Account.Name = "Account";
-            Account.ReadOnly = true;
             // 
             // UserControl_QuanLyNhanVien
             // 

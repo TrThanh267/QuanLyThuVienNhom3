@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Nhom3ThuVienBanNhap.DTO;
 using QuanLyThuVienNhom3.BLL;
 using QuanLyThuVienNhom3.DTO;
 using QuanLyThuVienNhom3.Models;
@@ -25,6 +26,14 @@ namespace QuanLyThuVienNhom3.GUI.UC
             LoadComboBoxLoaiCong();
             LoadComBoxCaLam();
             LoadData();
+            PhanQuyen();
+        }
+        public void PhanQuyen()
+        {
+            if(UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+            {
+                Button_HienThiDanhSach.Enabled = false;
+            }
         }
         public void LoadData()
         {

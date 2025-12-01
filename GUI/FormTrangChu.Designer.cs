@@ -374,11 +374,12 @@
             label_TenNguoiDung.AutoSize = true;
             label_TenNguoiDung.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label_TenNguoiDung.ForeColor = SystemColors.ButtonHighlight;
-            label_TenNguoiDung.Location = new Point(138, 143);
+            label_TenNguoiDung.Location = new Point(98, 143);
             label_TenNguoiDung.Name = "label_TenNguoiDung";
             label_TenNguoiDung.Size = new Size(51, 20);
             label_TenNguoiDung.TabIndex = 2;
             label_TenNguoiDung.Text = "label1";
+            label_TenNguoiDung.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label_XinChaoNguoiDung
             // 

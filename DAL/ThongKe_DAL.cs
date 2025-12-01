@@ -44,5 +44,19 @@ namespace QuanLyThuVienNhom3.DAL
 
             return ThongKe;
         }
+        public int DemSoMuonCaoNhat()
+        {
+            int maxCount = _context.PhieuMuons
+                .Where(pm => pm.ThoiGianMuon.HasValue)
+                .AsEnumerable() 
+                .GroupBy(pm => pm.ThoiGianMuon.Value)
+                .Select(g => g.Count())
+                .DefaultIfEmpty(0)
+                .Max();
+
+            return maxCount;
+
+        }
+
     }
 }

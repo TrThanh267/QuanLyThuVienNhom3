@@ -487,6 +487,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
             {
                 return;
             }
+            DateTime NgayTra = DateTime.Now;
             int maCTPM = Convert.ToInt32(DataGridView_PhieuMonCT.CurrentRow.Cells["maChiTietPhieuMuonPMCT"].Value);
             string tinhTrangSachMoi = TextBox_TInhTrangSachLucTra.Text.Trim();
 
@@ -496,7 +497,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                                 "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            bool daHoanTatPhieuMuon = _PhieuMuonCTBLL.TraSach(maCTPM, tinhTrangSachMoi);
+            bool daHoanTatPhieuMuon = _PhieuMuonCTBLL.TraSach(maCTPM, tinhTrangSachMoi,NgayTra);
             if (!string.IsNullOrEmpty(_PhieuMuonCTBLL.LastError))
             {
                 MessageBox.Show(_PhieuMuonCTBLL.LastError, "Lỗi Xử lý Trả Sách", MessageBoxButtons.OK, MessageBoxIcon.Error);

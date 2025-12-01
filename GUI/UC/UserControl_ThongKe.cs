@@ -57,7 +57,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
             // 2. TÍNH TOÁN GIỚI HẠN MAX (MAXIMUM) LINH HOẠT
             int maxLuotMuonThucTe = (int)Math.Ceiling(values.DefaultIfEmpty(0).Max());
-            int gioiHanMinCoDinh = 40; // Đảm bảo trục Y ít nhất đạt đến 20 (hoặc 100 theo ý bạn)
+            int gioiHanMinCoDinh = _BLL.SoluotMuonLonNhat();
             int gioiHanMaxCanThiet = Math.Max(maxLuotMuonThucTe, gioiHanMinCoDinh);
 
             // Thêm 20% khoảng đệm trên đỉnh

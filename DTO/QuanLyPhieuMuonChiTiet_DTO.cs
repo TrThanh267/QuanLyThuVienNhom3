@@ -27,5 +27,7 @@ namespace QuanLyThuVienNhom3.DTO
         public int? MaPhieuMuon { get; set; }
         [DisplayName("Đã trả sách")]
         public bool? DaGhiNhanTra { get; set; }
+        [DisplayName("Ngày Trả Sách")]
+        public DateTime NgayTraSach { get; set; }
     }
 }

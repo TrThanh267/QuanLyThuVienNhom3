@@ -45,7 +45,7 @@ namespace QuanLyThuVienNhom3.BLL
         {
             return _DAL.GetPhieuMuons().ToList();
         }
-        public bool TraSach(int maChiTietPhieuMuon, string tinhTrangSach)
+        public bool TraSach(int maChiTietPhieuMuon, string tinhTrangSach,DateTime ngaytra)
         {
             LastError = string.Empty;
             using var transaction = _DAL.BeginTransaction();
@@ -65,6 +65,7 @@ namespace QuanLyThuVienNhom3.BLL
                     _DAL.CongTonKho(maSach, soLuongDaTra);
                     chiTiet.DaGhiNhanTra = true;
                 }
+                chiTiet.NgayTraSach = ngaytra;
                 chiTiet.TinhTrangSach = tinhTrangSach;
                 _DAL.SuaChiTietPhieuMuon(chiTiet);
                 int soLuongThucTe = _DAL.LaySoLuongNoThucTe(maPM);
