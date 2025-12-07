@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuanLyThuVienNhom3.Models;
 
@@ -24,4 +26,10 @@ public partial class Sach
     public virtual LoaiSach? MaLoaiSachNavigation { get; set; }
 
     public virtual NhaSanXuat? MaNhaSanXuatNavigation { get; set; }
+    [NotMapped]
+    [DisplayName("Thể Loại")]
+    public string TenLoaiSach { get; set; }
+    [NotMapped]
+    [DisplayName("Nhà Sản Xuất")]
+    public string TenNhaSanXuat { get; set; }
 }

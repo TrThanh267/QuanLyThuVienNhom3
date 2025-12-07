@@ -31,5 +31,6 @@ namespace QuanLyThuVienNhom3.DTO
 
         [DisplayName("Độc Giả")]
         public string? DocGia { get; set; }
+        public string? EmailDocGia { get; set; }
     }
 }

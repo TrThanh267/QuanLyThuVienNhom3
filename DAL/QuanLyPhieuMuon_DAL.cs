@@ -29,6 +29,7 @@ namespace QuanLyThuVienNhom3.DAL
                                      TrangThai = x.TrangThai,
                                      NhanVien = x.MaNhanVienNavigation.TenNhanVien,
                                      DocGia = x.MaDocGiaNavigation.TenDocGia,
+                                     EmailDocGia = x.MaDocGiaNavigation.Email
                                  })
                                  .ToList();
             for (int i = 0; i < listPM.Count; i++)
@@ -199,23 +200,30 @@ namespace QuanLyThuVienNhom3.DAL
         }
         public List<QuanLyPhieuMuon_DTO> TimKiemPM(string tuKhoa)
         {
+            string tuKhoaLower = tuKhoa.ToLower();
+
             return _context.PhieuMuons.Include(x => x.MaNhanVienNavigation)
-                                      .Include(x => x.MaDocGiaNavigation)
-                                    .Where(x => x.MaPhieuMuon.ToString().Equals(tuKhoa) ||
-                                                 (x.MaNhanVienNavigation.TenNhanVien!.Contains(tuKhoa) ||
-                                                  x.MaDocGiaNavigation!.TenDocGia.Contains(tuKhoa)
-                                                  )).ToList()
-                                    .Select((x, Index) => new QuanLyPhieuMuon_DTO
-                                    {
-                                        STT = Index + 1,
-                                        MaPhieuMuon = x.MaPhieuMuon,
-                                        ThoiGianMuon = x.ThoiGianMuon,
-                                        ThoihanTra = x.ThoihanTra,
-                                        SoLuong = x.SoLuong,
-                                        TrangThai = x.TrangThai,
-                                        NhanVien = x.MaNhanVienNavigation.TenNhanVien,
-                                        DocGia = x.MaDocGiaNavigation.TenDocGia,
-                                    }).ToList();
+                .Include(x => x.MaDocGiaNavigation)
+                .Where(x => x.MaPhieuMuon.ToString().Equals(tuKhoa) || // Giữ nguyên cho Mã PM
+                            (
+                                (x.MaNhanVienNavigation != null && x.MaNhanVienNavigation.TenNhanVien != null && x.MaNhanVienNavigation.TenNhanVien.ToLower().Contains(tuKhoaLower)) ||
+                                (x.MaDocGiaNavigation != null && x.MaDocGiaNavigation.TenDocGia != null && x.MaDocGiaNavigation.TenDocGia.ToLower().Contains(tuKhoaLower)) ||
+                                (x.TrangThai != null && x.TrangThai.ToLower().Contains(tuKhoaLower))
+                            )
+                       )
+                .ToList()
+                .Select((x, Index) => new QuanLyPhieuMuon_DTO
+                {
+                    STT = Index + 1,
+                    MaPhieuMuon = x.MaPhieuMuon,
+                    ThoiGianMuon = x.ThoiGianMuon,
+                    ThoihanTra = x.ThoihanTra,
+                    SoLuong = x.SoLuong,
+                    TrangThai = x.TrangThai,
+                    NhanVien = x.MaNhanVienNavigation?.TenNhanVien,
+                    DocGia = x.MaDocGiaNavigation?.TenDocGia, 
+                    EmailDocGia = x.MaDocGiaNavigation?.Email
+                }).ToList();
         }
     }
 }

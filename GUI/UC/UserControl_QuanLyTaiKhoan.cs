@@ -38,8 +38,8 @@ namespace QuanLyThuVienNhom3.GUI.UC
         private void LoadComboBoxVaiTro()
         {
             ComboBox_VaiTro.DataSource = _context.VaiTros.ToList();
-            ComboBox_VaiTro.DisplayMember = "TenVaiTro";   // hiện tên vai trò
-            ComboBox_VaiTro.ValueMember = "MaVaiTro";    // ← DÒNG QUAN TRỌNG NHẤT!!!
+            ComboBox_VaiTro.DisplayMember = "TenVaiTro";  
+            ComboBox_VaiTro.ValueMember = "MaVaiTro"; 
         }
         public void ClearThongTin()
         {
@@ -54,7 +54,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
         private void ComBox_LocTaiKhoanTheoVaiTro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (ComBox_LocTaiKhoanTheoVaiTro.SelectedValue == null) return;
 
             int maVaiTro = (int)ComBox_LocTaiKhoanTheoVaiTro.SelectedIndex;
             var danhsach = thuVien.LocTKtheoVT(maVaiTro);
@@ -127,8 +126,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     MessageBox.Show("Tên tài khoản phải 4-30 ký tự và không được toàn số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // --- Kiểm tra mật khẩu mạnh ---
                 string mk = TextBox_MatKhau.Text.Trim();
                 if (!Regex.IsMatch(mk, @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))
                 {
@@ -140,12 +137,10 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 if (MessageBox.Show("Bạn có chắc chắn muốn thêm tài khoản này?", "Xác nhận thêm",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-
-                // --- Tạo đối tượng và gọi BLL ---
                 TaiKhoan tk = new TaiKhoan
                 {
                     TenTaiKhoan = tenTK,
-                    MatKhauHash = mk, // BLL sẽ tự băm
+                    MatKhauHash = mk, 
                     TrangThai = radioButton_Online.Checked ? "Hoạt động" : "Không hoạt động",
                     MaVaiTro = Convert.ToInt32(ComboBox_VaiTro.SelectedValue)
                 };
@@ -164,7 +159,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
             }
 
 
-            else // === ĐANG CẬP NHẬT (sửa tài khoản) ===
+            else 
             {
                 if (DataGridView_DachSachTaiKhoan.SelectedRows.Count == 0)
                 {
@@ -172,27 +167,19 @@ namespace QuanLyThuVienNhom3.GUI.UC
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
-                // Lấy mã tài khoản từ dòng được chọn
                 int maTK = Convert.ToInt32(DataGridView_DachSachTaiKhoan.SelectedRows[0].Cells["MaTK"].Value);
-
-                // Kiểm tra tên tài khoản không để trống + độ dài
                 string tenMoi = TextBox_TenTaiKhoan.Text.Trim();
                 if (string.IsNullOrWhiteSpace(tenMoi) || tenMoi.Length < 4 || tenMoi.Length > 30)
                 {
                     MessageBox.Show("Tên tài khoản phải từ 4-30 ký tự!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // Kiểm tra trùng tên (trừ chính tài khoản đang sửa)
                 var tkHienTai = thuVien.LayTK(maTK);
                 if (tkHienTai.TenTaiKhoan != tenMoi && thuVien.KiemTraTrungTen(tenMoi))
                 {
                     MessageBox.Show("Tên tài khoản này đã được sử dụng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // Xử lý mật khẩu mới (nếu có nhập)
                 string mkMoi = TextBox_MatKhau.Text.Trim();
                 if (!string.IsNullOrEmpty(mkMoi))
                 {
@@ -203,23 +190,26 @@ namespace QuanLyThuVienNhom3.GUI.UC
                         return;
                     }
                 }
-
-                // Xác nhận cập nhật
+                var taikhoan = thuVien.LayTK(maTK);
+                if (thuVien.KiemTraCoNhanVien(maTK))
+                {
+                    MessageBox.Show("Tài khoản này đã gắn với nhân viên nên KHÔNG THỂ thay đổi mật khẩu!",
+                                    "Hạn chế", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    mkMoi = "";
+                    return;
+                }
                 if (MessageBox.Show("Bạn có chắc chắn muốn cập nhật tài khoản này?", "Xác nhận cập nhật",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-                // Tạo object gửi đi BLL
                 TaiKhoan tk = new TaiKhoan
                 {
                     MaTaiKhoan = maTK,
                     TenTaiKhoan = tenMoi,
-                    MatKhauHash = string.IsNullOrEmpty(mkMoi) ? null : mkMoi, // null = giữ nguyên mật khẩu cũ
+                    MatKhauHash = string.IsNullOrEmpty(mkMoi) ? null : mkMoi, 
                     TrangThai = radioButton_Online.Checked ? "Hoạt động" : "Không hoạt động",
                     MaVaiTro = Convert.ToInt32(ComboBox_VaiTro.SelectedValue)
                 };
-
-                // Gọi BLL (BLL sẽ tự băm nếu có mật khẩu mới)
                 if (thuVien.CapNhat(tk))
                 {
                     MessageBox.Show("Cập nhật tài khoản thành công!", "Thành công",

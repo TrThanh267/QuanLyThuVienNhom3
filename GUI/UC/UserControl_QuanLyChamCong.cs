@@ -21,6 +21,10 @@ namespace QuanLyThuVienNhom3.GUI.UC
         public UserControl_QuanLyChamCong()
         {
             InitializeComponent();
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
             LocChamCong();
             loadComboBoxNhanVien();
             LoadComboBoxLoaiCong();
@@ -30,10 +34,21 @@ namespace QuanLyThuVienNhom3.GUI.UC
         }
         public void PhanQuyen()
         {
-            if(UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+            if (UserSession.TaiKhoanHienTai != null)
             {
-                Button_HienThiDanhSach.Enabled = false;
+                if (UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+                {
+                    Button_XoaChamCong.Enabled = false;
+                }
             }
+        }
+        public void Loaddulieu()
+        {
+            LocChamCong();
+            loadComboBoxNhanVien();
+            LoadComboBoxLoaiCong();
+            LoadComBoxCaLam();
+            LoadData();
         }
         public void LoadData()
         {
@@ -328,7 +343,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
             if (string.IsNullOrEmpty(tk))
             {
                 MessageBox.Show("Vui lòng nhập thông tin tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LoadData();
                 return;
             }
 

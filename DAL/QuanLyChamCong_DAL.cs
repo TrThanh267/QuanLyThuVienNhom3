@@ -192,7 +192,11 @@ namespace QuanLyThuVienNhom3.DAL
         {
             return _context.ChamCongs.Include(nv => nv.MaNhanVienNavigation)
                  .Include(lc => lc.MaLoaiCongNavigation).ToList()
-                 .Where(x => x.MaNhanVien.ToString().Contains(tk))
+                 .Where(x=>x.MaNhanVien.ToString().Contains(tk) ||
+                        x.MaChamCong.ToString().Contains(tk) ||
+                        (x.MaNhanVienNavigation.TenNhanVien != null && x.MaNhanVienNavigation.TenNhanVien.ToLower().Contains(tk)) ||
+                        (x.MaCaLamNavigation.TenCaLam != null && x.MaCaLamNavigation.TenCaLam.ToLower().Contains(tk)) ||
+                        (x.MaLoaiCongNavigation.TenloaiCong != null && x.MaLoaiCongNavigation.TenloaiCong.ToLower().Contains(tk)))
                  .Select((x, index) => new QuanLyChamCong_DTO
                  {
                      STT = index + 1,

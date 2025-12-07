@@ -161,15 +161,18 @@ namespace QuanLyThuVienNhom3.DAL
                 var tk = _context.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == tkCapNhat.MaTaiKhoan);
                 if (tk == null) return false;
 
-                // Cập nhật tên
+                // KIỂM TRA CÓ NHÂN VIÊN GẮN VỚI TÀI KHOẢN NÀY KHÔNG
+                bool coNhanVien = _context.NhanViens.Any(nv => nv.MaTaiKhoan == tkCapNhat.MaTaiKhoan);
+                if (coNhanVien && !string.IsNullOrEmpty(tkCapNhat.MatKhauHash))
+                {
+                    // Nếu có nhân viên rồi thì KHÔNG CHO PHÉP đổi mật khẩu (dù BLL có gửi hash mới)
+                    tkCapNhat.MatKhauHash = tk.MatKhauHash; // giữ nguyên hash cũ
+                }
+
                 tk.TenTaiKhoan = tkCapNhat.TenTaiKhoan ?? tk.TenTaiKhoan;
-
-                // Cập nhật MẬT KHẨU (đã được băm sẵn ở BLL)
-                tk.MatKhauHash = tkCapNhat.MatKhauHash;
-
-                // Cập nhật trạng thái
+                tk.MatKhauHash = tkCapNhat.MatKhauHash; // lúc này đã được xử lý an toàn
                 tk.TrangThai = tkCapNhat.TrangThai ?? tk.TrangThai;
-                // Cập nhật vai trò
+
                 if (tkCapNhat.MaVaiTro.HasValue)
                     tk.MaVaiTro = tkCapNhat.MaVaiTro.Value;
 
@@ -181,6 +184,10 @@ namespace QuanLyThuVienNhom3.DAL
                 MessageBox.Show("Lỗi DAL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+        public bool KiemTraTaiKhoanDaCoNhanVien(int maTaiKhoan)
+        {
+            return _context.NhanViens.Any(nv => nv.MaTaiKhoan == maTaiKhoan);
         }
     }
 }

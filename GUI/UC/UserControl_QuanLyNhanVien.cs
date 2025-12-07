@@ -64,6 +64,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
         {
             GroupBox_NhapThongTinNhanVien.Visible = true;
             isadd = true;
+            ClearThongTin();
         }
 
         private void Button_Huy_Click(object sender, EventArgs e)
@@ -122,9 +123,14 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     MessageBox.Show("Số điện thoại phải bắt đầu bằng số 0 và gồm đúng 10 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                if (DateTimePicker_NgaySinh.Value.Date >= DateTime.Now.Date)
+                DateTime ngayGioiHan = DateTime.Now.Date.AddYears(-18);
+                DateTime ngaySinhDuocChon = DateTimePicker_NgaySinh.Value.Date;
+                if (ngaySinhDuocChon > ngayGioiHan)
                 {
-                    MessageBox.Show("Ngày sinh không hợp lệ! Vui lòng chọn lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ngày sinh không hợp lệ! Người dùng phải đủ 18 tuổi trở lên.",
+                                    "Lỗi Ngày Sinh",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     return;
                 }
                 string Email = TextBox_Email.Text.Trim();
@@ -219,9 +225,14 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     MessageBox.Show("Số điện thoại phải bắt đầu bằng số 0 và gồm đúng 10 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                if (DateTimePicker_NgaySinh.Value.Date >= DateTime.Now.Date)
+                DateTime ngayGioiHan = DateTime.Now.Date.AddYears(-18);
+                DateTime ngaySinhDuocChon = DateTimePicker_NgaySinh.Value.Date;
+                if (ngaySinhDuocChon > ngayGioiHan)
                 {
-                    MessageBox.Show("Ngày sinh không hợp lệ! Vui lòng chọn lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ngày sinh không hợp lệ! Người dùng phải đủ 18 tuổi trở lên.",
+                                    "Lỗi Ngày Sinh",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     return;
                 }
                 string Email = TextBox_Email.Text.Trim();

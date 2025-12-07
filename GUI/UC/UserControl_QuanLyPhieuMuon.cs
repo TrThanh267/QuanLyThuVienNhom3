@@ -2,7 +2,6 @@
 using QuanLyThuVienNhom3.BLL;
 using QuanLyThuVienNhom3.DTO;
 using QuanLyThuVienNhom3.Models;
-using QuanLyThuVienNhom3.BLL;
 using QuanLyThuVienNhom3.DTO;
 using QuanLyThuVienNhom3.Models;
 using System;
@@ -27,12 +26,25 @@ namespace QuanLyThuVienNhom3.GUI.UC
             InitializeComponent();
             LoadData();
             LoadComBoBox();
+            ThongBaoGmail();
         }
         public void LoadData()
         {
             DataGridView_PhieuTra.DataSource = _PhieuTraBLL.GetListPhieuTra();
             DataGridView_PhieuMuon.DataSource = _PhieuMuonBLL.GetListPM();
             DataGridView_PhieuMonCT.DataSource = _PhieuMuonCTBLL.GetListPMCT();
+        }
+        public void ThongBaoGmail()
+        {
+            TextBox_EmailGui.Text = "tranmanhphong2k6abc@gmail.com";
+            TextBox_MatKhauUngDung.Text = "zbwg wtuh wiqu gxlg";
+            TextBox_TieuDe.Text = " Thông báo đến đến từ Thư viện Nhóm 3 📚";
+            TextBox_NoiDungGui.Text = "<h2>Thư viện Nhóm 3 xin thông báo!</h2>" +
+                           "<p>Kính gửi quý bạn đọc,</p>" +
+                           "<p>Chúng tôi xin nhắc nhở rằng sách bạn đã mượn từ thư viện của chúng tôi sẽ đến hạn trả vào ngày mai. Vui lòng đảm bảo rằng bạn sẽ trả sách đúng hạn để tránh các khoản phí trễ hạn không mong muốn.</p>" +
+                           "<p>Nếu bạn cần gia hạn thời gian mượn sách hoặc có bất kỳ câu hỏi nào, xin vui lòng liên hệ với chúng tôi qua email này hoặc đến trực tiếp thư viện.</p>" +
+                           "<p>Chân thành cảm ơn sự hợp tác của bạn!</p>" +
+                           "<p>Trân trọng,<br/>Thư viện Nhóm 3</p>";
         }
         public void LoadComBoBox()
         {
@@ -497,7 +509,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                                 "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            bool daHoanTatPhieuMuon = _PhieuMuonCTBLL.TraSach(maCTPM, tinhTrangSachMoi,NgayTra);
+            bool daHoanTatPhieuMuon = _PhieuMuonCTBLL.TraSach(maCTPM, tinhTrangSachMoi, NgayTra);
             if (!string.IsNullOrEmpty(_PhieuMuonCTBLL.LastError))
             {
                 MessageBox.Show(_PhieuMuonCTBLL.LastError, "Lỗi Xử lý Trả Sách", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -580,6 +592,8 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 {
                     DateTimePicker_ThoiHanTra.Value = thoiHanTra;
                 }
+                string emailValue = Convert.ToString(DataGridView_PhieuMuon.CurrentRow.Cells["EmailDocGia"].Value);
+                TextBox_EmailNhan.Text = emailValue.Trim();
                 TextBox_SoLuong.Text = DataGridView_PhieuMuon.Rows[e.RowIndex].Cells["soLuongPM"].Value.ToString().Trim();
                 var cellValue = DataGridView_PhieuMuon.Rows[e.RowIndex].Cells["trangThaiPM"].Value;
                 string trangThai = cellValue == null ? "" : cellValue.ToString().Trim();
@@ -652,13 +666,13 @@ namespace QuanLyThuVienNhom3.GUI.UC
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("Vui lòng nhập từ khóa tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
                 return;
             }
             List<QuanLyPhieuMuon_DTO> ketQua = _PhieuMuonBLL.TimKiemPM(keyword);
             if (ketQua.Any())
             {
                 DataGridView_PhieuMuon.DataSource = ketQua;
-                LoadData();
             }
             else
             {
@@ -845,5 +859,52 @@ namespace QuanLyThuVienNhom3.GUI.UC
             }
         }
 
+        private async void Button_GuiThongBao_Click(object sender, EventArgs e)
+        {
+            string from = TextBox_EmailGui.Text.Trim();
+            string pass = TextBox_MatKhauUngDung.Text;
+            string to = TextBox_EmailNhan.Text.Trim();
+            string subject = TextBox_TieuDe.Text.Trim();
+            string body = TextBox_NoiDungGui.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(from) ||
+                string.IsNullOrWhiteSpace(pass) ||
+                string.IsNullOrWhiteSpace(to))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thiếu dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                await EmailSender.SendEmailAsync(
+                    fromAddress: from, 
+                    toAddress: to, 
+                    subject: subject,
+                    body: body,
+                    smtpHost: "smtp.gmail.com",
+                    smtpPort: 587,
+                    username: from, 
+                    password: pass 
+                );
+
+                MessageBox.Show("✅ Gửi email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TextBox_EmailNhan.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"❌ Gửi email thất bại:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Button_HuyThongBao_Click(object sender, EventArgs e)
+        {
+            GroupBox_ThongBao.Visible = false;
+        }
+
+        private void Button_FormGuiThongBao_Click(object sender, EventArgs e)
+        {
+            GroupBox_ThongBao.Visible = true;
+        }
     }
 }

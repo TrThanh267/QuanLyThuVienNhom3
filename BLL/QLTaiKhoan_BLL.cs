@@ -121,7 +121,6 @@ namespace QuanLyThuVienNhom3.BLL
         {
             return thuVien.KiemTraTenDaTonTai(name);
         }
-
         public bool CapNhat(TaiKhoan taiKhoan)
         {
             try
@@ -129,11 +128,13 @@ namespace QuanLyThuVienNhom3.BLL
                 if (taiKhoan == null || taiKhoan.MaTaiKhoan <= 0)
                     return false;
 
-                // Lấy tài khoản hiện tại từ DB để kiểm tra tên trùng
                 var tkHienTai = thuVien.LayTaiKhoanTheoMa(taiKhoan.MaTaiKhoan);
                 if (tkHienTai == null) return false;
 
-                // Kiểm tra tên trùng (trừ chính nó)
+                // === KIỂM TRA XEM TÀI KHOẢN NÀY ĐÃ GẮN NHÂN VIÊN CHƯA ===
+                bool daCoNhanVien = thuVien.KiemTraTaiKhoanDaCoNhanVien(taiKhoan.MaTaiKhoan);
+
+                // Kiểm tra tên trùng (giữ nguyên code cũ của bạn)
                 if (!string.IsNullOrWhiteSpace(taiKhoan.TenTaiKhoan))
                 {
                     string tenMoi = taiKhoan.TenTaiKhoan.Trim();
@@ -145,19 +146,25 @@ namespace QuanLyThuVienNhom3.BLL
                     taiKhoan.TenTaiKhoan = tenMoi;
                 }
 
-                // === QUAN TRỌNG NHẤT: XỬ LÝ MẬT KHẨU ===
-                if (!string.IsNullOrWhiteSpace(taiKhoan.MatKhauHash)) // người dùng NHẬP MẬT KHẨU MỚI
+                // === XỬ LÝ MẬT KHẨU – QUAN TRỌNG NHẤT ===
+                if (!string.IsNullOrWhiteSpace(taiKhoan.MatKhauHash)) // có nhập mật khẩu mới
                 {
-                    // Băm mật khẩu mới
+                    if (daCoNhanVien)
+                    {
+                        MessageBox.Show("Không thể thay đổi mật khẩu vì tài khoản này đã được gắn với nhân viên!",
+                                        "Cấm thay đổi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return false; // Chặn luôn không cho cập nhật
+                    }
+
+                    // Chỉ băm nếu được phép đổi
                     taiKhoan.MatKhauHash = BCrypt.Net.BCrypt.HashPassword(taiKhoan.MatKhauHash.Trim());
                 }
                 else
                 {
-                    // Không nhập → giữ nguyên hash cũ
+                    // Không nhập mật khẩu → giữ nguyên hash cũ
                     taiKhoan.MatKhauHash = tkHienTai.MatKhauHash;
                 }
 
-                // Gọi DAL
                 return thuVien.CapNhatTK(taiKhoan);
             }
             catch (Exception ex)
@@ -165,6 +172,10 @@ namespace QuanLyThuVienNhom3.BLL
                 MessageBox.Show("Lỗi BLL: " + ex.Message);
                 return false;
             }
+        }
+        public bool KiemTraCoNhanVien(int maTK)
+        {
+            return thuVien.KiemTraTaiKhoanDaCoNhanVien(maTK);
         }
     }
 }
