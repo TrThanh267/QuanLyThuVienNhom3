@@ -24,6 +24,7 @@ namespace QuanLyThuVienNhom3.GUI
             label_TenNguoiDung.Text = UserSession.TaiKhoanHienTai.TenTaiKhoan;
             label_TenNguoiDung.Visible = true;
             DocTaiKhoan();
+            LoadForm();
         }
         public void DocTaiKhoan()
         {
@@ -40,11 +41,22 @@ namespace QuanLyThuVienNhom3.GUI
             Label_TaiKhoan.Text = UserSession.TaiKhoanHienTai.TenTaiKhoan;
 
         }
+        public void LoadForm()
+        {
+            userControl_QuanLySach1.LoadDataToDataGridView();
+            userControl_QuanLyNhanVien1.LoadData();
+            userControl_QuanLyDocGia1.LoadDaTa();
+            userControl_QuanLyPhieuMuon1.LoadData();
+            userControl_QuanLyChamCong1.LoadData();
+            userControl_QuanLyTaiKhoan1.Loaddata();
+            userControl_QuanLyTaiKhoan1.Loaddata();
+        }
         private void Button_QuanLySach_Click(object sender, EventArgs e)
         {
 
             userControl_QuanLySach1.Visible = true;
             userControl_QuanLySach1.BringToFront();
+            userControl_QuanLySach1.LoadDataToDataGridView();
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;

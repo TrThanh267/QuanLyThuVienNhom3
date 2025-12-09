@@ -752,7 +752,7 @@
             GroupBox_ThongTinCaNhan.FillColor = Color.FromArgb(224, 224, 224);
             GroupBox_ThongTinCaNhan.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             GroupBox_ThongTinCaNhan.ForeColor = Color.Teal;
-            GroupBox_ThongTinCaNhan.Location = new Point(444, 173);
+            GroupBox_ThongTinCaNhan.Location = new Point(456, 176);
             GroupBox_ThongTinCaNhan.Name = "GroupBox_ThongTinCaNhan";
             GroupBox_ThongTinCaNhan.ShadowDecoration.CustomizableEdges = customizableEdges40;
             GroupBox_ThongTinCaNhan.Size = new Size(737, 552);

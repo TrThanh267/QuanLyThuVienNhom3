@@ -83,13 +83,13 @@
             Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
             TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             DataGridView_DachSachTaiKhoan = new Guna.UI2.WinForms.Guna2DataGridView();
-            qLTaiKhoanDTOBindingSource = new BindingSource(components);
             sTTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             MaTK = new DataGridViewTextBoxColumn();
             TenTK = new DataGridViewTextBoxColumn();
             MaTKhau = new DataGridViewTextBoxColumn();
             TrangThai = new DataGridViewTextBoxColumn();
             VaiTro = new DataGridViewTextBoxColumn();
+            qLTaiKhoanDTOBindingSource = new BindingSource(components);
             Panel_ThongTinSach.SuspendLayout();
             Panel_NhapThongTinChamCong.SuspendLayout();
             GroupBox_NhapThongTinTaiKhoan.SuspendLayout();
@@ -440,6 +440,7 @@
             ComBox_LocTaiKhoanTheoVaiTro.Font = new Font("Segoe UI", 10F);
             ComBox_LocTaiKhoanTheoVaiTro.ForeColor = Color.FromArgb(68, 88, 112);
             ComBox_LocTaiKhoanTheoVaiTro.ItemHeight = 30;
+            ComBox_LocTaiKhoanTheoVaiTro.Items.AddRange(new object[] { "Quản lý", "Nhân viên", "Tất cả" });
             ComBox_LocTaiKhoanTheoVaiTro.Location = new Point(22, 19);
             ComBox_LocTaiKhoanTheoVaiTro.Name = "ComBox_LocTaiKhoanTheoVaiTro";
             ComBox_LocTaiKhoanTheoVaiTro.ShadowDecoration.CustomizableEdges = customizableEdges22;
@@ -556,10 +557,6 @@
             DataGridView_DachSachTaiKhoan.CellClick += DataGridView_DachSachTaiKhoan_CellClick;
             DataGridView_DachSachTaiKhoan.CellContentClick += DataGridView_DachSachTaiKhoan_CellContentClick;
             // 
-            // qLTaiKhoanDTOBindingSource
-            // 
-            qLTaiKhoanDTOBindingSource.DataSource = typeof(DTO.QLTaiKhoan_DTO);
-            // 
             // sTTDataGridViewTextBoxColumn
             // 
             sTTDataGridViewTextBoxColumn.DataPropertyName = "STT";
@@ -607,6 +604,10 @@
             VaiTro.MinimumWidth = 6;
             VaiTro.Name = "VaiTro";
             VaiTro.ReadOnly = true;
+            // 
+            // qLTaiKhoanDTOBindingSource
+            // 
+            qLTaiKhoanDTOBindingSource.DataSource = typeof(DTO.QLTaiKhoan_DTO);
             // 
             // UserControl_QuanLyTaiKhoan
             // 

@@ -81,7 +81,7 @@ namespace QuanLyThuVienNhom3.DAL
             tong += chiTietPhieuMuon.SoLuongMuon ?? 0;
             return tong <= phieuMuon.SoLuongBanDau;
         }
-        public bool KiemTraSoLuongSachConLaiTrongKho(ChiTietPhieuMuon chiTietPhieuMuon)
+        public bool KiemTraSoLuongSachConLaiTrongKho(ChiTietPhieuMuon chiTietPhieuMuon, int soLuongCu = 0)
         {
             var sach = _context.Saches.FirstOrDefault(x => x.MaSach == chiTietPhieuMuon.MaSach);
             if (sach == null)
@@ -89,29 +89,25 @@ namespace QuanLyThuVienNhom3.DAL
                 MessageBox.Show("Không tìm thấy sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            int soLuongMuon = chiTietPhieuMuon.SoLuongMuon ?? 0;
-            int soLuongSach = sach.SoLuong ?? 0;
-
-            if (soLuongMuon > soLuongSach)
+            _context.Entry(sach).Reload();
+            int soLuongMuonMoi = chiTietPhieuMuon.SoLuongMuon ?? 0;
+            int soLuongKhoHienTai = sach.SoLuong ?? 0;
+            int soLuongKhoSauKhiTraLaiCu = soLuongKhoHienTai + soLuongCu;
+            int soLuongConLai = soLuongKhoSauKhiTraLaiCu - soLuongMuonMoi;
+            if (soLuongConLai < 0)
             {
-                MessageBox.Show($"Số lượng mượn vượt quá số lượng sách hiện có ({soLuongSach})!",
-                                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Số lượng mượn mới ({soLuongMuonMoi}) vượt quá số lượng sách có thể mượn ({soLuongKhoSauKhiTraLaiCu})!",
+                                "Lỗi Tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
-            if (soLuongMuon == soLuongSach)
-            {
-                sach.TrangThai = "Hết sách";
-                MessageBox.Show("Bạn đã mượn hết số lượng sách này!",
-                                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                sach.SoLuong = soLuongSach - soLuongMuon;
-                MessageBox.Show($"Sách còn lại: {sach.SoLuong}",
-                                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            sach.SoLuong = soLuongConLai;
+            sach.TrangThai = (soLuongConLai == 0) ? "Hết sách" : "Còn sách";
             _context.SaveChanges();
+            if (soLuongConLai > 0)
+            {
+                MessageBox.Show($"Sách còn lại: {sach.SoLuong}", "Cập nhật Kho", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             return true;
         }
 
@@ -230,11 +226,17 @@ namespace QuanLyThuVienNhom3.DAL
         public int CongTonKho(int maSach, int soLuongDaTra)
         {
             return _context.Saches
-                .Where(s => s.MaSach == maSach)
-                .ExecuteUpdate(setter => setter.SetProperty(
-                    s => s.SoLuong,
-                    s => s.SoLuong + soLuongDaTra
-                ));
+            .Where(s => s.MaSach == maSach)
+            .ExecuteUpdate(setter => setter
+            .SetProperty(
+                s => s.SoLuong,         
+                s => s.SoLuong + soLuongDaTra
+            )
+            .SetProperty(
+                s => s.TrangThai,        
+                "Còn sách"  
+            )
+        );
         }
         public void CapNhatTrangThaiPM(int maPhieuMuon, string trangThaiMoi)
         {
@@ -345,6 +347,18 @@ namespace QuanLyThuVienNhom3.DAL
                                         MaPhieuMuon = x.MaPhieuMuon,
                                         DaGhiNhanTra = x.DaGhiNhanTra,
                                     }).ToList();
+        }
+        public void CapNhatSach(Sach sachDaSua)
+        {
+            try
+            {
+                _context.Saches.Update(sachDaSua);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật thông tin sách vào DB.", ex);
+            }
         }
 
 

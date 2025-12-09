@@ -89,47 +89,60 @@ namespace QuanLyThuVienNhom3.BLL
         }
         public bool XuLyKhoTonKhiCapNhatCTPM(int maSach, int deltaSoLuong, int maPhieuMuon, out string thongBaoThayDoi)
         {
-            thongBaoThayDoi = string.Empty; 
-
+            thongBaoThayDoi = string.Empty;
 
             try
             {
+                var sach = _DAL.GetSachByID(maSach);
+
+                if (sach == null)
+                {
+                    thongBaoThayDoi = $"Lỗi: Không tìm thấy Sách có Mã {maSach}.";
+                    return false;
+                }
+
+                int soLuongHienTai = sach.SoLuong ?? 0;
+                int soLuongMoi = soLuongHienTai - deltaSoLuong;
+                if (soLuongMoi < 0)
+                {
+                    thongBaoThayDoi = $"Lỗi: Không đủ sách trong kho. Hiện tại có {soLuongHienTai} cuốn.";
+                    return false;
+                }
+
+                sach.SoLuong = soLuongMoi;
+                sach.TrangThai = (soLuongMoi == 0) ? "Hết sách" : "Còn sách";
+                _DAL.CapNhatSach(sach);
                 if (deltaSoLuong != 0)
                 {
                     string hanhDongKho = (deltaSoLuong > 0) ? "ĐÃ TRỪ" : "ĐÃ CỘNG LẠI";
                     int soLuongTuyetDoi = Math.Abs(deltaSoLuong);
-                    thongBaoThayDoi = $"- Tồn kho Mã Sách {maSach} đã bị {hanhDongKho} {soLuongTuyetDoi} cuốn.";
+                    thongBaoThayDoi = $"- Tồn kho Mã Sách {maSach} {hanhDongKho} **{soLuongTuyetDoi}** cuốn. Số lượng tồn kho mới: **{sach.SoLuong}**.";
                 }
+
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                thongBaoThayDoi = $"Lỗi hệ thống khi xử lý tồn kho: {ex.Message}";
                 return false;
             }
         }
 
-        public bool capNhapCTPM(ChiTietPhieuMuon ctpmNEW)
-        {
-            string thongBaoKho = string.Empty;
+            public bool capNhapCTPM(ChiTietPhieuMuon ctpmNEW)
+            {
+                string thongBaoKho = string.Empty;
 
             try
             {
                 var ctpmOLD = _DAL.GetCTPMById(ctpmNEW.MaChiTietPhieuMuon);
-
-                if (ctpmOLD == null)
+                if (!_DAL.KiemTraSoLuongMuon(ctpmNEW))
                 {
-                    MessageBox.Show("Không tìm thấy Chi tiết Phiếu Mượn cần cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Số lượng sách mượn vượt quá giới hạn cho phép!",
+                           "Cảnh báo",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Warning);
                     return false;
                 }
-
-                var pmCha = _DAL.GetPMById(ctpmOLD.MaPhieuMuon.GetValueOrDefault());
-
-                if (ctpmOLD.DaGhiNhanTra == true || (pmCha != null && pmCha.TrangThai == "Đã trả"))
-                {
-                    MessageBox.Show("Không thể cập nhật chi tiết đã được ghi nhận trả hoặc phiếu đã hoàn tất!", "Lỗi Nghiệp vụ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
                 int soLuongMoi = ctpmNEW.SoLuongMuon.GetValueOrDefault(0);
                 int soLuongCu = ctpmOLD.SoLuongMuon.GetValueOrDefault(0);
 
@@ -152,7 +165,6 @@ namespace QuanLyThuVienNhom3.BLL
                         return false;
                     }
                 }
-
                 _DAL.SuaChiTietPhieuMuon(ctpmNEW);
                 string thongBaoChung = "Cập nhật Chi tiết Phiếu Mượn thành công!";
                 if (!string.IsNullOrEmpty(thongBaoKho))

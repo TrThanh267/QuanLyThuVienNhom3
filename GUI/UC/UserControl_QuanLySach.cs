@@ -27,10 +27,18 @@ namespace QuanLyThuVienNhom3.GUI.UC
             LoadDataToDataGridView();
             LoadComboBoxes();
             LoadLoaiSachToComboBox();
-
+            PhanQuyen();
+        }
+        public void PhanQuyen()
+        {
+            if (UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+            {
+                Button_Xoa.Enabled = false;
+                Button_CapNhap.Enabled = false;
+            }
         }
         //load
-        private void LoadDataToDataGridView()
+        public void LoadDataToDataGridView()
         {
             using (var dbContext = new ThuVienNhom3Context())
             {
@@ -39,8 +47,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     var query = dbContext.Saches
                                  .Include(s => s.MaLoaiSachNavigation)
                                  .Include(s => s.MaNhaSanXuatNavigation);
-
-                    // 2. Dùng .Select() để chiếu (Project) dữ liệu sang một định dạng mới
                     var danhSachProjection = query.Select(s => new// Tạo một đối tượng ẩn danh
                     {
                         // Giữ lại ID ẩn để phục vụ chức năng Xóa/Cập nhật
