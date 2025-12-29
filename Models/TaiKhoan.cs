@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuanLyThuVienNhom3.Models;
 
@@ -18,4 +19,9 @@ public partial class TaiKhoan
     public virtual VaiTro? MaVaiTroNavigation { get; set; }
 
     public virtual NhanVien? NhanVien { get; set; }
+    [NotMapped]
+    public string? OtpCode { get; set; }
+
+    [NotMapped]
+    public DateTime? OtpExpiry { get; set; }
 }

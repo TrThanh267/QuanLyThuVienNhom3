@@ -90,7 +90,7 @@ namespace QuanLyThuVienNhom3.DAL
         public List<NhanVien> GetListNhanVien()
         {
             return _context.NhanViens.Include(x => x.MaTaiKhoanNavigation)
-                                    .Where(x => x.MaTaiKhoanNavigation.MaVaiTro == 2).ToList();
+                                    .Where(x => x.MaTaiKhoanNavigation.MaVaiTro == 2&& x.TrangThai== "Đang làm việc").ToList();
         }
         public List<CaLam> GetListCaLam()
         {

@@ -35,5 +35,17 @@ namespace QuanLyThuVienNhom3.BLL
 
             return "";
         }
+        public TaiKhoan? GetTaiKhoanByEmail(string email)
+        {
+            return _dal.GetTaiKhoanByEmail(email);
+        }
+        public string GenerateAndSaveOtp(string email)
+        {
+            return _dal.GenerateAndSaveOtp(email);
+        }
+        public bool VerifyOtpAndResetPassword(string email, string enteredOtp, string newPassword)
+        {
+            return _dal.VerifyOtpAndResetPassword(email, enteredOtp, newPassword);
+        }
     }
 }

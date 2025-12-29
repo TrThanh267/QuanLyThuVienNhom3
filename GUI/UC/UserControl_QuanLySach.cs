@@ -17,29 +17,41 @@ namespace QuanLyThuVienNhom3.GUI.UC
     {
         private bool isUpdating = false;
 
-        // Biến lưu được chọn để cập nhật
         private int selectedSachId = -1;
 
         private object DanhSachSachGoc;
         public UserControl_QuanLySach()
         {
             InitializeComponent();
-            LoadDataToDataGridView();
-            LoadComboBoxes();
-            LoadLoaiSachToComboBox();
-            PhanQuyen();
+            if (!DesignMode)
+            {
+                LoadData();
+            }
         }
         public void PhanQuyen()
         {
-            if (UserSession.TaiKhoanHienTai.MaVaiTro == 2)
+            if (DesignMode) return;
+
+            if (UserSession.TaiKhoanHienTai != null && UserSession.TaiKhoanHienTai.MaVaiTro == 2)
             {
+                TextBox_TenSach.Enabled = false;
+                guna2TextBox1.Enabled = false;
+                guna2TextBox2.Enabled = false;
+                ComboBox1.Enabled = false;
+                ComboBox2.Enabled = false;
                 Button_Xoa.Enabled = false;
-                Button_CapNhap.Enabled = false;
             }
         }
-        //load
+        private void LoadData()
+        {
+            PhanQuyen();
+            LoadDataToDataGridView();
+            LoadComboBoxes();
+            LoadLoaiSachToComboBox();
+        }
         public void LoadDataToDataGridView()
         {
+            if (DesignMode) return;
             using (var dbContext = new ThuVienNhom3Context())
             {
                 try
@@ -145,6 +157,8 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
         private void LoadComboBoxes()
         {
+            if (DesignMode) return;
+
             using (var dbContext = new ThuVienNhom3Context())
             {
                 // Tải dữ liệu cho ComboBox Loại Sách
@@ -446,9 +460,9 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 return false;
             }
 
-            if (soLuong <= 0)
+            if (soLuong < 0|| soLuong>200)
             {
-                MessageBox.Show("Số Lượng phải lớn hơn 0.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Số Lượng phải lớn hơn 0 và tối đa là 200.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 guna2TextBox1.Focus();
                 return false;
             }
@@ -482,6 +496,12 @@ namespace QuanLyThuVienNhom3.GUI.UC
             if (radioButton_HetSach.Checked == true && soLuong > 0)
             {
                 MessageBox.Show("Trạng thái hết sách không hợp lệ với số lượng.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (radioButton_ConSach.Checked == true && soLuong == 0)
+            {
+                MessageBox.Show("Trạng thái còn sách không hợp lệ với số lượng.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -583,9 +603,14 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
         private void Button_TimKiem_Click(object sender, EventArgs e)
         {
-            string tuKhoa = TextBox_TimKiemSach.Text.Trim();
+            string tuKhoa = TextBox_TimKiemSach.Text.Trim().ToLower();
 
-
+            if (string.IsNullOrEmpty(tuKhoa))
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBox_TimKiemSach.Focus();
+                return;
+            }
             try
             {
                 using (var dbContext = new ThuVienNhom3Context())
@@ -644,6 +669,8 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
         private void LoadLoaiSachToComboBox()
         {
+            if (DesignMode) return;
+
             using (var dbContext = new ThuVienNhom3Context())
             {
                 // 1. Tải dữ liệu từ CSDL

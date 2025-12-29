@@ -220,7 +220,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     return;
                 }
                 string SoDienThoai = TextBox_SoDienThoai.Text.Trim();
-                if (SoDienThoai.Length != 10 || !SoDienThoai.All(char.IsDigit) || !SoDienThoai.StartsWith("0"))
+                if (SoDienThoai.Length != 11 || !SoDienThoai.All(char.IsDigit) || !SoDienThoai.StartsWith("0"))
                 {
                     MessageBox.Show("Số điện thoại phải bắt đầu bằng số 0 và gồm đúng 10 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;

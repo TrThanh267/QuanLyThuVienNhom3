@@ -33,11 +33,12 @@ namespace QuanLyThuVienNhom3.GUI.UC
             DataGridView_PhieuTra.DataSource = _PhieuTraBLL.GetListPhieuTra();
             DataGridView_PhieuMuon.DataSource = _PhieuMuonBLL.GetListPM();
             DataGridView_PhieuMonCT.DataSource = _PhieuMuonCTBLL.GetListPMCT();
+            LoadComBoBox();
         }
         public void ThongBaoGmail()
         {
-            TextBox_EmailGui.Text = "tranmanhphong2k6abc@gmail.com";
-            TextBox_MatKhauUngDung.Text = "zbwg wtuh wiqu gxlg";
+            TextBox_EmailGui.Text = "sherwin2267@gmail.com";
+            TextBox_MatKhauUngDung.Text = "pyvy aotp zocz pswd";
             TextBox_TieuDe.Text = " Thông báo đến đến từ Thư viện Nhóm 3 📚";
             TextBox_NoiDungGui.Text = "<h2>Thư viện Nhóm 3 xin thông báo!</h2>" +
                            "<p>Kính gửi quý bạn đọc,</p>" +
@@ -96,7 +97,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
             if (danhSachPM == null || !danhSachPM.Any())
             {
-                MessageBox.Show("Không có phiếu mượn nào chưa trả!");
                 return;
             }
             danhSachPM.Insert(0, new PhieuMuon { MaPhieuMuon = 0 });
@@ -123,7 +123,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
             TextBox_TinhTrangSach.Clear();
             TextBox_SoLuongMuon.Clear();
             ComboBox_Sach.SelectedIndex = 0;
-            ComboBox_PhieuMuon.SelectedIndex = 0;
+            ComboBox_PhieuMuon.SelectedIndex = -1;
         }
         private void Button_Them_Click(object sender, EventArgs e)
         {

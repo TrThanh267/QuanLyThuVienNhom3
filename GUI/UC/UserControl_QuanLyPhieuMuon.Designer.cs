@@ -44,9 +44,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl_QuanLyPhieuMuon));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl_QuanLyPhieuMuon));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -142,15 +142,15 @@
             TextBox_NoiDungGui = new Guna.UI2.WinForms.Guna2TextBox();
             TextBox_TieuDe = new Guna.UI2.WinForms.Guna2TextBox();
             TextBox_EmailNhan = new Guna.UI2.WinForms.Guna2TextBox();
-            TextBox_MatKhauUngDung = new Guna.UI2.WinForms.Guna2TextBox();
             TextBox_EmailGui = new Guna.UI2.WinForms.Guna2TextBox();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            label10 = new Label();
             label11 = new Label();
             Button_HuyThongBao = new Guna.UI2.WinForms.Guna2Button();
             Button_GuiThongBao = new Guna.UI2.WinForms.Guna2Button();
+            TextBox_MatKhauUngDung = new Guna.UI2.WinForms.Guna2TextBox();
+            label10 = new Label();
             Button_FormGuiThongBao = new Guna.UI2.WinForms.Guna2Button();
             GroupBox_NhapThongTinPhieuMuon = new Guna.UI2.WinForms.Guna2GroupBox();
             TextBox_MaPhieuMuon = new Guna.UI2.WinForms.Guna2TextBox();
@@ -175,6 +175,15 @@
             TextBox_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             Button_TimKiem = new Guna.UI2.WinForms.Guna2Button();
             DataGridView_PhieuMuon = new Guna.UI2.WinForms.Guna2DataGridView();
+            sTTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            EmailDocGia = new DataGridViewTextBoxColumn();
+            maPhieuMuonPM = new DataGridViewTextBoxColumn();
+            thoiGianMuonPM = new DataGridViewTextBoxColumn();
+            thoihanTraPM = new DataGridViewTextBoxColumn();
+            soLuongPM = new DataGridViewTextBoxColumn();
+            trangThaiPM = new DataGridViewTextBoxColumn();
+            nhanVienPM = new DataGridViewTextBoxColumn();
+            docGiaPM = new DataGridViewTextBoxColumn();
             quanLyPhieuMuonDTOBindingSource = new BindingSource(components);
             Button_XuatFile = new Guna.UI2.WinForms.Guna2Button();
             Button_Them = new Guna.UI2.WinForms.Guna2Button();
@@ -232,15 +241,6 @@
             docGiaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             NgayTraSach = new DataGridViewTextBoxColumn();
             quanLyPhieuTraDTOBindingSource = new BindingSource(components);
-            sTTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            EmailDocGia = new DataGridViewTextBoxColumn();
-            maPhieuMuonPM = new DataGridViewTextBoxColumn();
-            thoiGianMuonPM = new DataGridViewTextBoxColumn();
-            thoihanTraPM = new DataGridViewTextBoxColumn();
-            soLuongPM = new DataGridViewTextBoxColumn();
-            trangThaiPM = new DataGridViewTextBoxColumn();
-            nhanVienPM = new DataGridViewTextBoxColumn();
-            docGiaPM = new DataGridViewTextBoxColumn();
             Panel_ThongTin.SuspendLayout();
             Panel_NhapThongTin.SuspendLayout();
             TabControl_PhieuMuon.SuspendLayout();
@@ -365,20 +365,20 @@
             GroupBox_ThongBao.Controls.Add(TextBox_NoiDungGui);
             GroupBox_ThongBao.Controls.Add(TextBox_TieuDe);
             GroupBox_ThongBao.Controls.Add(TextBox_EmailNhan);
-            GroupBox_ThongBao.Controls.Add(TextBox_MatKhauUngDung);
             GroupBox_ThongBao.Controls.Add(TextBox_EmailGui);
             GroupBox_ThongBao.Controls.Add(label7);
             GroupBox_ThongBao.Controls.Add(label8);
             GroupBox_ThongBao.Controls.Add(label9);
-            GroupBox_ThongBao.Controls.Add(label10);
             GroupBox_ThongBao.Controls.Add(label11);
             GroupBox_ThongBao.Controls.Add(Button_HuyThongBao);
             GroupBox_ThongBao.Controls.Add(Button_GuiThongBao);
+            GroupBox_ThongBao.Controls.Add(TextBox_MatKhauUngDung);
+            GroupBox_ThongBao.Controls.Add(label10);
             GroupBox_ThongBao.CustomBorderColor = Color.Teal;
             GroupBox_ThongBao.CustomizableEdges = customizableEdges17;
             GroupBox_ThongBao.Font = new Font("Segoe UI", 9F);
             GroupBox_ThongBao.ForeColor = Color.White;
-            GroupBox_ThongBao.Location = new Point(167, 196);
+            GroupBox_ThongBao.Location = new Point(199, 125);
             GroupBox_ThongBao.Name = "GroupBox_ThongBao";
             GroupBox_ThongBao.ShadowDecoration.CustomizableEdges = customizableEdges18;
             GroupBox_ThongBao.Size = new Size(482, 439);
@@ -398,13 +398,13 @@
             TextBox_NoiDungGui.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_NoiDungGui.Font = new Font("Segoe UI", 9F);
             TextBox_NoiDungGui.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_NoiDungGui.Location = new Point(181, 264);
+            TextBox_NoiDungGui.Location = new Point(159, 219);
             TextBox_NoiDungGui.Margin = new Padding(3, 4, 3, 4);
             TextBox_NoiDungGui.Name = "TextBox_NoiDungGui";
             TextBox_NoiDungGui.PlaceholderText = "";
             TextBox_NoiDungGui.SelectedText = "";
             TextBox_NoiDungGui.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            TextBox_NoiDungGui.Size = new Size(286, 92);
+            TextBox_NoiDungGui.Size = new Size(297, 117);
             TextBox_NoiDungGui.TabIndex = 24;
             // 
             // TextBox_TieuDe
@@ -419,13 +419,13 @@
             TextBox_TieuDe.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_TieuDe.Font = new Font("Segoe UI", 9F);
             TextBox_TieuDe.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_TieuDe.Location = new Point(181, 221);
+            TextBox_TieuDe.Location = new Point(159, 176);
             TextBox_TieuDe.Margin = new Padding(3, 4, 3, 4);
             TextBox_TieuDe.Name = "TextBox_TieuDe";
             TextBox_TieuDe.PlaceholderText = "";
             TextBox_TieuDe.SelectedText = "";
             TextBox_TieuDe.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            TextBox_TieuDe.Size = new Size(286, 30);
+            TextBox_TieuDe.Size = new Size(297, 30);
             TextBox_TieuDe.TabIndex = 23;
             // 
             // TextBox_EmailNhan
@@ -439,40 +439,18 @@
             TextBox_EmailNhan.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_EmailNhan.Font = new Font("Segoe UI", 9F);
             TextBox_EmailNhan.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_EmailNhan.Location = new Point(181, 175);
+            TextBox_EmailNhan.Location = new Point(159, 130);
             TextBox_EmailNhan.Margin = new Padding(3, 4, 3, 4);
             TextBox_EmailNhan.Name = "TextBox_EmailNhan";
             TextBox_EmailNhan.PlaceholderText = "";
             TextBox_EmailNhan.SelectedText = "";
             TextBox_EmailNhan.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            TextBox_EmailNhan.Size = new Size(286, 30);
+            TextBox_EmailNhan.Size = new Size(297, 30);
             TextBox_EmailNhan.TabIndex = 22;
-            // 
-            // TextBox_MatKhauUngDung
-            // 
-            TextBox_MatKhauUngDung.CustomizableEdges = customizableEdges9;
-            TextBox_MatKhauUngDung.DefaultText = "";
-            TextBox_MatKhauUngDung.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            TextBox_MatKhauUngDung.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            TextBox_MatKhauUngDung.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_MatKhauUngDung.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            TextBox_MatKhauUngDung.Enabled = false;
-            TextBox_MatKhauUngDung.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_MatKhauUngDung.Font = new Font("Segoe UI", 9F);
-            TextBox_MatKhauUngDung.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_MatKhauUngDung.Location = new Point(181, 129);
-            TextBox_MatKhauUngDung.Margin = new Padding(3, 4, 3, 4);
-            TextBox_MatKhauUngDung.Name = "TextBox_MatKhauUngDung";
-            TextBox_MatKhauUngDung.PlaceholderText = "";
-            TextBox_MatKhauUngDung.SelectedText = "";
-            TextBox_MatKhauUngDung.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            TextBox_MatKhauUngDung.Size = new Size(286, 30);
-            TextBox_MatKhauUngDung.TabIndex = 21;
-            TextBox_MatKhauUngDung.UseSystemPasswordChar = true;
             // 
             // TextBox_EmailGui
             // 
-            TextBox_EmailGui.CustomizableEdges = customizableEdges11;
+            TextBox_EmailGui.CustomizableEdges = customizableEdges9;
             TextBox_EmailGui.DefaultText = "";
             TextBox_EmailGui.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             TextBox_EmailGui.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -482,20 +460,20 @@
             TextBox_EmailGui.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_EmailGui.Font = new Font("Segoe UI", 9F);
             TextBox_EmailGui.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_EmailGui.Location = new Point(181, 81);
+            TextBox_EmailGui.Location = new Point(159, 84);
             TextBox_EmailGui.Margin = new Padding(3, 4, 3, 4);
             TextBox_EmailGui.Name = "TextBox_EmailGui";
             TextBox_EmailGui.PlaceholderText = "";
             TextBox_EmailGui.SelectedText = "";
-            TextBox_EmailGui.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            TextBox_EmailGui.Size = new Size(286, 30);
+            TextBox_EmailGui.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            TextBox_EmailGui.Size = new Size(297, 30);
             TextBox_EmailGui.TabIndex = 20;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(21, 270);
+            label7.Location = new Point(20, 225);
             label7.Name = "label7";
             label7.Size = new Size(74, 20);
             label7.TabIndex = 19;
@@ -505,7 +483,7 @@
             // 
             label8.AutoSize = true;
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(21, 227);
+            label8.Location = new Point(20, 181);
             label8.Name = "label8";
             label8.Size = new Size(61, 20);
             label8.TabIndex = 18;
@@ -515,27 +493,17 @@
             // 
             label9.AutoSize = true;
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(20, 180);
+            label9.Location = new Point(19, 134);
             label9.Name = "label9";
             label9.Size = new Size(85, 20);
             label9.TabIndex = 17;
             label9.Text = "Email nhận:";
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.ForeColor = Color.Black;
-            label10.Location = new Point(21, 133);
-            label10.Name = "label10";
-            label10.Size = new Size(141, 20);
-            label10.TabIndex = 16;
-            label10.Text = "Mật khẩu ứng dụng:";
-            // 
             // label11
             // 
             label11.AutoSize = true;
             label11.ForeColor = Color.Black;
-            label11.Location = new Point(21, 85);
+            label11.Location = new Point(20, 88);
             label11.Name = "label11";
             label11.Size = new Size(128, 20);
             label11.TabIndex = 15;
@@ -547,7 +515,7 @@
             Button_HuyThongBao.AnimatedGIF = true;
             Button_HuyThongBao.BackColor = Color.Transparent;
             Button_HuyThongBao.BorderRadius = 10;
-            Button_HuyThongBao.CustomizableEdges = customizableEdges13;
+            Button_HuyThongBao.CustomizableEdges = customizableEdges11;
             Button_HuyThongBao.DisabledState.BorderColor = Color.DarkGray;
             Button_HuyThongBao.DisabledState.CustomBorderColor = Color.DarkGray;
             Button_HuyThongBao.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -560,7 +528,7 @@
             Button_HuyThongBao.Image = (Image)resources.GetObject("Button_HuyThongBao.Image");
             Button_HuyThongBao.Location = new Point(280, 379);
             Button_HuyThongBao.Name = "Button_HuyThongBao";
-            Button_HuyThongBao.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            Button_HuyThongBao.ShadowDecoration.CustomizableEdges = customizableEdges12;
             Button_HuyThongBao.Size = new Size(155, 41);
             Button_HuyThongBao.TabIndex = 14;
             Button_HuyThongBao.Text = "Hủy";
@@ -572,7 +540,7 @@
             Button_GuiThongBao.AnimatedGIF = true;
             Button_GuiThongBao.BackColor = Color.Transparent;
             Button_GuiThongBao.BorderRadius = 10;
-            Button_GuiThongBao.CustomizableEdges = customizableEdges15;
+            Button_GuiThongBao.CustomizableEdges = customizableEdges13;
             Button_GuiThongBao.DisabledState.BorderColor = Color.DarkGray;
             Button_GuiThongBao.DisabledState.CustomBorderColor = Color.DarkGray;
             Button_GuiThongBao.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -585,11 +553,44 @@
             Button_GuiThongBao.Image = (Image)resources.GetObject("Button_GuiThongBao.Image");
             Button_GuiThongBao.Location = new Point(48, 379);
             Button_GuiThongBao.Name = "Button_GuiThongBao";
-            Button_GuiThongBao.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            Button_GuiThongBao.ShadowDecoration.CustomizableEdges = customizableEdges14;
             Button_GuiThongBao.Size = new Size(155, 41);
             Button_GuiThongBao.TabIndex = 13;
             Button_GuiThongBao.Text = "Gửi";
             Button_GuiThongBao.Click += Button_GuiThongBao_Click;
+            // 
+            // TextBox_MatKhauUngDung
+            // 
+            TextBox_MatKhauUngDung.CustomizableEdges = customizableEdges15;
+            TextBox_MatKhauUngDung.DefaultText = "";
+            TextBox_MatKhauUngDung.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            TextBox_MatKhauUngDung.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            TextBox_MatKhauUngDung.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_MatKhauUngDung.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            TextBox_MatKhauUngDung.Enabled = false;
+            TextBox_MatKhauUngDung.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            TextBox_MatKhauUngDung.Font = new Font("Segoe UI", 9F);
+            TextBox_MatKhauUngDung.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            TextBox_MatKhauUngDung.Location = new Point(159, 84);
+            TextBox_MatKhauUngDung.Margin = new Padding(3, 4, 3, 4);
+            TextBox_MatKhauUngDung.Name = "TextBox_MatKhauUngDung";
+            TextBox_MatKhauUngDung.PlaceholderText = "";
+            TextBox_MatKhauUngDung.SelectedText = "";
+            TextBox_MatKhauUngDung.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            TextBox_MatKhauUngDung.Size = new Size(297, 30);
+            TextBox_MatKhauUngDung.TabIndex = 21;
+            TextBox_MatKhauUngDung.UseSystemPasswordChar = true;
+            TextBox_MatKhauUngDung.Visible = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.ForeColor = Color.Black;
+            label10.Location = new Point(19, 88);
+            label10.Name = "label10";
+            label10.Size = new Size(0, 20);
+            label10.TabIndex = 16;
+            label10.Visible = false;
             // 
             // Button_FormGuiThongBao
             // 
@@ -642,7 +643,7 @@
             GroupBox_NhapThongTinPhieuMuon.CustomizableEdges = customizableEdges37;
             GroupBox_NhapThongTinPhieuMuon.Font = new Font("Segoe UI", 9F);
             GroupBox_NhapThongTinPhieuMuon.ForeColor = Color.White;
-            GroupBox_NhapThongTinPhieuMuon.Location = new Point(226, 145);
+            GroupBox_NhapThongTinPhieuMuon.Location = new Point(247, 107);
             GroupBox_NhapThongTinPhieuMuon.Name = "GroupBox_NhapThongTinPhieuMuon";
             GroupBox_NhapThongTinPhieuMuon.ShadowDecoration.CustomizableEdges = customizableEdges38;
             GroupBox_NhapThongTinPhieuMuon.Size = new Size(387, 524);
@@ -1053,6 +1054,79 @@
             DataGridView_PhieuMuon.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             DataGridView_PhieuMuon.CellClick += DataGridView_PhieuMuon_CellClick;
             // 
+            // sTTDataGridViewTextBoxColumn
+            // 
+            sTTDataGridViewTextBoxColumn.DataPropertyName = "STT";
+            sTTDataGridViewTextBoxColumn.HeaderText = "STT";
+            sTTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sTTDataGridViewTextBoxColumn.Name = "sTTDataGridViewTextBoxColumn";
+            sTTDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // EmailDocGia
+            // 
+            EmailDocGia.DataPropertyName = "EmailDocGia";
+            EmailDocGia.HeaderText = "EmailDocGia";
+            EmailDocGia.MinimumWidth = 6;
+            EmailDocGia.Name = "EmailDocGia";
+            EmailDocGia.ReadOnly = true;
+            EmailDocGia.Visible = false;
+            // 
+            // maPhieuMuonPM
+            // 
+            maPhieuMuonPM.DataPropertyName = "MaPhieuMuon";
+            maPhieuMuonPM.HeaderText = "Mã Phiếu Mượn";
+            maPhieuMuonPM.MinimumWidth = 6;
+            maPhieuMuonPM.Name = "maPhieuMuonPM";
+            maPhieuMuonPM.ReadOnly = true;
+            // 
+            // thoiGianMuonPM
+            // 
+            thoiGianMuonPM.DataPropertyName = "ThoiGianMuon";
+            thoiGianMuonPM.HeaderText = "Thời Gian Mượn";
+            thoiGianMuonPM.MinimumWidth = 6;
+            thoiGianMuonPM.Name = "thoiGianMuonPM";
+            thoiGianMuonPM.ReadOnly = true;
+            // 
+            // thoihanTraPM
+            // 
+            thoihanTraPM.DataPropertyName = "ThoihanTra";
+            thoihanTraPM.HeaderText = "Thời Hạn Trả";
+            thoihanTraPM.MinimumWidth = 6;
+            thoihanTraPM.Name = "thoihanTraPM";
+            thoihanTraPM.ReadOnly = true;
+            // 
+            // soLuongPM
+            // 
+            soLuongPM.DataPropertyName = "SoLuong";
+            soLuongPM.HeaderText = "Số Lượng";
+            soLuongPM.MinimumWidth = 6;
+            soLuongPM.Name = "soLuongPM";
+            soLuongPM.ReadOnly = true;
+            // 
+            // trangThaiPM
+            // 
+            trangThaiPM.DataPropertyName = "TrangThai";
+            trangThaiPM.HeaderText = "Trạng Thái";
+            trangThaiPM.MinimumWidth = 6;
+            trangThaiPM.Name = "trangThaiPM";
+            trangThaiPM.ReadOnly = true;
+            // 
+            // nhanVienPM
+            // 
+            nhanVienPM.DataPropertyName = "NhanVien";
+            nhanVienPM.HeaderText = "Nhân Viên";
+            nhanVienPM.MinimumWidth = 6;
+            nhanVienPM.Name = "nhanVienPM";
+            nhanVienPM.ReadOnly = true;
+            // 
+            // docGiaPM
+            // 
+            docGiaPM.DataPropertyName = "DocGia";
+            docGiaPM.HeaderText = "Độc Giả";
+            docGiaPM.MinimumWidth = 6;
+            docGiaPM.Name = "docGiaPM";
+            docGiaPM.ReadOnly = true;
+            // 
             // quanLyPhieuMuonDTOBindingSource
             // 
             quanLyPhieuMuonDTOBindingSource.DataSource = typeof(DTO.QuanLyPhieuMuon_DTO);
@@ -1216,7 +1290,7 @@
             GroupBox_NhapThongTinChiTietPhieuMuon.CustomizableEdges = customizableEdges69;
             GroupBox_NhapThongTinChiTietPhieuMuon.Font = new Font("Segoe UI", 9F);
             GroupBox_NhapThongTinChiTietPhieuMuon.ForeColor = Color.White;
-            GroupBox_NhapThongTinChiTietPhieuMuon.Location = new Point(232, 220);
+            GroupBox_NhapThongTinChiTietPhieuMuon.Location = new Point(259, 115);
             GroupBox_NhapThongTinChiTietPhieuMuon.Name = "GroupBox_NhapThongTinChiTietPhieuMuon";
             GroupBox_NhapThongTinChiTietPhieuMuon.ShadowDecoration.CustomizableEdges = customizableEdges70;
             GroupBox_NhapThongTinChiTietPhieuMuon.Size = new Size(387, 433);
@@ -2019,79 +2093,6 @@
             // quanLyPhieuTraDTOBindingSource
             // 
             quanLyPhieuTraDTOBindingSource.DataSource = typeof(DTO.QuanLyPhieuTra_DTO);
-            // 
-            // sTTDataGridViewTextBoxColumn
-            // 
-            sTTDataGridViewTextBoxColumn.DataPropertyName = "STT";
-            sTTDataGridViewTextBoxColumn.HeaderText = "STT";
-            sTTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            sTTDataGridViewTextBoxColumn.Name = "sTTDataGridViewTextBoxColumn";
-            sTTDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // EmailDocGia
-            // 
-            EmailDocGia.DataPropertyName = "EmailDocGia";
-            EmailDocGia.HeaderText = "EmailDocGia";
-            EmailDocGia.MinimumWidth = 6;
-            EmailDocGia.Name = "EmailDocGia";
-            EmailDocGia.ReadOnly = true;
-            EmailDocGia.Visible = false;
-            // 
-            // maPhieuMuonPM
-            // 
-            maPhieuMuonPM.DataPropertyName = "MaPhieuMuon";
-            maPhieuMuonPM.HeaderText = "Mã Phiếu Mượn";
-            maPhieuMuonPM.MinimumWidth = 6;
-            maPhieuMuonPM.Name = "maPhieuMuonPM";
-            maPhieuMuonPM.ReadOnly = true;
-            // 
-            // thoiGianMuonPM
-            // 
-            thoiGianMuonPM.DataPropertyName = "ThoiGianMuon";
-            thoiGianMuonPM.HeaderText = "Thời Gian Mượn";
-            thoiGianMuonPM.MinimumWidth = 6;
-            thoiGianMuonPM.Name = "thoiGianMuonPM";
-            thoiGianMuonPM.ReadOnly = true;
-            // 
-            // thoihanTraPM
-            // 
-            thoihanTraPM.DataPropertyName = "ThoihanTra";
-            thoihanTraPM.HeaderText = "Thời Hạn Trả";
-            thoihanTraPM.MinimumWidth = 6;
-            thoihanTraPM.Name = "thoihanTraPM";
-            thoihanTraPM.ReadOnly = true;
-            // 
-            // soLuongPM
-            // 
-            soLuongPM.DataPropertyName = "SoLuong";
-            soLuongPM.HeaderText = "Số Lượng";
-            soLuongPM.MinimumWidth = 6;
-            soLuongPM.Name = "soLuongPM";
-            soLuongPM.ReadOnly = true;
-            // 
-            // trangThaiPM
-            // 
-            trangThaiPM.DataPropertyName = "TrangThai";
-            trangThaiPM.HeaderText = "Trạng Thái";
-            trangThaiPM.MinimumWidth = 6;
-            trangThaiPM.Name = "trangThaiPM";
-            trangThaiPM.ReadOnly = true;
-            // 
-            // nhanVienPM
-            // 
-            nhanVienPM.DataPropertyName = "NhanVien";
-            nhanVienPM.HeaderText = "Nhân Viên";
-            nhanVienPM.MinimumWidth = 6;
-            nhanVienPM.Name = "nhanVienPM";
-            nhanVienPM.ReadOnly = true;
-            // 
-            // docGiaPM
-            // 
-            docGiaPM.DataPropertyName = "DocGia";
-            docGiaPM.HeaderText = "Độc Giả";
-            docGiaPM.MinimumWidth = 6;
-            docGiaPM.Name = "docGiaPM";
-            docGiaPM.ReadOnly = true;
             // 
             // UserControl_QuanLyPhieuMuon
             // 

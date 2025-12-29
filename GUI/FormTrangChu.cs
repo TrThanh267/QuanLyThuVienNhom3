@@ -21,16 +21,25 @@ namespace QuanLyThuVienNhom3.GUI
         public FormTrangChu()
         {
             InitializeComponent();
-            label_TenNguoiDung.Text = UserSession.TaiKhoanHienTai.TenTaiKhoan;
-            label_TenNguoiDung.Visible = true;
-            DocTaiKhoan();
-            LoadForm();
+            if (UserSession.TaiKhoanHienTai != null)
+            {
+                label_TenNguoiDung.Text = UserSession.TaiKhoanHienTai.TenTaiKhoan;
+                label_TenNguoiDung.Visible = true;
+
+                DocTaiKhoan();
+                LoadForm();
+            }
+            else
+            {
+                MessageBox.Show("Phiên làm việc không hợp lệ. Vui lòng đăng nhập lại.", "Lỗi Session", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
         public void DocTaiKhoan()
         {
             var taikhoan = _context.NhanViens
-                .FirstOrDefault(tk => tk.MaTaiKhoan == UserSession.TaiKhoanHienTai.MaTaiKhoan); // Lấy thông tin nhân viên từ bảng NhanVien dựa trên MaTaiKhoan
-            Label_IDNhanVien.Text = taikhoan?.MaNhanVien.ToString(); // Hiển thị mã nhân viên vào Label_IDNhanVien
+                .FirstOrDefault(tk => tk.MaTaiKhoan == UserSession.TaiKhoanHienTai.MaTaiKhoan);
+            Label_IDNhanVien.Text = taikhoan?.MaNhanVien.ToString();
             Label_TenNhanVien.Text = taikhoan?.TenNhanVien;
             Label_NgaySinhNV.Text = taikhoan?.NgaySinh?.ToString("dd/MM/yyyy");
             Label_GioiTinh.Text = taikhoan?.GioiTinh;
@@ -43,32 +52,33 @@ namespace QuanLyThuVienNhom3.GUI
         }
         public void LoadForm()
         {
-            userControl_QuanLySach1.LoadDataToDataGridView();
+            userControl_QuanLySach2.LoadDataToDataGridView();
             userControl_QuanLyNhanVien1.LoadData();
             userControl_QuanLyDocGia1.LoadDaTa();
             userControl_QuanLyPhieuMuon1.LoadData();
             userControl_QuanLyChamCong1.LoadData();
             userControl_QuanLyTaiKhoan1.Loaddata();
-            userControl_QuanLyTaiKhoan1.Loaddata();
+            userControl_ThongKe1.LoadDt();
         }
         private void Button_QuanLySach_Click(object sender, EventArgs e)
         {
 
-            userControl_QuanLySach1.Visible = true;
-            userControl_QuanLySach1.BringToFront();
-            userControl_QuanLySach1.LoadDataToDataGridView();
+            userControl_QuanLySach2.Visible = true;
+            userControl_QuanLySach2.BringToFront();
+            userControl_QuanLySach2.LoadDataToDataGridView();
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
             userControl_QuanLyTaiKhoan1.Visible = false;
             userControl_ThongKe1.Visible = false;
+            LoadForm();
         }
 
         private void Button_QuanLyNhanVien_Click(object sender, EventArgs e)
         {
             if (UserSession.TaiKhoanHienTai.MaVaiTro == 1)
             {
-                userControl_QuanLySach1.Visible = false;
+                userControl_QuanLySach2.Visible = false;
                 userControl_QuanLyNhanVien1.BringToFront();
                 userControl_QuanLyNhanVien1.LoadData();
                 userControl_QuanLyNhanVien1.Visible = true;
@@ -76,6 +86,7 @@ namespace QuanLyThuVienNhom3.GUI
                 userControl_QuanLyChamCong1.Visible = false;
                 userControl_QuanLyTaiKhoan1.Visible = false;
                 userControl_ThongKe1.Visible = false;
+                LoadForm();
             }
             else
             {
@@ -89,11 +100,12 @@ namespace QuanLyThuVienNhom3.GUI
             userControl_QuanLyDocGia1.Visible = true;
             userControl_QuanLyDocGia1.BringToFront();
             userControl_QuanLyDocGia1.LoadDaTa();
-            userControl_QuanLySach1.Visible = false;
+            userControl_QuanLySach2.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
             userControl_QuanLyTaiKhoan1.Visible = false;
             userControl_ThongKe1.Visible = false;
+            LoadForm();
         }
 
         private void Button_QuanLyPhieuMuon_Click(object sender, EventArgs e)
@@ -102,11 +114,12 @@ namespace QuanLyThuVienNhom3.GUI
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyPhieuMuon1.BringToFront();
             userControl_QuanLyPhieuMuon1.LoadData();
-            userControl_QuanLySach1.Visible = false;
+            userControl_QuanLySach2.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
             userControl_QuanLyTaiKhoan1.Visible = false;
             userControl_ThongKe1.Visible = false;
+            LoadForm();
         }
 
         private void Button_QuanLyChamCong_Click(object sender, EventArgs e)
@@ -115,17 +128,18 @@ namespace QuanLyThuVienNhom3.GUI
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.BringToFront();
             userControl_QuanLyChamCong1.LoadData();
-            userControl_QuanLySach1.Visible = false;
+            userControl_QuanLySach2.Visible = false;
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyChamCong1.Visible = true;
             userControl_QuanLyTaiKhoan1.Visible = false;
+            LoadForm();
         }
 
         private void Button_QuanLyTaiKhoan_Click(object sender, EventArgs e)
         {
             if (UserSession.TaiKhoanHienTai.MaVaiTro == 1)
             {
-                userControl_QuanLySach1.Visible = false;
+                userControl_QuanLySach2.Visible = false;
                 userControl_QuanLyTaiKhoan1.BringToFront();
                 userControl_QuanLyTaiKhoan1.Loaddata();
                 userControl_QuanLyNhanVien1.Visible = false;
@@ -133,6 +147,7 @@ namespace QuanLyThuVienNhom3.GUI
                 userControl_QuanLyChamCong1.Visible = false;
                 userControl_QuanLyTaiKhoan1.Visible = true;
                 userControl_ThongKe1.Visible = false;
+                LoadForm();
             }
             else
             {
@@ -143,14 +158,15 @@ namespace QuanLyThuVienNhom3.GUI
 
         private void Button_ThongKe_Click(object sender, EventArgs e)
         {
-            userControl_QuanLySach1.Visible = false;
-            userControl_ThongKe1.LoadData();
+            userControl_QuanLySach2.Visible = false;
+            userControl_ThongKe1.LoadDt();
             userControl_ThongKe1.BringToFront();
             userControl_QuanLyNhanVien1.Visible = false;
             userControl_QuanLyDocGia1.Visible = false;
             userControl_QuanLyChamCong1.Visible = false;
             userControl_QuanLyTaiKhoan1.Visible = false;
             userControl_ThongKe1.Visible = true;
+            LoadForm();
         }
 
         private void btn_Luu_Click(object sender, EventArgs e)
@@ -158,9 +174,8 @@ namespace QuanLyThuVienNhom3.GUI
             string taiKhoan = txt_TK.Text.Trim();
             string matKhauCu = txt_MK.Text;
             string matKhauMoi = txt_MKMoi.Text;
-            string nhapLai = txt_NhapLai.Text;  // nếu bạn có ô nhập lại
+            string nhapLai = txt_NhapLai.Text;
 
-            // 2. Validate cơ bản
             if (string.IsNullOrEmpty(taiKhoan) || string.IsNullOrEmpty(matKhauCu) || string.IsNullOrEmpty(matKhauMoi))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
@@ -230,7 +245,7 @@ namespace QuanLyThuVienNhom3.GUI
                         {
                             MessageBox.Show("Đổi mật khẩu thành công!\nVui lòng đăng nhập lại.", "Thành công",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Visible = false; // hoặc mở lại form đăng nhập
+                            this.Visible = false; 
                         }
                         else
                         {
@@ -265,6 +280,24 @@ namespace QuanLyThuVienNhom3.GUI
         private void Button_DoiMaKhau_Click(object sender, EventArgs e)
         {
             GroupBox_DoiMatKhau.Visible = true;
+        }
+
+        private void Button_DangXuat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?",
+            "Xác nhận Đăng xuất",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                UserSession.TaiKhoanHienTai = null;
+                FormDangNhap loginForm = new FormDangNhap();
+                this.Close();
+                loginForm.Show();
+            }
         }
     }
 }

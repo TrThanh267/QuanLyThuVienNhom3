@@ -191,9 +191,10 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     }
                 }
                 var taikhoan = thuVien.LayTK(maTK);
-                if (thuVien.KiemTraCoNhanVien(maTK))
+                var taik = thuVien.GetTaiKhoanByID(maTK);
+                if (thuVien.KiemTraCoNhanVien(taik))
                 {
-                    MessageBox.Show("Tài khoản này đã gắn với nhân viên nên KHÔNG THỂ thay đổi mật khẩu!",
+                    MessageBox.Show("Tài khoản này đã gắn với nhân viên nên KHÔNG THỂ thay đổi!",
                                     "Hạn chế", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     mkMoi = "";
                     return;

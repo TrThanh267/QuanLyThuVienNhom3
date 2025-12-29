@@ -304,6 +304,7 @@
             DataGridView_DanhsachCC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DataGridView_DanhsachCC.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_DanhsachCC.AutoGenerateColumns = false;
+            DataGridView_DanhsachCC.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridView_DanhsachCC.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DataGridView_DanhsachCC.BackgroundColor = Color.FromArgb(0, 192, 192);
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -375,6 +376,7 @@
             sTTDataGridViewTextBoxColumn1.MinimumWidth = 6;
             sTTDataGridViewTextBoxColumn1.Name = "sTTDataGridViewTextBoxColumn1";
             sTTDataGridViewTextBoxColumn1.ReadOnly = true;
+            sTTDataGridViewTextBoxColumn1.Width = 70;
             // 
             // ID
             // 
@@ -383,6 +385,7 @@
             ID.MinimumWidth = 6;
             ID.Name = "ID";
             ID.ReadOnly = true;
+            ID.Width = 148;
             // 
             // Day
             // 
@@ -391,6 +394,7 @@
             Day.MinimumWidth = 6;
             Day.Name = "Day";
             Day.ReadOnly = true;
+            Day.Width = 113;
             // 
             // Month
             // 
@@ -399,6 +403,7 @@
             Month.MinimumWidth = 6;
             Month.Name = "Month";
             Month.ReadOnly = true;
+            Month.Width = 119;
             // 
             // Year
             // 
@@ -407,6 +412,7 @@
             Year.MinimumWidth = 6;
             Year.Name = "Year";
             Year.ReadOnly = true;
+            Year.Width = 110;
             // 
             // HourIn
             // 
@@ -415,6 +421,7 @@
             HourIn.MinimumWidth = 6;
             HourIn.Name = "HourIn";
             HourIn.ReadOnly = true;
+            HourIn.Width = 98;
             // 
             // MinuteIn
             // 
@@ -423,6 +430,7 @@
             MinuteIn.MinimumWidth = 6;
             MinuteIn.Name = "MinuteIn";
             MinuteIn.ReadOnly = true;
+            MinuteIn.Width = 104;
             // 
             // HourOut
             // 
@@ -431,6 +439,7 @@
             HourOut.MinimumWidth = 6;
             HourOut.Name = "HourOut";
             HourOut.ReadOnly = true;
+            HourOut.Width = 90;
             // 
             // MinuteOut
             // 
@@ -439,6 +448,7 @@
             MinuteOut.MinimumWidth = 6;
             MinuteOut.Name = "MinuteOut";
             MinuteOut.ReadOnly = true;
+            MinuteOut.Width = 96;
             // 
             // Cong
             // 
@@ -447,6 +457,7 @@
             Cong.MinimumWidth = 6;
             Cong.Name = "Cong";
             Cong.ReadOnly = true;
+            Cong.Width = 113;
             // 
             // Ca
             // 
@@ -455,6 +466,7 @@
             Ca.MinimumWidth = 6;
             Ca.Name = "Ca";
             Ca.ReadOnly = true;
+            Ca.Width = 95;
             // 
             // nhanVienDataGridViewTextBoxColumn1
             // 
@@ -463,6 +475,7 @@
             nhanVienDataGridViewTextBoxColumn1.MinimumWidth = 6;
             nhanVienDataGridViewTextBoxColumn1.Name = "nhanVienDataGridViewTextBoxColumn1";
             nhanVienDataGridViewTextBoxColumn1.ReadOnly = true;
+            nhanVienDataGridViewTextBoxColumn1.Width = 114;
             // 
             // maNhanVienDataGridViewTextBoxColumn1
             // 
@@ -472,6 +485,7 @@
             maNhanVienDataGridViewTextBoxColumn1.Name = "maNhanVienDataGridViewTextBoxColumn1";
             maNhanVienDataGridViewTextBoxColumn1.ReadOnly = true;
             maNhanVienDataGridViewTextBoxColumn1.Visible = false;
+            maNhanVienDataGridViewTextBoxColumn1.Width = 131;
             // 
             // quanLyChamCongDTOBindingSource2
             // 

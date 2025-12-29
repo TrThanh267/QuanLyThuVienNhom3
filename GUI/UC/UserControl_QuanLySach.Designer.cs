@@ -610,6 +610,7 @@
             DataGridView_DachSachSach.DefaultCellStyle = dataGridViewCellStyle3;
             DataGridView_DachSachSach.GridColor = Color.FromArgb(182, 224, 216);
             DataGridView_DachSachSach.Location = new Point(22, 67);
+            DataGridView_DachSachSach.MultiSelect = false;
             DataGridView_DachSachSach.Name = "DataGridView_DachSachSach";
             DataGridView_DachSachSach.RowHeadersVisible = false;
             DataGridView_DachSachSach.RowHeadersWidth = 51;

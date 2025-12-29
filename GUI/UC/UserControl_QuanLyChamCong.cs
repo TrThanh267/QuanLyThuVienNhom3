@@ -99,7 +99,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 return;
             }
 
-            danhsachLoaiCong.Insert(0, new LoaiCong { MaLoaiCong = 0, TenloaiCong = "--Chọn Ca làm--" });
+            danhsachLoaiCong.Insert(0, new LoaiCong { MaLoaiCong = 0, TenloaiCong = "--Chọn loại công--" });
 
             ComboBox_LoaiCong.DataSource = danhsachLoaiCong;
             ComboBox_LoaiCong.DisplayMember = "TenLoaiCong";
@@ -158,7 +158,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 TextBox_TaiKhoan.Text = nhanVien.MaTaiKhoanNavigation != null
                                         ? nhanVien.MaTaiKhoanNavigation.TenTaiKhoan
                                         : "Không có tài khoản";
-
             }
 
         }

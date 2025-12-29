@@ -1,4 +1,5 @@
 ﻿
+using DocumentFormat.OpenXml.Wordprocessing;
 using QuanLyThuVienNhom3.DTO;
 using QuanLyThuVienNhom3.Models;
 using System;
@@ -30,7 +31,7 @@ namespace QuanLyThuVienNhom3.DAL
         }
         public int ThemMaDoGia()
         {
-            return _context.DocGia.Any() ? _context.DocGia.Max(x => x.MaDocGia) + 1 : 1;
+            return _context.DocGia.Any() ? _context.DocGia.Max(x => x.MaDocGia) + 0 : 1;
         }
         public bool KiemTraEmailTonTai(string email)
         {
@@ -77,10 +78,14 @@ namespace QuanLyThuVienNhom3.DAL
         {
             try
             {
-                // Nếu còn phiếu mượn chưa trả, không cho xóa
                 if (KiemTraDocGiaCoPhieuMuon(maDocGia))
                 {
                     MessageBox.Show("Độc giả này vẫn còn phiếu mượn chưa trả, không thể xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                if (KiemTraRangBuocPhieuMuon(maDocGia))
+                {
+                    MessageBox.Show("Độc giả này có thông tin bên phiếu mượn, không thể xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -99,11 +104,13 @@ namespace QuanLyThuVienNhom3.DAL
             }
         }
 
-        // Kiểm tra độc giả có phiếu mượn chưa
         public bool KiemTraDocGiaCoPhieuMuon(int maDocGia)
         {
-            // Tạm thời luôn trả false
             return _context.PhieuMuons.Any(pm => pm.MaDocGia == maDocGia && pm.TrangThai == "Chưa Trả");
+        }
+        public bool KiemTraRangBuocPhieuMuon(int maDocGia)
+        {
+            return _context.PhieuMuons.Any(pm => pm.MaDocGia == maDocGia);
         }
 
 
@@ -135,6 +142,43 @@ namespace QuanLyThuVienNhom3.DAL
             {
                 MessageBox.Show("Sửa độc giả thất bại! Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public byte[] GetHinhAnhByMaDocGia(string maDocGiaString)
+        {
+            if (int.TryParse(maDocGiaString, out int maDocGiaInt))
+            {
+                using (var context = new ThuVienNhom3Context())
+                {
+                    var docGia = context.DocGia
+                                        .FirstOrDefault(dg => dg.MaDocGia == maDocGiaInt);
+
+                    return docGia?.HinhAnh;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string GetTrangThaiDocGia(string maDocGiaString)
+        {
+            if (int.TryParse(maDocGiaString, out int maDocGiaInt))
+            {
+                using (var context = new ThuVienNhom3Context())
+                {
+                    string trangThai = context.DocGia
+                                            .Where(dg => dg.MaDocGia == maDocGiaInt)
+                                            .Select(dg => dg.TrangThai)
+                                            .FirstOrDefault();
+                    return trangThai;
+                }
+            }
+            return null;
+        }
+        public DocGium GetDocGiaByMa(int maDocGia)
+        {
+            return _context.DocGia
+                .FirstOrDefault(dg => dg.MaDocGia == maDocGia);
         }
 
     }

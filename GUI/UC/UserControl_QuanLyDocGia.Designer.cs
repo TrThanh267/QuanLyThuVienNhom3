@@ -97,6 +97,7 @@
             label_ThongTinDocGia = new Label();
             Panel_NhapThongTinDocGia = new Guna.UI2.WinForms.Guna2GradientPanel();
             GroupBox_ThongTinChiTietDocGia = new Guna.UI2.WinForms.Guna2GroupBox();
+            pictureBox_ThongTinAnhDG = new PictureBox();
             TextBox_ThongTinMaDocGia = new Guna.UI2.WinForms.Guna2TextBox();
             label2 = new Label();
             Button_QuetMaQR = new Guna.UI2.WinForms.Guna2Button();
@@ -163,6 +164,7 @@
             Panel_ThongTinDocGia.SuspendLayout();
             Panel_NhapThongTinDocGia.SuspendLayout();
             GroupBox_ThongTinChiTietDocGia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_ThongTinAnhDG).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Camera).BeginInit();
             GroupBox_NhapThongTinDocGia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_MaQR).BeginInit();
@@ -231,6 +233,7 @@
             GroupBox_ThongTinChiTietDocGia.BackColor = Color.Transparent;
             GroupBox_ThongTinChiTietDocGia.BorderColor = Color.Transparent;
             GroupBox_ThongTinChiTietDocGia.BorderRadius = 5;
+            GroupBox_ThongTinChiTietDocGia.Controls.Add(pictureBox_ThongTinAnhDG);
             GroupBox_ThongTinChiTietDocGia.Controls.Add(TextBox_ThongTinMaDocGia);
             GroupBox_ThongTinChiTietDocGia.Controls.Add(label2);
             GroupBox_ThongTinChiTietDocGia.Controls.Add(Button_QuetMaQR);
@@ -253,7 +256,7 @@
             GroupBox_ThongTinChiTietDocGia.CustomizableEdges = customizableEdges19;
             GroupBox_ThongTinChiTietDocGia.Font = new Font("Segoe UI", 9F);
             GroupBox_ThongTinChiTietDocGia.ForeColor = Color.White;
-            GroupBox_ThongTinChiTietDocGia.Location = new Point(223, 108);
+            GroupBox_ThongTinChiTietDocGia.Location = new Point(202, 164);
             GroupBox_ThongTinChiTietDocGia.Name = "GroupBox_ThongTinChiTietDocGia";
             GroupBox_ThongTinChiTietDocGia.ShadowDecoration.CustomizableEdges = customizableEdges20;
             GroupBox_ThongTinChiTietDocGia.Size = new Size(699, 539);
@@ -261,6 +264,15 @@
             GroupBox_ThongTinChiTietDocGia.Text = "Thông tin độc giả";
             GroupBox_ThongTinChiTietDocGia.TextAlign = HorizontalAlignment.Center;
             GroupBox_ThongTinChiTietDocGia.Visible = false;
+            // 
+            // pictureBox_ThongTinAnhDG
+            // 
+            pictureBox_ThongTinAnhDG.Location = new Point(441, 56);
+            pictureBox_ThongTinAnhDG.Name = "pictureBox_ThongTinAnhDG";
+            pictureBox_ThongTinAnhDG.Size = new Size(224, 189);
+            pictureBox_ThongTinAnhDG.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_ThongTinAnhDG.TabIndex = 30;
+            pictureBox_ThongTinAnhDG.TabStop = false;
             // 
             // TextBox_ThongTinMaDocGia
             // 
@@ -274,7 +286,7 @@
             TextBox_ThongTinMaDocGia.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinMaDocGia.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinMaDocGia.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinMaDocGia.Location = new Point(131, 56);
+            TextBox_ThongTinMaDocGia.Location = new Point(131, 78);
             TextBox_ThongTinMaDocGia.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinMaDocGia.Name = "TextBox_ThongTinMaDocGia";
             TextBox_ThongTinMaDocGia.PlaceholderText = "";
@@ -288,7 +300,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(29, 64);
+            label2.Location = new Point(29, 86);
             label2.Name = "label2";
             label2.Size = new Size(84, 20);
             label2.TabIndex = 27;
@@ -305,19 +317,19 @@
             Button_QuetMaQR.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             Button_QuetMaQR.Font = new Font("Segoe UI", 9F);
             Button_QuetMaQR.ForeColor = Color.White;
-            Button_QuetMaQR.Location = new Point(432, 309);
+            Button_QuetMaQR.Location = new Point(462, 405);
             Button_QuetMaQR.Name = "Button_QuetMaQR";
             Button_QuetMaQR.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Button_QuetMaQR.Size = new Size(244, 41);
+            Button_QuetMaQR.Size = new Size(180, 44);
             Button_QuetMaQR.TabIndex = 26;
             Button_QuetMaQR.Text = "Mở camera";
             Button_QuetMaQR.Click += Button_QuetMaQR_Click;
             // 
             // pictureBox_Camera
             // 
-            pictureBox_Camera.Location = new Point(432, 64);
+            pictureBox_Camera.Location = new Point(462, 254);
             pictureBox_Camera.Name = "pictureBox_Camera";
-            pictureBox_Camera.Size = new Size(244, 231);
+            pictureBox_Camera.Size = new Size(180, 145);
             pictureBox_Camera.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_Camera.TabIndex = 25;
             pictureBox_Camera.TabStop = false;
@@ -334,7 +346,7 @@
             TextBox_ThongTinEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinEmail.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinEmail.Location = new Point(130, 387);
+            TextBox_ThongTinEmail.Location = new Point(130, 409);
             TextBox_ThongTinEmail.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinEmail.Name = "TextBox_ThongTinEmail";
             TextBox_ThongTinEmail.PlaceholderText = "";
@@ -355,7 +367,7 @@
             TextBox_ThongTinSDT.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinSDT.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinSDT.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinSDT.Location = new Point(131, 334);
+            TextBox_ThongTinSDT.Location = new Point(131, 356);
             TextBox_ThongTinSDT.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinSDT.Name = "TextBox_ThongTinSDT";
             TextBox_ThongTinSDT.PlaceholderText = "";
@@ -376,7 +388,7 @@
             TextBox_ThongTinDiaChi.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinDiaChi.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinDiaChi.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinDiaChi.Location = new Point(130, 277);
+            TextBox_ThongTinDiaChi.Location = new Point(130, 299);
             TextBox_ThongTinDiaChi.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinDiaChi.Name = "TextBox_ThongTinDiaChi";
             TextBox_ThongTinDiaChi.PlaceholderText = "";
@@ -390,7 +402,7 @@
             radioButton_ThongTinGioiTinhNu.AutoSize = true;
             radioButton_ThongTinGioiTinhNu.Enabled = false;
             radioButton_ThongTinGioiTinhNu.ForeColor = Color.Black;
-            radioButton_ThongTinGioiTinhNu.Location = new Point(258, 232);
+            radioButton_ThongTinGioiTinhNu.Location = new Point(258, 254);
             radioButton_ThongTinGioiTinhNu.Name = "radioButton_ThongTinGioiTinhNu";
             radioButton_ThongTinGioiTinhNu.Size = new Size(50, 24);
             radioButton_ThongTinGioiTinhNu.TabIndex = 15;
@@ -403,7 +415,7 @@
             radioButton_ThongTinGioiTinhNam.AutoSize = true;
             radioButton_ThongTinGioiTinhNam.Enabled = false;
             radioButton_ThongTinGioiTinhNam.ForeColor = Color.Black;
-            radioButton_ThongTinGioiTinhNam.Location = new Point(131, 232);
+            radioButton_ThongTinGioiTinhNam.Location = new Point(131, 254);
             radioButton_ThongTinGioiTinhNam.Name = "radioButton_ThongTinGioiTinhNam";
             radioButton_ThongTinGioiTinhNam.Size = new Size(62, 24);
             radioButton_ThongTinGioiTinhNam.TabIndex = 14;
@@ -423,7 +435,7 @@
             TextBox_ThongTinNgaySinh.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinNgaySinh.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinNgaySinh.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinNgaySinh.Location = new Point(130, 169);
+            TextBox_ThongTinNgaySinh.Location = new Point(130, 191);
             TextBox_ThongTinNgaySinh.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinNgaySinh.Name = "TextBox_ThongTinNgaySinh";
             TextBox_ThongTinNgaySinh.PlaceholderText = "";
@@ -444,7 +456,7 @@
             TextBox_ThongTinTenDocGia.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             TextBox_ThongTinTenDocGia.Font = new Font("Segoe UI", 9F);
             TextBox_ThongTinTenDocGia.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            TextBox_ThongTinTenDocGia.Location = new Point(130, 114);
+            TextBox_ThongTinTenDocGia.Location = new Point(130, 136);
             TextBox_ThongTinTenDocGia.Margin = new Padding(3, 4, 3, 4);
             TextBox_ThongTinTenDocGia.Name = "TextBox_ThongTinTenDocGia";
             TextBox_ThongTinTenDocGia.PlaceholderText = "";
@@ -470,7 +482,7 @@
             Button_HuyThongTin.HoverState.BorderColor = Color.Green;
             Button_HuyThongTin.HoverState.FillColor = Color.Maroon;
             Button_HuyThongTin.Image = (Image)resources.GetObject("Button_HuyThongTin.Image");
-            Button_HuyThongTin.Location = new Point(285, 468);
+            Button_HuyThongTin.Location = new Point(280, 471);
             Button_HuyThongTin.Name = "Button_HuyThongTin";
             Button_HuyThongTin.ShadowDecoration.CustomizableEdges = customizableEdges18;
             Button_HuyThongTin.Size = new Size(155, 41);
@@ -483,7 +495,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(28, 397);
+            label4.Location = new Point(28, 419);
             label4.Name = "label4";
             label4.Size = new Size(46, 20);
             label4.TabIndex = 6;
@@ -494,7 +506,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(28, 342);
+            label5.Location = new Point(28, 364);
             label5.Name = "label5";
             label5.Size = new Size(97, 20);
             label5.TabIndex = 5;
@@ -505,7 +517,7 @@
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(28, 287);
+            label6.Location = new Point(28, 309);
             label6.Name = "label6";
             label6.Size = new Size(55, 20);
             label6.TabIndex = 4;
@@ -516,7 +528,7 @@
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(28, 232);
+            label7.Location = new Point(28, 254);
             label7.Name = "label7";
             label7.Size = new Size(65, 20);
             label7.TabIndex = 3;
@@ -527,7 +539,7 @@
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(28, 177);
+            label8.Location = new Point(28, 199);
             label8.Name = "label8";
             label8.Size = new Size(74, 20);
             label8.TabIndex = 2;
@@ -538,7 +550,7 @@
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(28, 122);
+            label9.Location = new Point(28, 144);
             label9.Name = "label9";
             label9.Size = new Size(86, 20);
             label9.TabIndex = 1;
@@ -643,6 +655,7 @@
             Button_LuuMa.Size = new Size(87, 43);
             Button_LuuMa.TabIndex = 31;
             Button_LuuMa.Text = "Lưu mã";
+            Button_LuuMa.Click += Button_LuuMa_Click_1;
             // 
             // pictureBox_MaQR
             // 
@@ -1288,6 +1301,7 @@
             Panel_NhapThongTinDocGia.ResumeLayout(false);
             GroupBox_ThongTinChiTietDocGia.ResumeLayout(false);
             GroupBox_ThongTinChiTietDocGia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_ThongTinAnhDG).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Camera).EndInit();
             GroupBox_NhapThongTinDocGia.ResumeLayout(false);
             GroupBox_NhapThongTinDocGia.PerformLayout();
@@ -1369,5 +1383,6 @@
         private DataGridViewTextBoxColumn email;
         private DataGridViewTextBoxColumn TrangT;
         private BindingSource quanLyDocGiaDTOBindingSource;
+        private PictureBox pictureBox_ThongTinAnhDG;
     }
 }

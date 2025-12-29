@@ -29,13 +29,7 @@ namespace QuanLyThuVienNhom3.BLL
                     MessageBox.Show("Tên tài khoản đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-
-                // 2. Băm mật khẩu trước
                 string hashPass = BCrypt.Net.BCrypt.HashPassword(taiKhoan.MatKhauHash.Trim());
-
-
-
-                // 4. Tạo tài khoản mới
                 var tkMoi = new TaiKhoan
                 {
                     TenTaiKhoan = taiKhoan.TenTaiKhoan.Trim(),
@@ -52,24 +46,18 @@ namespace QuanLyThuVienNhom3.BLL
                 return false;
             }
         }
-
-        // BLL
         public bool XoaTaiKhoan(int maTK, int? maTKDangDangNhap = null)
         {
             try
             {
                 var tk = thuVien.LayTaiKhoanTheoMa(maTK);
                 if (tk == null) return false;
-
-                // Không cho xóa tài khoản đang đăng nhập
                 if (maTKDangDangNhap.HasValue && maTK == maTKDangDangNhap.Value)
                 {
                     MessageBox.Show("Không thể xóa tài khoản đang đăng nhập!", "Cảnh báo",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-
-                // Không cho xóa tài khoản admin cuối cùng (tuỳ dự án)
                 if (tk.MaVaiTroNavigation.TenVaiTro == "Quản lý" && _context.TaiKhoans.Count(x => x.MaVaiTroNavigation.TenVaiTro == "Quản lý") == 1)
                 {
                     MessageBox.Show("Phải có ít nhất 1 tài khoản Quản lý!", "Cảnh báo",
@@ -130,11 +118,7 @@ namespace QuanLyThuVienNhom3.BLL
 
                 var tkHienTai = thuVien.LayTaiKhoanTheoMa(taiKhoan.MaTaiKhoan);
                 if (tkHienTai == null) return false;
-
-                // === KIỂM TRA XEM TÀI KHOẢN NÀY ĐÃ GẮN NHÂN VIÊN CHƯA ===
                 bool daCoNhanVien = thuVien.KiemTraTaiKhoanDaCoNhanVien(taiKhoan.MaTaiKhoan);
-
-                // Kiểm tra tên trùng (giữ nguyên code cũ của bạn)
                 if (!string.IsNullOrWhiteSpace(taiKhoan.TenTaiKhoan))
                 {
                     string tenMoi = taiKhoan.TenTaiKhoan.Trim();
@@ -145,23 +129,18 @@ namespace QuanLyThuVienNhom3.BLL
                     }
                     taiKhoan.TenTaiKhoan = tenMoi;
                 }
-
-                // === XỬ LÝ MẬT KHẨU – QUAN TRỌNG NHẤT ===
-                if (!string.IsNullOrWhiteSpace(taiKhoan.MatKhauHash)) // có nhập mật khẩu mới
+                if (!string.IsNullOrWhiteSpace(taiKhoan.MatKhauHash)) 
                 {
                     if (daCoNhanVien)
                     {
                         MessageBox.Show("Không thể thay đổi mật khẩu vì tài khoản này đã được gắn với nhân viên!",
                                         "Cấm thay đổi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return false; // Chặn luôn không cho cập nhật
+                        return false;
                     }
-
-                    // Chỉ băm nếu được phép đổi
                     taiKhoan.MatKhauHash = BCrypt.Net.BCrypt.HashPassword(taiKhoan.MatKhauHash.Trim());
                 }
                 else
                 {
-                    // Không nhập mật khẩu → giữ nguyên hash cũ
                     taiKhoan.MatKhauHash = tkHienTai.MatKhauHash;
                 }
 
@@ -173,9 +152,27 @@ namespace QuanLyThuVienNhom3.BLL
                 return false;
             }
         }
-        public bool KiemTraCoNhanVien(int maTK)
+        public bool KiemTraCoNhanVien(TaiKhoan TK)
         {
-            return thuVien.KiemTraTaiKhoanDaCoNhanVien(maTK);
+            var nh = thuVien.GetNhanVienByMaTk(TK.MaTaiKhoan);
+            if (nh == null)
+            {
+                return false;
+            }
+            if (nh.TrangThai == "Đã nghỉ")
+            {
+                thuVien.CapNhapTrangThai(TK);
+                return false;
+            }
+            else if (thuVien.KiemTraTaiKhoanDaCoNhanVien(TK.MaTaiKhoan))
+            {
+                return false;
+            }
+            return true;
+        }
+        public TaiKhoan GetTaiKhoanByID(int TaiK)
+        {
+            return thuVien.GetTaiKhoanById(TaiK);
         }
     }
 }

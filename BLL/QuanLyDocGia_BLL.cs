@@ -1,4 +1,5 @@
-﻿using QuanLyThuVienNhom3.DAL;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using QuanLyThuVienNhom3.DAL;
 using QuanLyThuVienNhom3.Models;
 using System;
 using System.Collections.Generic;
@@ -73,13 +74,27 @@ namespace QuanLyThuVienNhom3.BLL
         }
         public int XoaDocGia(int maDocGia)
         {
-            // Kiểm tra xem độc giả còn phiếu mượn chưa
             if (_quanLyDocGia_DAL.KiemTraDocGiaCoPhieuMuon(maDocGia))
-                return -1; // Không xóa được
+                return -1;
 
-            // Thực hiện xóa
             bool ketQua = _quanLyDocGia_DAL.XoaDocGia(maDocGia);
             return ketQua ? 1 : 0;
+        }
+
+        public byte[] GetHinhAnhDocGia(string maDG)
+        {
+            return _quanLyDocGia_DAL.GetHinhAnhByMaDocGia(maDG);
+        }
+        public string GetTrangThaiDocGia(string id)
+        {
+            return _quanLyDocGia_DAL.GetTrangThaiDocGia(id);
+        }
+        public DocGium GetDocGiaByMa(string maDocGia)
+        {
+            if (!int.TryParse(maDocGia, out int ma))
+                return null;
+
+            return _quanLyDocGia_DAL.GetDocGiaByMa(ma);
         }
     }
 }

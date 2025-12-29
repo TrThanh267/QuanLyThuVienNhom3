@@ -71,13 +71,13 @@ namespace QuanLyThuVienNhom3.DAL
                 .FirstOrDefault(x => x.MaPhieuMuon == chiTietPhieuMuon.MaPhieuMuon);
 
             if (phieuMuon == null)
-                return false; 
+                return false;
 
             int tong = _context.ChiTietPhieuMuons
-                        .Where(ct => ct.MaPhieuMuon == chiTietPhieuMuon.MaPhieuMuon)
-                        .Sum(ct => (int?)ct.SoLuongMuon)
-                        .GetValueOrDefault();
-
+                .Where(ct => ct.MaPhieuMuon == chiTietPhieuMuon.MaPhieuMuon &&
+                             ct.MaChiTietPhieuMuon != chiTietPhieuMuon.MaChiTietPhieuMuon)
+                .Sum(ct => (int?)ct.SoLuongMuon)
+                .GetValueOrDefault();
             tong += chiTietPhieuMuon.SoLuongMuon ?? 0;
             return tong <= phieuMuon.SoLuongBanDau;
         }

@@ -24,9 +24,9 @@ namespace QuanLyThuVienNhom3.GUI.UC
             DateTimePicker_Loc.Value = DateTime.Now.AddDays(-30);
             DateTimePicker_Loc.ValueChanged += DateTimePicker_Loc_ValueChanged;
             LoadData(DateOnly.FromDateTime(DateTimePicker_Loc.Value), DateOnly.FromDateTime(DateTimePicker_DenNgay.Value));
-            LoadData();
+            LoadDt();
         }
-        public void LoadData()
+        public void LoadDt()
         {
             DateOnly tuNgay = DateOnly.FromDateTime(DateTimePicker_Loc.Value);
             DateOnly denNgay = DateOnly.FromDateTime(DateTimePicker_DenNgay.Value);

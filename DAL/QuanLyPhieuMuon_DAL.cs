@@ -25,7 +25,7 @@ namespace QuanLyThuVienNhom3.DAL
                                      MaPhieuMuon = x.MaPhieuMuon,
                                      ThoiGianMuon = x.ThoiGianMuon,
                                      ThoihanTra = x.ThoihanTra,
-                                     SoLuong = x.SoLuong,
+                                     SoLuong = x.SoLuongBanDau,
                                      TrangThai = x.TrangThai,
                                      NhanVien = x.MaNhanVienNavigation.TenNhanVien,
                                      DocGia = x.MaDocGiaNavigation.TenDocGia,
@@ -52,7 +52,7 @@ namespace QuanLyThuVienNhom3.DAL
         }
         public List<DocGium> GetDocGia()
         {
-            return _context.DocGia.ToList();
+            return _context.DocGia.Where(x=>x.TrangThai== "Hoạt Động").ToList();
         }
         public bool ThemPhieuMuon(PhieuMuon phieuMuon)
         {
@@ -192,7 +192,7 @@ namespace QuanLyThuVienNhom3.DAL
                 return false;
 
             int soLuongDaXuLyTra = _context.ChiTietPhieuMuons
-                .Where(ct => ct.MaPhieuMuon == maPhieuMuon && ct.DaGhiNhanTra == true) // <-- Lọc theo cờ mới
+                .Where(ct => ct.MaPhieuMuon == maPhieuMuon && ct.DaGhiNhanTra == true) 
                 .Sum(ct => (int?)ct.SoLuongMuon)
                 .GetValueOrDefault();
             int soLuongGoc = phieuMuon.SoLuongBanDau.GetValueOrDefault();
@@ -204,7 +204,7 @@ namespace QuanLyThuVienNhom3.DAL
 
             return _context.PhieuMuons.Include(x => x.MaNhanVienNavigation)
                 .Include(x => x.MaDocGiaNavigation)
-                .Where(x => x.MaPhieuMuon.ToString().Equals(tuKhoa) || // Giữ nguyên cho Mã PM
+                .Where(x => x.MaPhieuMuon.ToString().Equals(tuKhoa) || 
                             (
                                 (x.MaNhanVienNavigation != null && x.MaNhanVienNavigation.TenNhanVien != null && x.MaNhanVienNavigation.TenNhanVien.ToLower().Contains(tuKhoaLower)) ||
                                 (x.MaDocGiaNavigation != null && x.MaDocGiaNavigation.TenDocGia != null && x.MaDocGiaNavigation.TenDocGia.ToLower().Contains(tuKhoaLower)) ||

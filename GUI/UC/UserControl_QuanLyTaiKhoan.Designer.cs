@@ -440,7 +440,7 @@
             ComBox_LocTaiKhoanTheoVaiTro.Font = new Font("Segoe UI", 10F);
             ComBox_LocTaiKhoanTheoVaiTro.ForeColor = Color.FromArgb(68, 88, 112);
             ComBox_LocTaiKhoanTheoVaiTro.ItemHeight = 30;
-            ComBox_LocTaiKhoanTheoVaiTro.Items.AddRange(new object[] { "Quản lý", "Nhân viên", "Tất cả" });
+            ComBox_LocTaiKhoanTheoVaiTro.Items.AddRange(new object[] { "Tất cả", "Quản lý", "Nhân viên" });
             ComBox_LocTaiKhoanTheoVaiTro.Location = new Point(22, 19);
             ComBox_LocTaiKhoanTheoVaiTro.Name = "ComBox_LocTaiKhoanTheoVaiTro";
             ComBox_LocTaiKhoanTheoVaiTro.ShadowDecoration.CustomizableEdges = customizableEdges22;

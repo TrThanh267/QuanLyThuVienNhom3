@@ -189,5 +189,23 @@ namespace QuanLyThuVienNhom3.DAL
         {
             return _context.NhanViens.Any(nv => nv.MaTaiKhoan == maTaiKhoan);
         }
+        public NhanVien GetNhanVienByMaTk(int mtk)
+        {
+            return _context.NhanViens.FirstOrDefault(x => x.MaTaiKhoan == mtk);
+        }
+        public TaiKhoan GetTaiKhoanById(int maTK)
+        {
+            return _context.TaiKhoans.FirstOrDefault(x => x.MaTaiKhoan == maTK);
+        }
+        public void CapNhapTrangThai(TaiKhoan tkhoan)
+        {
+            var tk = _context.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == tkhoan.MaTaiKhoan);
+            if (tk == null)
+            {
+                return;
+            }
+            tk.TrangThai = tkhoan.TrangThai ?? tkhoan.TrangThai;
+            _context.SaveChanges();
+        }
     }
 }

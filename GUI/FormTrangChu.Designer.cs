@@ -58,8 +58,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -70,6 +70,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             PicturcBox_Logo = new Guna.UI2.WinForms.Guna2PictureBox();
             panel_Button = new Panel();
             Button_ThongKe = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -83,13 +85,13 @@
             label_XinChaoNguoiDung = new Label();
             guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
             Panel_UseControl = new Guna.UI2.WinForms.Guna2Panel();
+            userControl_QuanLySach2 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLySach();
             userControl_QuanLyChamCong1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyChamCong();
             userControl_ThongKe1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_ThongKe();
             userControl_QuanLyTaiKhoan1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyTaiKhoan();
             userControl_QuanLyPhieuMuon1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyPhieuMuon();
             userControl_QuanLyDocGia1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyDocGia();
             userControl_QuanLyNhanVien1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLyNhanVien();
-            userControl_QuanLySach1 = new QuanLyThuVienNhom3.GUI.UC.UserControl_QuanLySach();
             GroupBox_DoiMatKhau = new Guna.UI2.WinForms.Guna2GroupBox();
             label4 = new Label();
             label3 = new Label();
@@ -102,7 +104,6 @@
             txt_MK = new Guna.UI2.WinForms.Guna2TextBox();
             txt_TK = new Guna.UI2.WinForms.Guna2TextBox();
             GroupBox_ThongTinCaNhan = new Guna.UI2.WinForms.Guna2GroupBox();
-            guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             groupBox1 = new GroupBox();
             Button_DoiMaKhau = new Guna.UI2.WinForms.Guna2Button();
             Button_Huy = new Guna.UI2.WinForms.Guna2Button();
@@ -130,6 +131,7 @@
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            Button_DangXuat = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)PicturcBox_Logo).BeginInit();
             panel_Button.SuspendLayout();
             Panel_UseControl.SuspendLayout();
@@ -468,19 +470,28 @@
             Panel_UseControl.BorderColor = Color.Black;
             Panel_UseControl.BorderRadius = 5;
             Panel_UseControl.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            Panel_UseControl.Controls.Add(userControl_QuanLySach2);
             Panel_UseControl.Controls.Add(userControl_QuanLyChamCong1);
             Panel_UseControl.Controls.Add(userControl_ThongKe1);
             Panel_UseControl.Controls.Add(userControl_QuanLyTaiKhoan1);
             Panel_UseControl.Controls.Add(userControl_QuanLyPhieuMuon1);
             Panel_UseControl.Controls.Add(userControl_QuanLyDocGia1);
             Panel_UseControl.Controls.Add(userControl_QuanLyNhanVien1);
-            Panel_UseControl.Controls.Add(userControl_QuanLySach1);
             Panel_UseControl.CustomizableEdges = customizableEdges17;
             Panel_UseControl.Location = new Point(330, 12);
             Panel_UseControl.Name = "Panel_UseControl";
             Panel_UseControl.ShadowDecoration.CustomizableEdges = customizableEdges18;
             Panel_UseControl.Size = new Size(1090, 848);
             Panel_UseControl.TabIndex = 4;
+            // 
+            // userControl_QuanLySach2
+            // 
+            userControl_QuanLySach2.BackColor = Color.FromArgb(0, 64, 64);
+            userControl_QuanLySach2.Location = new Point(3, 0);
+            userControl_QuanLySach2.Name = "userControl_QuanLySach2";
+            userControl_QuanLySach2.Size = new Size(1362, 1200);
+            userControl_QuanLySach2.TabIndex = 7;
+            userControl_QuanLySach2.Visible = false;
             // 
             // userControl_QuanLyChamCong1
             // 
@@ -536,15 +547,6 @@
             userControl_QuanLyNhanVien1.TabIndex = 1;
             userControl_QuanLyNhanVien1.Visible = false;
             // 
-            // userControl_QuanLySach1
-            // 
-            userControl_QuanLySach1.BackColor = Color.FromArgb(0, 64, 64);
-            userControl_QuanLySach1.Location = new Point(3, 0);
-            userControl_QuanLySach1.Name = "userControl_QuanLySach1";
-            userControl_QuanLySach1.Size = new Size(1341, 943);
-            userControl_QuanLySach1.TabIndex = 0;
-            userControl_QuanLySach1.Visible = false;
-            // 
             // GroupBox_DoiMatKhau
             // 
             GroupBox_DoiMatKhau.Anchor = AnchorStyles.None;
@@ -565,7 +567,7 @@
             GroupBox_DoiMatKhau.FillColor = Color.Black;
             GroupBox_DoiMatKhau.Font = new Font("Segoe UI", 9F);
             GroupBox_DoiMatKhau.ForeColor = Color.FromArgb(125, 137, 149);
-            GroupBox_DoiMatKhau.Location = new Point(91, 68);
+            GroupBox_DoiMatKhau.Location = new Point(52, 96);
             GroupBox_DoiMatKhau.Name = "GroupBox_DoiMatKhau";
             GroupBox_DoiMatKhau.ShadowDecoration.CustomizableEdges = customizableEdges28;
             GroupBox_DoiMatKhau.Size = new Size(566, 401);
@@ -650,6 +652,7 @@
             txt_NhapLai.ShadowDecoration.CustomizableEdges = customizableEdges20;
             txt_NhapLai.Size = new Size(286, 34);
             txt_NhapLai.TabIndex = 3;
+            txt_NhapLai.UseSystemPasswordChar = true;
             // 
             // txt_MKMoi
             // 
@@ -671,6 +674,7 @@
             txt_MKMoi.ShadowDecoration.CustomizableEdges = customizableEdges22;
             txt_MKMoi.Size = new Size(286, 34);
             txt_MKMoi.TabIndex = 2;
+            txt_MKMoi.UseSystemPasswordChar = true;
             // 
             // txt_MK
             // 
@@ -692,6 +696,7 @@
             txt_MK.ShadowDecoration.CustomizableEdges = customizableEdges24;
             txt_MK.Size = new Size(286, 34);
             txt_MK.TabIndex = 1;
+            txt_MK.UseSystemPasswordChar = true;
             // 
             // txt_TK
             // 
@@ -721,7 +726,6 @@
             GroupBox_ThongTinCaNhan.BorderRadius = 20;
             GroupBox_ThongTinCaNhan.BorderThickness = 0;
             GroupBox_ThongTinCaNhan.Controls.Add(GroupBox_DoiMatKhau);
-            GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel13);
             GroupBox_ThongTinCaNhan.Controls.Add(groupBox1);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel12);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2PictureBox1);
@@ -731,8 +735,8 @@
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel7);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel5);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel4);
-            GroupBox_ThongTinCaNhan.Controls.Add(guna2PictureBox3);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel3);
+            GroupBox_ThongTinCaNhan.Controls.Add(guna2PictureBox3);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2PictureBox2);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel8);
             GroupBox_ThongTinCaNhan.Controls.Add(Label_IDNhanVien);
@@ -747,38 +751,26 @@
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel6);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel2);
             GroupBox_ThongTinCaNhan.Controls.Add(guna2HtmlLabel1);
+            GroupBox_ThongTinCaNhan.Controls.Add(Button_DangXuat);
             GroupBox_ThongTinCaNhan.CustomBorderColor = Color.Silver;
-            GroupBox_ThongTinCaNhan.CustomizableEdges = customizableEdges39;
+            GroupBox_ThongTinCaNhan.CustomizableEdges = customizableEdges41;
             GroupBox_ThongTinCaNhan.FillColor = Color.FromArgb(224, 224, 224);
             GroupBox_ThongTinCaNhan.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             GroupBox_ThongTinCaNhan.ForeColor = Color.Teal;
             GroupBox_ThongTinCaNhan.Location = new Point(456, 176);
             GroupBox_ThongTinCaNhan.Name = "GroupBox_ThongTinCaNhan";
-            GroupBox_ThongTinCaNhan.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            GroupBox_ThongTinCaNhan.ShadowDecoration.CustomizableEdges = customizableEdges42;
             GroupBox_ThongTinCaNhan.Size = new Size(737, 552);
             GroupBox_ThongTinCaNhan.TabIndex = 6;
             GroupBox_ThongTinCaNhan.Text = "Thông tin cá nhân";
             GroupBox_ThongTinCaNhan.TextAlign = HorizontalAlignment.Center;
             GroupBox_ThongTinCaNhan.Visible = false;
             // 
-            // guna2HtmlLabel13
-            // 
-            guna2HtmlLabel13.AutoSize = false;
-            guna2HtmlLabel13.BackColor = Color.Transparent;
-            guna2HtmlLabel13.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            guna2HtmlLabel13.ForeColor = Color.Red;
-            guna2HtmlLabel13.Location = new Point(64, 269);
-            guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            guna2HtmlLabel13.Size = new Size(218, 83);
-            guna2HtmlLabel13.TabIndex = 36;
-            guna2HtmlLabel13.Text = "*Lưu ý :Nhân viên tự quản lý tài khoản của bản thân không được để mất hoặc lộ mật khẩu";
-            guna2HtmlLabel13.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(Button_DoiMaKhau);
             groupBox1.Controls.Add(Button_Huy);
-            groupBox1.Location = new Point(52, 370);
+            groupBox1.Location = new Point(52, 314);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(278, 107);
             groupBox1.TabIndex = 35;
@@ -931,7 +923,7 @@
             guna2HtmlLabel3.BackColor = Color.Transparent;
             guna2HtmlLabel3.Font = new Font("Arial", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
             guna2HtmlLabel3.ForeColor = Color.Black;
-            guna2HtmlLabel3.Location = new Point(109, 82);
+            guna2HtmlLabel3.Location = new Point(103, 68);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             guna2HtmlLabel3.Size = new Size(221, 34);
             guna2HtmlLabel3.TabIndex = 25;
@@ -998,7 +990,7 @@
             // 
             Label_TrangThai.BackColor = Color.Transparent;
             Label_TrangThai.Font = new Font("Arial", 10.2F);
-            Label_TrangThai.Location = new Point(480, 445);
+            Label_TrangThai.Location = new Point(156, 274);
             Label_TrangThai.Name = "Label_TrangThai";
             Label_TrangThai.Size = new Size(136, 21);
             Label_TrangThai.TabIndex = 15;
@@ -1060,7 +1052,7 @@
             // 
             guna2HtmlLabel6.BackColor = Color.Transparent;
             guna2HtmlLabel6.Font = new Font("Arial", 10.2F);
-            guna2HtmlLabel6.Location = new Point(388, 445);
+            guna2HtmlLabel6.Location = new Point(64, 274);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             guna2HtmlLabel6.Size = new Size(86, 21);
             guna2HtmlLabel6.TabIndex = 8;
@@ -1085,6 +1077,29 @@
             guna2HtmlLabel1.Size = new Size(86, 21);
             guna2HtmlLabel1.TabIndex = 3;
             guna2HtmlLabel1.Text = "Ngày sinh :";
+            // 
+            // Button_DangXuat
+            // 
+            Button_DangXuat.BackColor = Color.Transparent;
+            Button_DangXuat.BorderColor = Color.Transparent;
+            Button_DangXuat.BorderRadius = 10;
+            Button_DangXuat.CustomizableEdges = customizableEdges39;
+            Button_DangXuat.DisabledState.BorderColor = Color.DarkGray;
+            Button_DangXuat.DisabledState.CustomBorderColor = Color.DarkGray;
+            Button_DangXuat.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            Button_DangXuat.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            Button_DangXuat.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            Button_DangXuat.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            Button_DangXuat.ForeColor = Color.White;
+            Button_DangXuat.Image = (Image)resources.GetObject("Button_DangXuat.Image");
+            Button_DangXuat.ImageSize = new Size(40, 40);
+            Button_DangXuat.Location = new Point(109, 455);
+            Button_DangXuat.Name = "Button_DangXuat";
+            Button_DangXuat.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            Button_DangXuat.Size = new Size(148, 46);
+            Button_DangXuat.TabIndex = 37;
+            Button_DangXuat.Text = "Đăng xuất";
+            Button_DangXuat.Click += Button_DangXuat_Click;
             // 
             // FormTrangChu
             // 
@@ -1130,7 +1145,6 @@
         private Label label_XinChaoNguoiDung;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
         private Guna.UI2.WinForms.Guna2Panel Panel_UseControl;
-        private UC.UserControl_QuanLySach userControl_QuanLySach1;
         private UC.UserControl_QuanLyNhanVien userControl_QuanLyNhanVien1;
         private UC.UserControl_QuanLyDocGia userControl_QuanLyDocGia1;
         private UC.UserControl_QuanLyPhieuMuon userControl_QuanLyPhieuMuon1;
@@ -1178,5 +1192,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private UC.UserControl_QuanLyChamCong userControl_QuanLyChamCong2;
+        private Guna.UI2.WinForms.Guna2GradientButton Button_DangXuat;
+        private UC.UserControl_QuanLySach userControl_QuanLySach2;
     }
 }

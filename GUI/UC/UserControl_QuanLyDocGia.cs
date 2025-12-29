@@ -1,5 +1,6 @@
 ﻿using AForge.Video;
 using AForge.Video.DirectShow;
+using ClosedXML.Excel;
 using QRCoder;
 using QuanLyThuVienNhom3.BLL;
 using QuanLyThuVienNhom3.BLL;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +36,18 @@ namespace QuanLyThuVienNhom3.GUI.UC
             ComBox_LocNhanVienTheoChuCai.Items.Add("Đã Nghỉ");
             ComBox_LocNhanVienTheoChuCai.SelectedIndex = 0;
         }
+        public void ClearFormThongTin()
+        {
+            TextBox_ThongTinMaDocGia.Clear();
+            TextBox_ThongTinDiaChi.Clear();
+            TextBox_ThongTinEmail.Clear();
+            TextBox_ThongTinNgaySinh.Clear();
+            TextBox_ThongTinSDT.Clear();
+            TextBox_ThongTinTenDocGia.Clear();
+            radioButton_ThongTinGioiTinhNam.Checked = false;
+            radioButton_ThongTinGioiTinhNu.Checked = false;
+            pictureBox_ThongTinAnhDG.Image = null;
+        }
         public void ClearGroupBox()
         {
             TextBox_MaDocGia.Clear();
@@ -47,6 +61,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
             checkBox_DaNghi.Checked = false;
             pictureBox_HinhAnhDocGia.Image = null;
             HinhAnhDG = null;
+            pictureBox_MaQR.Image = null;
         }
         public void GenerateQRCode(string qrText)
         {
@@ -69,6 +84,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
         {
             GroupBox_NhapThongTinDocGia.Visible = true;
             isAdding = true;
+            checkBox_DaNghi.Enabled = false;
             ClearGroupBox();
         }
 
@@ -79,6 +95,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 MessageBox.Show("Vui lòng chọn độc giả cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            checkBox_DaNghi.Enabled = true;
             GroupBox_NhapThongTinDocGia.Visible = true;
             isAdding = false;
         }
@@ -95,6 +112,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
         private void Button_HuyThongTin_Click(object sender, EventArgs e)
         {
             GroupBox_ThongTinChiTietDocGia.Visible = false;
+            ClearFormThongTin();
         }
 
 
@@ -147,13 +165,13 @@ namespace QuanLyThuVienNhom3.GUI.UC
         }
         private void Button_QuetMaQR_Click(object sender, EventArgs e)
         {
-            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); // ✅ đúng chỗ gán
+            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (videoDevices.Count > 0)
             {
                 videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
                 videoSource.NewFrame += VideoSource_NewFrame;
                 videoSource.Start();
-                timer_QuetQR.Start(); // Timer dùng để quét QR định kỳ
+                timer_QuetQR.Start();
             }
             else
             {
@@ -175,29 +193,89 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     string qrText = result.Text;
 
                     string[] parts = qrText.Split('|');
-                    if (parts.Length >= 6)
+                    if (parts.Length >= 8)
                     {
+                        string mDGia = parts[0];
 
-                        if (parts[7] == "Hoạt động")
+                        var docGia = _quanLyDocGia_BLL.GetDocGiaByMa(mDGia);
+
+                        if (docGia == null)
                         {
-                            TextBox_ThongTinMaDocGia.Text = parts[0];
-                            TextBox_ThongTinTenDocGia.Text = parts[1];
-                            TextBox_ThongTinNgaySinh.Text = parts[2];
-                            if (parts[3] == "Nữ")
+                            MessageBox.Show("Không tìm thấy độc giả trong hệ thống!",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        string trangThaiTuDB = _quanLyDocGia_BLL.GetTrangThaiDocGia(mDGia);
+                        if (!string.IsNullOrEmpty(trangThaiTuDB))
+                        {
+                            if (trangThaiTuDB == "Hoạt Động")
                             {
-                                radioButton_ThongTinGioiTinhNu.Checked = true;
+                                TextBox_ThongTinMaDocGia.Text = parts[0];
+                                var DocGiaDG = _quanLyDocGia_BLL.GetDocGiaByMa(mDGia);
+                                if (!DateOnly.TryParseExact(
+                                parts[2],
+                                "dd/MM/yyyy",
+                                CultureInfo.InvariantCulture,
+                                DateTimeStyles.None,
+                                out DateOnly ngaySinhQR))
+                                {
+                                    MessageBox.Show(
+                                        "Ngày sinh trong QR không hợp lệ!",
+                                        "Lỗi",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                                    return;
+                                }
+                                if (DocGiaDG.NgaySinh != ngaySinhQR)
+                                {
+                                    MessageBox.Show(
+                                        "Ngày sinh trong QR không khớp với dữ liệu hệ thống!",
+                                        "Cảnh báo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                bool khongKhop =
+                                !string.Equals(DocGiaDG.TenDocGia?.Trim(), parts[1]?.Trim(), StringComparison.OrdinalIgnoreCase)
+                                || !string.Equals(DocGiaDG.GioiTinh?.Trim(), parts[3]?.Trim(), StringComparison.OrdinalIgnoreCase)
+                                || !string.Equals(DocGiaDG.DiaChi?.Trim(), parts[4]?.Trim(), StringComparison.OrdinalIgnoreCase)
+                                || !string.Equals(DocGiaDG.SoDienThoai?.Trim(), parts[5]?.Trim(), StringComparison.OrdinalIgnoreCase)
+                                || !string.Equals(DocGiaDG.Email?.Trim(), parts[6]?.Trim(), StringComparison.OrdinalIgnoreCase);
+
+                                if (khongKhop)
+                                {
+                                    MessageBox.Show(
+                                        "Thông tin trong QR không trùng khớp với dữ liệu hệ thống!",
+                                        "Cảnh báo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                TextBox_ThongTinTenDocGia.Text = parts[1];
+                                TextBox_ThongTinNgaySinh.Text = parts[2];
+                                if (parts[3] == "Nữ")
+                                {
+                                    radioButton_ThongTinGioiTinhNu.Checked = true;
+                                }
+                                else
+                                {
+                                    radioButton_ThongTinGioiTinhNam.Checked = true;
+                                }
+                                TextBox_ThongTinDiaChi.Text = parts[4];
+                                TextBox_ThongTinSDT.Text = parts[5];
+                                TextBox_ThongTinEmail.Text = parts[6];
+
+                                byte[] hinhAnhBytes = _quanLyDocGia_BLL.GetHinhAnhDocGia(mDGia);
+                                HienThiHinhAnhDocGia(hinhAnhBytes);
                             }
                             else
                             {
-                                radioButton_ThongTinGioiTinhNam.Checked = true;
+                                MessageBox.Show("Độc giả đã ngừng hoạt động!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            TextBox_ThongTinDiaChi.Text = parts[4];
-                            TextBox_ThongTinSDT.Text = parts[5];
-                            TextBox_ThongTinEmail.Text = parts[6];
                         }
                         else
                         {
-                            MessageBox.Show("Độc giả đã ngừng hoạt động!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Không tìm thấy độc giả có mã này trong hệ thống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
@@ -205,6 +283,29 @@ namespace QuanLyThuVienNhom3.GUI.UC
                         MessageBox.Show("QR không đúng định dạng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+            }
+        }
+        private void HienThiHinhAnhDocGia(byte[] hinhAnhTuDB)
+        {
+            if (hinhAnhTuDB != null && hinhAnhTuDB.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(hinhAnhTuDB))
+                    {
+                        Image hinhAnh = Image.FromStream(ms);
+                        pictureBox_ThongTinAnhDG.Image = hinhAnh;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi hiển thị hình ảnh: " + ex.Message);
+                    pictureBox_ThongTinAnhDG.Image = null;
+                }
+            }
+            else
+            {
+                pictureBox_ThongTinAnhDG.Image = null;
             }
         }
 
@@ -287,7 +388,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                string maDocGia = _quanLyDocGia_BLL.ThemMaDoGia().ToString();
                 string TranThai = (checkBox_HoatDong.Checked) ? "Hoạt động" : "Không hoạt động";
                 string GioiTinh = (radioButton_Nam.Checked) ? "Nam" : "Nữ";
                 string ten = TextBox_Ten.Text.Trim();
@@ -318,7 +418,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 }
                 DateTime NgaySinh = DateTimePicker_NgaySinh.Value;
                 int tuoi = DateTime.Now.Year - NgaySinh.Year;
-                if (NgaySinh > DateTime.Now.AddYears(-tuoi)) tuoi--; // Điều chỉnh nếu chưa đến ngày sinh trong năm nay
+                if (NgaySinh > DateTime.Now.AddYears(-tuoi)) tuoi--;
 
                 if (tuoi < 10)
                 {
@@ -354,6 +454,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     };
                     if (_quanLyDocGia_BLL.ThemDocGia(docGia))
                     {
+                        string maDocGia = _quanLyDocGia_BLL.ThemMaDoGia().ToString();
                         LoadDaTa();
                         ClearGroupBox();
                         string chuoiThongTin =
@@ -402,7 +503,6 @@ namespace QuanLyThuVienNhom3.GUI.UC
                     MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                string maDocGia = _quanLyDocGia_BLL.ThemMaDoGia().ToString();
                 string TranThai = (checkBox_HoatDong.Checked) ? "Hoạt động" : "Không hoạt động";
                 string GioiTinh = (radioButton_Nam.Checked) ? "Nam" : "Nữ";
                 string ten = TextBox_Ten.Text.Trim();
@@ -433,7 +533,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 }
                 DateTime NgaySinh = DateTimePicker_NgaySinh.Value;
                 int tuoi = DateTime.Now.Year - NgaySinh.Year;
-                if (NgaySinh > DateTime.Now.AddYears(-tuoi)) tuoi--; // Điều chỉnh nếu chưa đến ngày sinh trong năm nay
+                if (NgaySinh > DateTime.Now.AddYears(-tuoi)) tuoi--;
 
                 if (tuoi < 10)
                 {
@@ -499,13 +599,13 @@ namespace QuanLyThuVienNhom3.GUI.UC
 
         private void Button_QuetMaQR_Click_1(object sender, EventArgs e)
         {
-            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); // ✅ đúng chỗ gán
+            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (videoDevices.Count > 0)
             {
                 videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
                 videoSource.NewFrame += VideoSource_NewFrame;
                 videoSource.Start();
-                timer_QuetQR.Start(); // Timer dùng để quét QR định kỳ
+                timer_QuetQR.Start();
             }
             else
             {
@@ -530,10 +630,7 @@ namespace QuanLyThuVienNhom3.GUI.UC
                 );
                 return;
             }
-            // Lấy mã độc giả từ TextBox
             int maDocGia = Convert.ToInt32(TextBox_MaDocGia.Text);
-
-            // Hiển thị hộp thoại xác nhận
             DialogResult confirmResult = MessageBox.Show(
                 "Bạn có chắc chắn muốn xóa độc giả này không?",
                 "Xác nhận xóa",
@@ -571,10 +668,9 @@ namespace QuanLyThuVienNhom3.GUI.UC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
                     );
-                    LoadDaTa(); // Reload DataGridView
+                    LoadDaTa();
                 }
             }
-            // Nếu người dùng chọn No thì không làm gì cả
         }
 
         private void ComBox_LocNhanVienTheoChuCai_SelectedIndexChanged(object sender, EventArgs e)
@@ -596,11 +692,24 @@ namespace QuanLyThuVienNhom3.GUI.UC
         private void Button_TimKiem_Click(object sender, EventArgs e)
         {
             string keyword = TextBox_TimKiem.Text.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                MessageBox.Show(
+                    "Vui lòng nhập từ khóa để tìm kiếm!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
             var allDocGia = _quanLyDocGia_BLL.GetListDocGia();
 
-            var filtered = allDocGia
-                .Where(dg => !string.IsNullOrEmpty(dg.TenDocGia) && dg.TenDocGia.ToLower().Contains(keyword))
-                .ToList();
+            var filtered = allDocGia.Where(dg => (!string.IsNullOrEmpty(dg.TenDocGia) &&
+                                                 dg.TenDocGia.ToLower().Contains(keyword)) ||
+                                                (!string.IsNullOrEmpty(dg.SoDienThoai) &&
+                                                 dg.SoDienThoai.ToLower().Contains(keyword)) ||
+                                                (!string.IsNullOrEmpty(dg.Email) &&
+                                                 dg.Email.ToLower().Contains(keyword))
+                                                ).ToList();
 
             DataGridView_DachSachDocGia.DataSource = filtered;
         }
@@ -609,40 +718,93 @@ namespace QuanLyThuVienNhom3.GUI.UC
         {
             Button_TimKiem_Click(sender, e);
         }
-        private void ExportDataGridViewToCSV(DataGridView dgv, string filePath)
-        {
-            var sb = new StringBuilder();
-
-            // Write column headers
-            var headers = dgv.Columns.Cast<DataGridViewColumn>();
-            sb.AppendLine(string.Join(",", headers.Select(column => $"\"{column.HeaderText}\"")));
-
-            // Write rows
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    var cells = row.Cells.Cast<DataGridViewCell>();
-                    sb.AppendLine(string.Join(",", cells.Select(cell => $"\"{cell.Value?.ToString()?.Replace("\"", "\"\"")}\"")));
-                }
-            }
-
-            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
-        }
 
         private void Button_XuatFile_Click(object sender, EventArgs e)
         {
+            var qldg = _quanLyDocGia_BLL.GetListDocGia();
             using (var sfd = new SaveFileDialog())
             {
-                sfd.Filter = "CSV files (*.csv)|*.csv";
-                sfd.FileName = "DocGia.csv";
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.Title = "Chọn nơi lưu file";
+                sfd.FileName = "DanhSachDocGia.xlsx";
+
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    ExportDataGridViewToCSV(DataGridView_DachSachDocGia, sfd.FileName);
-                    MessageBox.Show("Xuất file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Danh sách độc giả");
+                        worksheet.Cell(1, 1).Value = "STT";
+                        worksheet.Cell(1, 2).Value = "Mã độc giả";
+                        worksheet.Cell(1, 3).Value = "Tên độc giả";
+                        worksheet.Cell(1, 4).Value = "Ngày sinh";
+                        worksheet.Cell(1, 5).Value = "Giới tính";
+                        worksheet.Cell(1, 6).Value = "Địa chỉ";
+                        worksheet.Cell(1, 7).Value = "Số điện thoại";
+                        worksheet.Cell(1, 8).Value = "Email";
+                        worksheet.Cell(1, 9).Value = "Trạng thái";
+
+                        int row = 2;
+                        foreach (var dg in qldg)
+                        {
+                            worksheet.Cell(row, 1).Value = dg.STT;
+                            worksheet.Cell(row, 2).Value = dg.MaDocGia;
+                            worksheet.Cell(row, 3).Value = dg.TenDocGia;
+                            worksheet.Cell(row, 4).Value = dg.NgaySinh.HasValue
+                            ? dg.NgaySinh.Value.ToString("dd/MM/yyyy")
+                            : "";
+                            worksheet.Cell(row, 5).Value = dg.GioiTinh;
+                            worksheet.Cell(row, 6).Value = dg.DiaChi;
+                            worksheet.Cell(row, 7).Value = dg.SoDienThoai;
+                            worksheet.Cell(row, 8).Value = dg.Email;
+                            worksheet.Cell(row, 9).Value = dg.TrangThai;
+                            row++;
+                        }
+                        workbook.SaveAs(sfd.FileName);
+                        MessageBox.Show("Xuất file thành công ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
 
+        private void Button_LuuMa_Click_1(object sender, EventArgs e)
+        {
+            if (!isAdding)
+            {
+                string TranThai = (checkBox_HoatDong.Checked) ? "Hoạt động" : "Không hoạt động";
+                string GioiTinh = (radioButton_Nam.Checked) ? "Nam" : "Nữ";
+                string ten = TextBox_Ten.Text.Trim();
+                string DiaChi = TextBox_DiaChi.Text.Trim();
+                string SDT = TextBox_SoDienThoai.Text.Trim();
+                string email = TextBox_Email.Text.Trim();
+                string ThongTinNgaySinh = DateTimePicker_NgaySinh.Value.ToString("dd/MM/yyyy");
+                int maDocGia = int.Parse(TextBox_MaDocGia.Text.Trim());
+                string chuoiThongTin =
+                    $"{maDocGia}|{ten}|{ThongTinNgaySinh}|{GioiTinh}|{DiaChi}|{SDT}|{email}|{TranThai}";
+                if (!string.IsNullOrEmpty(chuoiThongTin))
+                {
+                    GenerateQRCode(chuoiThongTin);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập nội dung để tạo QR!");
+                }
+                if (pictureBox_MaQR.Image != null)
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "PNG Image|*.png|JPEG Image|*.jpg";
+                    sfd.FileName = $"{maDocGia},{ten}.png";
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        pictureBox_MaQR.Image.Save(sfd.FileName);
+                        MessageBox.Show("Đã lưu QR thành công!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Chưa có QR để lưu!");
+                }
+            }
+        }
     }
 }
